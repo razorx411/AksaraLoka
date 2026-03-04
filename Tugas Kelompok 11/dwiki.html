@@ -1,105 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata - Zaki</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biodata - Dwiki Aulia Rahman</title>
 
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(135deg, #755617, #fdc566);
-            margin: 0;
-            padding: 0;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap');
 
-        .container {
-            width: 400px;
-            margin: 60px auto;
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
 
-        .gambar {
-            width: 150px;
-            height: 200px;
-            margin-bottom: 50px;
-            display: block;
-            margin: auto;
-        }
+    /* Background Batik */
+    background-image: url("Asset/batik.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
-        .biodata {
-            margin-top: 25px;
-            display: grid;
-            grid-template-columns: 150px auto;
-            row-gap: 10px;
-        }
+/* Overlay gelap supaya elegan */
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(60, 40, 10, 0.6);
+    z-index: 0;
+}
 
-        .label {
-            font-weight: bold;
-            color: #555;
-        }
+.container {
+    position: relative;
+    width: 450px;
+    background: rgba(255, 248, 230, 0.95);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    z-index: 1;
+    border: 3px solid #b88a2a;
+}
 
-        .value {
-            color: #222;
-        }
+h1 {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    color: #6b3f00;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
 
-        .riwayat {
-            grid-column: span 2;
-            margin-top: 10px;
-        }
+.subjudul {
+    text-align: center;
+    font-size: 14px;
+    color: #8b5e00;
+    margin-bottom: 20px;
+}
 
-        ul {
-            margin: 5px 0 0 20px;
-        }
-    </style>
+.gambar {
+    width: 160px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 15px auto;
+    border-radius: 15px;
+    border: 4px solid #b88a2a;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.biodata {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 140px auto;
+    row-gap: 12px;
+}
+
+.label {
+    font-weight: 500;
+    color: #6b3f00;
+}
+
+.value {
+    color: #333;
+}
+
+.riwayat {
+    grid-column: span 2;
+    margin-top: 15px;
+}
+
+.riwayat strong {
+    color: #6b3f00;
+}
+
+ul {
+    margin: 8px 0 0 20px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #7a5c2e;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-    <h1>Biodata Diri</h1>
 
-    <img src="Asset/foto zaki.jpeg" alt="Gambar Zaki" class="gambar">
+<div class="container">
 
-    <div class="biodata">
-        <div class="label">Nama Panjang</div>
-        <div class="value">Zaki Wira Laksamana</div>
+<h1>Biodata Diri</h1>
+<div class="subjudul">Aksara Loka - Identitas Mahasiswa</div>
 
-        <div class="label">NPM</div>
-        <div class="value">24082010155</div>
+<img src="Asset/foto dwiki.jpeg" alt="Foto Dwiki" class="gambar">
 
-        <div class="label">Jurusan</div>
-        <div class="value">Sistem Informasi</div>
+<div class="biodata">
+    <div class="label">Nama Lengkap</div>
+    <div class="value">Dwiki Aulia Rahman</div>
 
-        <div class="label">Asal</div>
-        <div class="value">Sidoarjo</div>
+    <div class="label">NPM</div>
+    <div class="value">24082010153</div>
 
-        <div class="label">Umur</div>
-        <div class="value">19</div>
+    <div class="label">Jurusan</div>
+    <div class="value">Sistem Informasi</div>
 
-        <div class="label">Hobi</div>
-        <div class="value">Menggambar</div>
+    <div class="label">Asal</div>
+    <div class="value">Tulungagung</div>
 
-        <div class="label">Email</div>
-        <div class="value">zaki@gmail.com</div>
+    <div class="label">Umur</div>
+    <div class="value">21 Tahun</div>
 
-        <div class="riwayat">
-            <strong>Riwayat Pendidikan:</strong>
-            <ul>
-                <li>SD: SDIT Insan Cendekia</li>
-                <li>SMP: SMP Ulul Albab</li>
-                <li>SMA: SMA Negeri 1 Krian</li>
-                <li>Kuliah: Universitas Pembangunan Nasional "Veteran" Jawa Timur</li>
-            </ul>
-        </div>
+    <div class="label">Hobi</div>
+    <div class="value">Traveling</div>
+
+    <div class="label">Email</div>
+    <div class="value">auliadwiki54@gmail.com</div>
+
+    <div class="riwayat">
+        <strong>Riwayat Pendidikan:</strong>
+        <ul>
+            <li>SD: (SDN 1 Banjarsari)</li>
+            <li>SMP: (MtsN 7 Tulungagung)</li>
+            <li>SMA: (SMKN 1 Boyolangu)</li>
+            <li>Kuliah: UPN "Veteran" Jawa Timur</li>
+        </ul>
     </div>
 </div>
+
+<div class="footer">
+    "Aksara Loka - Melestarikan Aksara Jawa untuk Generasi Mendatang"
+</div>
+
+</div>
+
 </body>
 </html>
