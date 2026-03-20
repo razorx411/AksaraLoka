@@ -1,98 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biodata Kelompok 11</title>
-    <!-- Menggunakan Tailwind CSS via CDN -->
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-
-  <link
-  href = "https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    .cinzel{
-      font-family: 'Cinzel', serif;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biodata Tim — AksaraLoka</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { nunito: ['Cinzel', 'serif'], poppins: ['Poppins', 'sans-serif'] },
+          colors: {
+            brand: { DEFAULT: '#6b3f00', light: '#aa6d11', soft: '#fff3e0', border: '#e8d0b0' }
+          },
+          keyframes: {
+            fadeUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+          },
+          animation: { 'fade-up': 'fadeUp 0.6s ease forwards' }
+        }
+      }
     }
+  </script>
+  <style>
+    .card { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(107,63,0,0.14); }
+    .stagger-1 { animation: fadeUp 0.6s ease 0.1s both; }
+    .stagger-2 { animation: fadeUp 0.6s ease 0.25s both; }
+    .stagger-3 { animation: fadeUp 0.6s ease 0.4s both; }
   </style>
 </head>
+<body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-poppins">
 
-<body class="font-sans antialiased bg-[#e7d6ba]">
-
-  <header class="bg-[#b79152] shadow">
-    <div class="container mx-auto p-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-[#573a0a] cinzel">AksaraLoka</h1>
-      <nav>
-        <ul class="flex space-x-4 cinzel">
-          <li>
-            <a href="index.html" class="text-gray-700 hover:text-gray-900">Beranda</a>
-          </li>
-          <li>
-            <a href="about.html" class="text-gray-700 hover:text-gray-900">Tentang</a>
-          </li>
-          <li>
-            <a href="portfolio.html" class="text-gray-700 hover:text-gray-900">Materi</a>
-          </li>
-          <li>
-            <a href="contact.html" class="text-gray-700 hover:text-gray-900">Kontak</a>
-          </li>
-        </ul>
+  <!-- NAVBAR -->
+  <header class="w-full border-b border-[#e8d0b0] bg-white sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="../index.html" class="font-black text-[#6b3f00] text-lg font-nunito hover:opacity-80 transition-opacity">AksaraLoka</a>
+      <nav class="hidden md:flex items-center gap-1 text-sm font-bold font-nunito">
+        <a href="home.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-[#fff3e0] hover:text-[#6b3f00] transition-colors">Beranda</a>
+        <a href="about.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-[#fff3e0] hover:text-[#6b3f00] transition-colors">Tentang</a>
+        <a href="portfolio.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-[#fff3e0] hover:text-[#6b3f00] transition-colors">Materi</a>
+        <a href="contact.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-[#fff3e0] hover:text-[#6b3f00] transition-colors">Kontak</a>
+        <a href="biodata.html" class="px-3 py-1.5 rounded-lg bg-[#fff3e0] text-[#6b3f00]">Biodata</a>
       </nav>
+      <a href="home.html" class="text-[#6b3f00] font-black text-sm px-4 py-2 rounded-xl bg-white border-2 border-b-4 border-[#e8d0b0] hover:bg-[#fff3e0] hover:translate-y-0.5 hover:border-b-2 active:translate-y-1 active:border-b-0 transition-all duration-100 font-nunito">
+        Masuk
+      </a>
     </div>
   </header>
 
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-10">
 
-  <main class="container mx-auto mt-8">
-
-    <section class="bg-[#ffffe7] p-8 rounded shadow mt-8 ml-5 mr-5">
-      <h2 class="text-2xl font-bold mb-4 cinzel text-[#573a0a]">Tim Kami</h2>
-      <p class="text-[#895a10] mb-4">
-        Kami merupakan mahasiswa Program Studi Sistem Informasi, Fakultas Ilmu Komputer, UPN “Veteran” Jawa Timur
-      </p>
+    <!-- Hero -->
+    <section class="stagger-1 bg-[#6b3f00] rounded-2xl p-8 md:p-10 text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.3) 20px, rgba(255,255,255,0.3) 21px);"></div>
+      <div class="relative z-10">
+        <p class="text-white/60 text-xs font-bold uppercase tracking-widest font-nunito mb-2">Kelompok 11</p>
+        <h1 class="text-3xl md:text-4xl font-black font-nunito leading-tight">Tim Kami</h1>
+        <p class="text-white/70 mt-2 text-sm max-w-lg leading-relaxed">Mahasiswa Program Studi Sistem Informasi, Fakultas Ilmu Komputer, UPN "Veteran" Jawa Timur yang membangun AksaraLoka.</p>
+      </div>
     </section>
 
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 ml-5 mr-5">
+    <!-- Team Cards -->
+    <section class="stagger-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
 
-      <div class="bg-[#ffffe7] p-4 rounded shadow text-center">
-        <img class="w-45 h-62 mx-auto mb-3 border-3 border-[#895a10] rounded" src="Asset/foto zaki.jpeg" alt="Foto Zaki">
-        <h3 class="text-xl font-semibold mb-2 cinzel text-[#573a0a]">Zaki Wira Laksamana</h3>
-        <p class="text-[#895a10] mb-3">
-          NPM: 24082010155
-        </p>
-        <button class="bg-[#afaf21] hover:bg-[#88881b] text-white py-2 px-4 rounded cinzel">
-            <a href="zaki.html">Selengkapnya</a>
-        </button>
+      <!-- Zaki -->
+      <div class="card bg-white rounded-2xl border border-[#e8d0b0] overflow-hidden flex flex-col">
+        <div class="relative">
+          <img src="../Asset/Images/img_zaki.jpeg" alt="Foto Zaki" class="w-full h-56 object-cover object-top"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#6b3f00]/60 to-transparent"></div>
+          <div class="absolute bottom-3 left-4">
+            <span class="text-xs bg-white/20 backdrop-blur-sm text-white font-bold px-2 py-0.5 rounded-full font-nunito">Ketua</span>
+          </div>
+        </div>
+        <div class="p-5 flex flex-col flex-1 gap-3">
+          <div>
+            <h3 class="font-black text-[#6b3f00] font-nunito">Zaki Wira Laksamana</h3>
+            <p class="text-xs text-[#aa6d11] font-semibold mt-0.5">NPM: 24082010155</p>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed flex-1">Sistem Informasi · FIK · UPN "Veteran" Jawa Timur</p>
+          <a href="zaki.html" class="block text-center text-white font-black text-xs uppercase tracking-widest py-2.5 rounded-xl bg-[#aa6d11] border-b-4 border-[#6b3f00] hover:bg-[#7a4d09] hover:translate-y-0.5 hover:border-b-2 active:translate-y-1 active:border-b-0 transition-all duration-100 font-nunito">
+            Selengkapnya
+          </a>
+        </div>
       </div>
 
-      <div class="bg-[#ffffe7] p-4 rounded shadow text-center">
-        <img class="w-45 h-62 mx-auto mb-3 border-3 border-[#895a10] rounded" src="Asset/foto hafid.jpeg" alt="Foto Hafid">
-        <h3 class="text-xl font-semibold mb-2 cinzel text-[#573a0a]">Hafid Fathurrohman</h3>
-        <p class="text-[#895a10] mb-3">
-          NPM: 24082010165
-        </p>
-        <button class="bg-[#afaf21] hover:bg-[#88881b] text-white py-2 px-4 rounded cinzel">
-          <a href="hafid.html">Selengkapnya</a>
-        </button>
+      <!-- Hafid -->
+      <div class="card bg-white rounded-2xl border border-[#e8d0b0] overflow-hidden flex flex-col">
+        <div class="relative">
+          <img src="../Asset/Images/img_hafid2.jpeg" alt="Foto Hafid" class="w-full h-56 object-cover object-top"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#6b3f00]/60 to-transparent"></div>
+          <div class="absolute bottom-3 left-4">
+            <span class="text-xs bg-white/20 backdrop-blur-sm text-white font-bold px-2 py-0.5 rounded-full font-nunito">Anggota</span>
+          </div>
+        </div>
+        <div class="p-5 flex flex-col flex-1 gap-3">
+          <div>
+            <h3 class="font-black text-[#6b3f00] font-nunito">Hafid Fathurrohman</h3>
+            <p class="text-xs text-[#aa6d11] font-semibold mt-0.5">NPM: 24082010165</p>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed flex-1">Sistem Informasi · FIK · UPN "Veteran" Jawa Timur</p>
+          <a href="hafid.html" class="block text-center text-white font-black text-xs uppercase tracking-widest py-2.5 rounded-xl bg-[#aa6d11] border-b-4 border-[#6b3f00] hover:bg-[#7a4d09] hover:translate-y-0.5 hover:border-b-2 active:translate-y-1 active:border-b-0 transition-all duration-100 font-nunito">
+            Selengkapnya
+          </a>
+        </div>
       </div>
-      
-      <div class="bg-[#ffffe7] p-4 rounded shadow text-center">
-        <img class="w-30 h-62 mx-auto mb-3 border-3 border-[#895a10] rounded" src="Asset/foto dwiki.jpeg" alt="Foto Hafid">
-        <h3 class="text-xl font-semibold mb-2 cinzel text-[#573a0a]">Dwiki Aulia Rahman</h3>
-        <p class="text-[#895a10] mb-3">
-          NPM: 24082010153
-        </p>
-        <button class="bg-[#afaf21] hover:bg-[#88881b] text-white py-2 px-4 rounded cinzel">
-          <a href="dwiki.html">Selengkapnya</a>
-        </button>
+
+      <!-- Dwiki -->
+      <div class="card bg-white rounded-2xl border border-[#e8d0b0] overflow-hidden flex flex-col">
+        <div class="relative">
+          <img src="../Asset/Images/img_dwiki.jpeg" alt="Foto Dwiki" class="w-full h-56 object-cover object-top"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#6b3f00]/60 to-transparent"></div>
+          <div class="absolute bottom-3 left-4">
+            <span class="text-xs bg-white/20 backdrop-blur-sm text-white font-bold px-2 py-0.5 rounded-full font-nunito">Anggota</span>
+          </div>
+        </div>
+        <div class="p-5 flex flex-col flex-1 gap-3">
+          <div>
+            <h3 class="font-black text-[#6b3f00] font-nunito">Dwiki Aulia Rahman</h3>
+            <p class="text-xs text-[#aa6d11] font-semibold mt-0.5">NPM: 24082010153</p>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed flex-1">Sistem Informasi · FIK · UPN "Veteran" Jawa Timur</p>
+          <a href="dwiki.html" class="block text-center text-white font-black text-xs uppercase tracking-widest py-2.5 rounded-xl bg-[#aa6d11] border-b-4 border-[#6b3f00] hover:bg-[#7a4d09] hover:translate-y-0.5 hover:border-b-2 active:translate-y-1 active:border-b-0 transition-all duration-100 font-nunito">
+            Selengkapnya
+          </a>
+        </div>
       </div>
 
     </section>
+
+    <!-- Dosen Pembimbing -->
+    <section class="stagger-3 bg-[#fff3e0] rounded-2xl p-6 border border-[#e8d0b0] flex flex-col md:flex-row items-center gap-5">
+      <div class="w-16 h-16 rounded-2xl bg-[#6b3f00] flex items-center justify-center text-white text-3xl font-black font-nunito shrink-0">R</div>
+      <div>
+        <p class="text-xs font-bold text-[#aa6d11] uppercase tracking-widest font-nunito">Dosen Pembimbing</p>
+        <h3 class="font-black text-[#6b3f00] font-nunito text-lg mt-0.5">Bu Reisa Permatasari, ST, M.Kom.</h3>
+        <p class="text-sm text-gray-500 mt-0.5">Pemrograman Website & Manajemen Proyek Sistem Informasi · 2026</p>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="bg-[#b79152] shadow mt-8 py-5">
-    <div class="container mx-auto text-center text-white cinzel">
-      &copy; 2026 - AksaraLoka.
+  <!-- FOOTER -->
+  <footer class="bg-[#fdf8f3] border-t border-[#e8d0b0] mt-4">
+    <div class="max-w-5xl mx-auto px-5 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div class="space-y-3">
+        <span class="font-black text-[#6b3f00] text-lg font-nunito">AksaraLoka</span>
+        <p class="text-sm text-gray-500 leading-relaxed">Platform belajar bahasa daerah Indonesia secara gratis, seru, dan efektif.</p>
+      </div>
+      <div class="space-y-3">
+        <h3 class="text-[#6b3f00] font-black text-xs uppercase tracking-widest font-nunito">Platform</h3>
+        <ul class="space-y-1.5">
+          <li><a href="about.html" class="text-sm text-gray-500 hover:text-[#6b3f00] font-semibold transition-colors">Tentang Kami</a></li>
+          <li><a href="portfolio.html" class="text-sm text-gray-500 hover:text-[#6b3f00] font-semibold transition-colors">Materi</a></li>
+          <li><a href="contact.html" class="text-sm text-gray-500 hover:text-[#6b3f00] font-semibold transition-colors">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="space-y-3">
+        <h3 class="text-[#6b3f00] font-black text-xs uppercase tracking-widest font-nunito">Tim</h3>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-xs bg-[#fff3e0] text-[#6b3f00] font-bold px-2.5 py-1 rounded-full border border-[#e8d0b0] font-nunito">Dwiki</span>
+          <span class="text-xs bg-[#fff3e0] text-[#6b3f00] font-bold px-2.5 py-1 rounded-full border border-[#e8d0b0] font-nunito">Zaki</span>
+          <span class="text-xs bg-[#fff3e0] text-[#6b3f00] font-bold px-2.5 py-1 rounded-full border border-[#e8d0b0] font-nunito">Hafid</span>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-[#e8d0b0] bg-white">
+      <div class="max-w-5xl mx-auto px-5 py-3.5 flex items-center justify-between">
+        <p class="text-xs text-gray-400 font-semibold">&copy; 2026 AksaraLoka · Kelompok 11</p>
+        <span class="text-xs font-black text-[#6b3f00] bg-[#fff3e0] border border-[#e8d0b0] px-3 py-1 rounded-full font-nunito">Ayo Lestarikan Budaya!</span>
+      </div>
     </div>
   </footer>
+
 </body>
 </html>
