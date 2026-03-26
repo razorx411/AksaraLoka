@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daftar — AksaraLoka</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+  <!-- CSS External -->
+  <link rel="stylesheet" href="../Asset/CSS/register-page.css">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            nunito: ['Cinzel', 'serif'],
+            poppins: ['Poppins', 'sans-serif']
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity:'0', transform:'translateY(24px)' },
+              '100%': { opacity:'1', transform:'translateY(0)' }
+            },
+            shimmer: {
+              '0%,100%': { opacity:'.7' },
+              '50%': { opacity:'1' }
+            },
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.7s ease both',
+            shimmer: 'shimmer 3s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-4 bg-pattern relative overflow-hidden">
+
+  <!-- Floating Aksara -->
+  <div class="absolute inset-0 overflow-hidden select-none" aria-hidden="true">
+    <span class="float-char absolute text-white/20 text-6xl font-black" style="top:8%; left:5%; animation-duration:7s;">ꦲ</span>
+    <span class="float-char absolute text-white/15 text-4xl font-black" style="top:20%; left:80%; animation-duration:9s;">ꦤ</span>
+    <span class="float-char absolute text-white/20 text-5xl font-black" style="top:60%; left:10%; animation-duration:8s;">ꦏ</span>
+    <span class="float-char absolute text-white/15 text-3xl font-black" style="top:75%; left:75%; animation-duration:10s;">ꦱ</span>
+    <span class="float-char absolute text-white/10 text-7xl font-black" style="top:45%; left:88%; animation-duration:12s;">ꦗ</span>
+    <span class="float-char absolute text-white/10 text-5xl font-black" style="top:85%; left:40%; animation-duration:11s;">ꦩ</span>
+  </div>
+
+  <div class="w-full max-w-md relative z-10" style="animation: fadeUp 0.7s ease both;">
+
+    <a href="../index.html" class="inline-flex items-center gap-1.5 text-white/70 hover:text-white text-xs font-semibold mb-5">
+      ← Kembali ke Beranda
+    </a>
+
+    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+      <div class="bg-[#fff3e0] px-8 pt-8 pb-6 border-b border-[#e8d0b0]">
+        <a href="../index.html" class="text-[#6b3f00] font-black text-xl font-nunito block mb-3">AksaraLoka</a>
+        <h1 class="text-2xl font-black text-[#6b3f00] font-nunito">Buat Profilmu</h1>
+        <p class="text-sm text-gray-500 mt-1">Daftar gratis dan mulai belajar Aksara Nusantara!</p>
+      </div>
+
+      <div class="px-8 py-7">
+        <form id="registrationForm" class="space-y-4">
+
+          <div class="space-y-1.5">
+            <label class="label">Nama Pengguna</label>
+            <input type="text" id="nama" required class="form-input"/>
+            <p id="namaErr" class="error-text hidden">Nama hanya boleh huruf.</p>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="label">Email</label>
+            <input type="email" id="email" required class="form-input"/>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="label">Kata Sandi</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" required class="form-input pr-10"/>
+              <button type="button" class="eye-btn" id="eyeBtn">
+                <span id="eyeIcon">🙈</span>
+              </button>
+            </div>
+
+            <div class="flex gap-1 mt-1.5">
+              <div class="bar" id="bar1"></div>
+              <div class="bar" id="bar2"></div>
+              <div class="bar" id="bar3"></div>
+              <div class="bar" id="bar4"></div>
+            </div>
+
+            <p id="strengthLabel" class="hidden"></p>
+            <p id="passErr" class="error-text hidden">Minimal 8 karakter</p>
+          </div>
+
+          <div id="notif" class="hidden notif">
+            🎉 Registrasi berhasil!
+          </div>
+
+          <button type="submit" class="btn-primary">Buat Akun</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS External -->
+  <script src="../Asset/JS/register-page.js"></script>
+</body>
+</html>
