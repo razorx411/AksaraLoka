@@ -1,67 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AksaraLoka — Belajar Bahasa Jawa</title>
+  <title>AksaraLoka</title>
+
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap;" rel="stylesheet"/>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { nunito: ['Cinzel', 'Serif'] },
-          colors: {
-            brand: {
-              DEFAULT: '#6b3f00',
-              light:   '#8a5200',
-              soft:    '#fff3e0',
-              border:  '#e8d0b0',
-            }
-          },
-          keyframes: {
-            fadeUp: {
-              '0%':   { opacity: '0', transform: 'translateY(16px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.5s ease forwards',
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    body { font-family: 'Nunito', sans-serif; }
 
-    .xp-fill { width: 0; animation: grow 1.2s ease 0.4s forwards; }
-    @keyframes grow { to { width: 62%; } }
+  <!-- Config external -->
+  <script src="js/home.js" defer></script>
 
-    .card { transition: transform 0.18s ease, box-shadow 0.18s ease; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(107,63,0,0.12); }
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/home-style.css">
 
-    .btn {
-      border-bottom: 4px solid #4a2b00;
-      transition: all 0.1s ease;
-    }
-    .btn:hover  { filter: brightness(1.1); transform: translateY(1px); border-bottom-width: 3px; }
-    .btn:active { transform: translateY(3px); border-bottom-width: 1px; }
-
-    .btn-outline {
-      border: 2px solid #e8d0b0;
-      border-bottom: 4px solid #d4b896;
-      transition: all 0.1s ease;
-    }
-    .btn-outline:hover  { background: #fff3e0; transform: translateY(1px); border-bottom-width: 3px; }
-    .btn-outline:active { transform: translateY(3px); border-bottom-width: 1px; }
-  </style>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
 </head>
 
 <body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-nunito">
-
-  <!-- ==================== NAVBAR ==================== -->
+ <!-- ==================== NAVBAR ==================== -->
   <nav class="bg-white border-b border-brand-border sticky top-0 z-50">
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
 
@@ -100,44 +58,54 @@
 
 
     <!-- ==================== HERO ==================== -->
-    <section class="bg-brand rounded-2xl p-6 md:p-8 text-white relative overflow-hidden">
-
-        <!-- Left -->
-        <div class="space-y-4 flex-1">
-          <div>
-            <p class="text-white/60 text-xs font-bold uppercase tracking-widest">Selamat Pagi</p>
-            <h1 class="text-2xl md:text-3xl font-black mt-0.5">Selamat Datang Kembali, Hafid!</h1>
-            <p class="text-white/70 text-sm font-semibold mt-1">Semangat Belajar Bahasa Daerah!</p>
-          </div>
-
-          <!-- Stats row -->
-          <div class="flex flex-wrap gap-3">
-            <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
-              <img src="Asset/fire.png" alt="" width="20" height="20"> <span>12 Hari Berturut</span>
-            </div>
-            <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
-              ⭐ <span>Level 5</span>
-            </div>
-            <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
-              ⚡ <span>840 XP</span>
-            </div>
-          </div>
-
-          <!-- XP bar -->
-          <div class="max-w-xs space-y-1">
-            <div class="flex justify-between text-xs font-bold text-white/60">
-              <span>XP menuju Level 6</span>
-              <span>840 / 1,200</span>
-            </div>
-
-          <!-- CTA -->
-          <a href="portfolio.html" class="btn inline-flex items-center gap-2 bg-white text-brand font-black text-sm px-6 py-2.5 rounded-xl shadow">
-            ▶ Lanjut Belajar
-          </a>
-        </div>
-
+<section class="bg-brand rounded-2xl p-6 md:p-8 text-white relative overflow-hidden">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    
+    <!-- Left -->
+    <div class="space-y-4 flex-1">
+      <div>
+        <p class="text-white/60 text-xs font-bold uppercase tracking-widest">Selamat Pagi</p>
+        <h1 class="text-2xl md:text-3xl font-black mt-0.5">Selamat Datang Kembali, Hafid!</h1>
+        <p class="text-white/70 text-sm font-semibold mt-1">Semangat Belajar Bahasa Daerah!</p>
       </div>
-    </section>
+
+    <!-- Stats row -->
+<div class="flex flex-wrap gap-3">
+  <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
+    <img src="../Asset/Icon/icon_fire.png" alt="" width="20" height="20">
+    <span>12 Hari Berturut</span>
+  </div>
+  <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
+    <img src="../Asset/Icon/icon_favourites.png" alt="" width="20" height="20">
+    <span id="level-badge">Level 5</span>
+  </div>
+  <div class="bg-white/15 px-3 py-2 rounded-xl text-sm font-bold flex items-center gap-1.5">
+    <img src="../Asset/Icon/icon_flash.png" alt="" width="20" height="20">
+    <span id="xp-text">840 XP</span>
+  </div>
+</div>
+
+<!-- XP bar -->
+<div class="max-w-xs space-y-1">
+  <div class="flex justify-between text-xs font-bold text-white/60">
+    <span id="xp-title">XP menuju Level 6</span>
+    <span id="xp-label">840 / 1,200</span>
+  </div>
+  <div class="w-full bg-white/20 rounded-full h-2.5 overflow-hidden">
+    <div id="xp-bar" class="h-full rounded-full bg-yellow-400"
+        style="width: 0%; transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);">
+    </div>
+  </div>
+</div>
+
+      <!-- CTA -->
+      <a href="portfolio.html" class="btn inline-flex items-center gap-2 bg-white text-brand font-black text-sm px-6 py-2.5 rounded-xl shadow">
+        ▶ Lanjut Belajar
+      </a>
+    </div>
+
+  </div>
+</section>
     <!-- ==================== END HERO ==================== -->
 
 
@@ -357,9 +325,5 @@
     </div>
 
   </footer>
-  <!-- ==================== END FOOTER ==================== -->
-
 </body>
 </html>
-
-
