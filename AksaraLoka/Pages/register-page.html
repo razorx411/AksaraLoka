@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <link rel="icon" href="../Asset/icon/icon_aksaraloka.png" type="image/png">
+  <link rel="icon" href="../assets/icon/icon_aksaraloka.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Registrasi — AksaraLoka</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
-
-  <!-- CSS External -->
   <link rel="stylesheet" href="../Pages/css/register-style.css"/>
 
-  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -71,50 +65,82 @@
       </div>
 
       <div class="px-8 py-7">
-        <form id="registrationForm" class="space-y-4">
+        <form id="registrationForm" class="space-y-4" novalidate>
 
+          <!-- Nama -->
           <div class="space-y-1.5">
-            <label class="label">Nama Pengguna</label>
-            <input type="text" id="nama" required class="form-input"/>
-            <p id="namaErr" class="error-text hidden">Nama hanya boleh huruf.</p>
+            <label class="label" for="nama">Nama Pengguna</label>
+            <input type="text" id="nama" name="nama" required
+                   autocomplete="name"
+                   maxlength="50"
+                   placeholder="Contoh: Budi Santoso"
+                   class="form-input"/>
+            <p id="namaErr" class="error-text hidden"></p>
           </div>
 
+          <!-- Email -->
           <div class="space-y-1.5">
-            <label class="label">Email</label>
-            <input type="email" id="email" required class="form-input"/>
+            <label class="label" for="email">Email</label>
+            <input type="email" id="email" name="email" required
+                   autocomplete="email"
+                   placeholder="contoh@email.com"
+                   class="form-input"/>
+            <p id="emailErr" class="error-text hidden"></p>
           </div>
 
+          <!-- Password -->
           <div class="space-y-1.5">
-            <label class="label">Kata Sandi</label>
+            <label class="label" for="password">Kata Sandi</label>
             <div class="password-wrapper">
-              <input type="password" id="password" required class="form-input pr-10"/>
-              <button type="button" class="eye-btn" id="eyeBtn">
+              <input type="password" id="password" name="password" required
+                     autocomplete="new-password"
+                     placeholder="Min. 8 karakter"
+                     class="form-input pr-10"/>
+              <button type="button" class="eye-btn" id="eyeBtn" aria-label="Tampilkan password">
                 <span id="eyeIcon">🙈</span>
               </button>
             </div>
 
+            <!-- Strength Bars -->
             <div class="flex gap-1 mt-1.5">
               <div class="bar" id="bar1"></div>
               <div class="bar" id="bar2"></div>
               <div class="bar" id="bar3"></div>
               <div class="bar" id="bar4"></div>
             </div>
-
-            <p id="strengthLabel" class="hidden"></p>
-            <p id="passErr" class="error-text hidden">Minimal 8 karakter</p>
+            <p id="strengthLabel" class="hidden text-xs mt-1"></p>
+            <p id="passErr" class="error-text hidden"></p>
           </div>
 
-          <div id="notif" class="hidden notif">
-            🎉 Registrasi berhasil!
+          <!-- Konfirmasi Password — BARU -->
+          <div class="space-y-1.5">
+            <label class="label" for="confirmPassword">Konfirmasi Kata Sandi</label>
+            <div class="password-wrapper">
+              <input type="password" id="confirmPassword" name="confirmPassword" required
+                     autocomplete="new-password"
+                     placeholder="Ulangi kata sandi"
+                     class="form-input pr-10"/>
+              <button type="button" class="eye-btn" id="eyeBtn2" aria-label="Tampilkan konfirmasi password">
+                <span id="eyeIcon2">🙈</span>
+              </button>
+            </div>
+            <p id="confirmErr" class="error-text hidden"></p>
           </div>
+
+          <!-- Notifikasi -->
+          <div id="notif" class="hidden notif" role="alert"></div>
 
           <button type="submit" class="btn-primary">Buat Akun</button>
+
+          <p class="text-center text-xs text-gray-400 mt-2">
+            Sudah punya akun?
+            <a href="login.html" class="text-[#aa6d11] font-semibold hover:underline">Masuk di sini</a>
+          </p>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- JS External -->
   <script src="../Pages/js/register-page.js"></script>
 </body>
 </html>
