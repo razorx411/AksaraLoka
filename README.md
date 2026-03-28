@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="logo_upn.png" width="180"/>
+  <img src="assets/icons/icon_upn.png" width="180"/>
 </p>
 
 <p align="center">
@@ -58,13 +58,11 @@ aksaraloka/
 ---
 
 ## 👥 Tim Pengembang
-
-| Nama                | NPM         | GitHub        |
-| ------------------- | ----------- | ------------- |
-| Dwiki Aulia Rahman  | 24082010153 | @auliadwiki54 |
-| Zaki Wira Laksamana | 24082010155 | @Revio225     |
-| Hafid Fathurohman   | 24082010165 | @razorx411    |
-
+| Nama                | NPM         | GitHub                                      |
+| ------------------- | ----------- | -------------------------------------------- |
+| Dwiki Aulia Rahman  | 24082010153 | [@auliadwiki54](https://github.com/auliadwiki54) |
+| Zaki Wira Laksamana | 24082010155 | [@Revio225](https://github.com/Revio225)     |
+| Hafid Fathurohman   | 24082010165 | [@razorx411](https://github.com/razorx411)   |
 ---
 
 ## 🎯 Tujuan Proyek
