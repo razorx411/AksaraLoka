@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kebijakan Privasi — AksaraLoka</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.config.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="../pages/js/privasi.js"></script>
+</head>
+
+<body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-poppins">
+
+  <!-- NAVBAR (SAMA) -->
+  <header class="w-full border-b border-[#e8d0b0] bg-white sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+      <a href="../index.html" class="font-black text-[#6b3f00] text-lg font-nunito">AksaraLoka</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-10">
+
+    <!-- HERO -->
+    <section class="bg-[#6b3f00] rounded-2xl p-8 md:p-10 text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255,255,255,0.3) 20px, rgba(255,255,255,0.3) 21px);"></div>
+      <div class="relative z-10">
+        <p class="text-white/60 text-xs font-bold uppercase tracking-widest font-nunito mb-2">Legal</p>
+        <h1 class="text-3xl md:text-4xl font-black font-nunito leading-tight">Kebijakan Privasi</h1>
+        <p class="text-white/70 mt-2 text-sm max-w-lg leading-relaxed">
+          Kami berkomitmen untuk melindungi data dan privasi pengguna AksaraLoka.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="bg-white rounded-2xl p-6 border border-[#e8d0b0] space-y-5 text-sm leading-relaxed">
+
+  <div>
+    <h2 class="font-bold text-[#6b3f00] mb-1">1. Pengumpulan Informasi</h2>
+    <p>
+      AksaraLoka dapat mengumpulkan informasi pribadi pengguna, seperti nama dan alamat email, serta data penggunaan yang berkaitan dengan aktivitas pembelajaran di dalam platform.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-[#6b3f00] mb-1">2. Penggunaan Informasi</h2>
+    <p>
+      Informasi yang dikumpulkan digunakan untuk meningkatkan kualitas layanan, mengembangkan fitur, serta memberikan pengalaman belajar yang lebih optimal kepada pengguna.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-[#6b3f00] mb-1">3. Perlindungan Data</h2>
+    <p>
+      AksaraLoka berkomitmen untuk menjaga keamanan data pengguna dengan menerapkan langkah-langkah perlindungan yang wajar guna mencegah akses, perubahan, atau penyalahgunaan data tanpa izin.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-[#6b3f00] mb-1">4. Penggunaan Cookies</h2>
+    <p>
+      Platform ini dapat menggunakan cookies untuk menyimpan preferensi pengguna dan meningkatkan efisiensi serta kenyamanan dalam penggunaan layanan.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-[#6b3f00] mb-1">5. Perubahan Kebijakan</h2>
+    <p>
+      Kebijakan Privasi ini dapat diperbarui sewaktu-waktu. Setiap perubahan akan ditampilkan pada halaman ini dan berlaku sejak tanggal pembaruan.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="font-bold text-[#6b3f00] mb-1">6. Kontak</h2>
+    <p>
+      Apabila terdapat pertanyaan atau permintaan terkait kebijakan ini, pengguna dapat menghubungi tim AksaraLoka melalui halaman kontak yang tersedia.
+    </p>
+  </div>
+  <button onclick="downloadPDF()" 
+class="mb-4 text-white text-xs font-bold px-4 py-2 rounded-lg bg-[#aa6d11] hover:bg-[#7a4d09]">
+  Unduh PDF
+</button>
+
+</section>
+  <!-- FOOTER (BISA SAMA PERSIS) -->
+  <footer class="bg-[#fdf8f3] border-t border-[#e8d0b0] mt-4">
+    <div class="max-w-5xl mx-auto px-5 py-6 text-center">
+      <p class="text-xs text-gray-400">&copy; 2026 AksaraLoka</p>
+    </div>
+  </footer>
+
+</body>
+</html>
