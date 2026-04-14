@@ -65,7 +65,7 @@ form.addEventListener('submit', async (e) => {
   submitBtn.textContent = 'Memproses…';
 
   try {
-    const response = await fetch('/Project_PemWeb_Kelompok11/api/login.php', {
+    const response = await fetch('../api/login.php', {
       method: 'POST',
       credentials: 'include', // 🔥 WAJIB biar session tersimpan
       headers: { 'Content-Type': 'application/json' },
