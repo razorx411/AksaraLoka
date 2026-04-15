@@ -19,7 +19,13 @@ tailwind.config = {
 
 // ==================== GREETING DINAMIS ====================
 const greetingText = document.getElementById("greetingText");
+const greetingTime = document.getElementById("greetingTime");
 
+// Ambil user
+const storedUser = localStorage.getItem('user');
+const user = storedUser && storedUser.trim() !== "" ? storedUser : "User";
+
+// Waktu
 const hour = new Date().getHours();
 let greeting = "Halo";
 
@@ -27,8 +33,13 @@ if (hour < 12) greeting = "Selamat Pagi ☀️";
 else if (hour < 18) greeting = "Selamat Siang 🌤️";
 else greeting = "Selamat Malam 🌙";
 
+// Set ke UI
 if (greetingText) {
-  greetingText.innerText = greeting + ", Hafid!";
+  greetingText.innerText = `Selamat Datang Kembali, ${user}!`;
+}
+
+if (greetingTime) {
+  greetingTime.innerText = greeting;
 }
 
 // ==================== NOTIF CLICK ====================

@@ -1,7 +1,7 @@
 // ambil data user saat halaman dibuka
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("/Project_PemWeb_Kelompok11/api/get_profil.php", {
+    const res = await fetch("../api/get_profil.php", {
       credentials: "include"
     });
     const data = await res.json();
