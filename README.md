@@ -86,6 +86,81 @@ aksaraloka/
 ![Preview AksaraLoka](assets/images/img_ss.png)
 
 ---
+## ⚙️ Backend Setup (Local Development)
+
+### 🚀 1. Jalankan Server
+Gunakan:
+- Laragon (disarankan)
+- XAMPP  
+
+Aktifkan:
+- Apache  
+- MySQL  
+
+---
+
+### 🗄️ 2. Setup Database
+
+Buka di browser:
+
+http://localhost/phpmyadmin
+
+
+Buat database:
+
+aksaraloka_db
+
+
+---
+
+### 📥 3. Import Database (Opsional)
+
+- Pilih database `aksaraloka_db`
+- Klik **Import**
+- Upload file `.sql`
+
+---
+
+### 🔌 4. Konfigurasi Koneksi
+
+Edit file:
+
+config/db.php
+
+```php
+<?php
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db   = 'aksaraloka_db';
+
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+?>
+```
+🔐 5. (Opsional) Gunakan .env
+
+Buat file .env:
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=
+DB_NAME=aksaraloka
+
+Tambahkan ke .gitignore:
+
+.env
+🌐 6. Jalankan Project
+http://localhost/aksaraloka
+🔄 7. Integrasi Frontend
+fetch('http://localhost/aksaraloka/api/getUser.php')
+  .then(res => res.json())
+  .then(data => console.log(data));
+```
+---
 
 ## 📜 Lisensi
 
