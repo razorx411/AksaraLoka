@@ -150,16 +150,15 @@ DB_USER=root
 DB_PASS=
 DB_NAME=aksaraloka
 
+```
 Tambahkan ke .gitignore:
-
+```
 .env
+
+```
 🌐 6. Jalankan Project
 http://localhost/aksaraloka
-🔄 7. Integrasi Frontend
-fetch('http://localhost/aksaraloka/api/getUser.php')
-  .then(res => res.json())
-  .then(data => console.log(data));
-```
+
 ---
 
 ## 📜 Lisensi
