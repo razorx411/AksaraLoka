@@ -85,5 +85,5 @@ $insert->execute([$nama, $email, $hash]);
 http_response_code(201);
 echo json_encode([
     'success' => true,
-    'message' => 'Akun berhasil dibuat! Selamat belajar Aksara Nusantara 🎉',
+    'message' => 'Akun berhasil dibuat! Selamat belajar Aksara Nusantara >_<',
 ]);

@@ -68,7 +68,7 @@ $_SESSION['user_email'] = $user['email'];
 http_response_code(200);
 echo json_encode([
     'success' => true,
-    'message' => 'Selamat datang, ' . $user['nama'] . '! 👋',
+    'message' => 'Selamat datang, ' . $user['nama'] . '! !',
     'user'    => [
         'id'    => $user['id'],
         'nama'  => $user['nama'],
