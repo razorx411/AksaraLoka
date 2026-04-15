@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bahasa Ngoko - AksaraLoka</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- CONFIG -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#7c4a03',
+            'brand-dark': '#5c3501',
+            'brand-soft': '#f5e6d3',
+            'brand-border': '#e6c7a3'
+          },
+          fontFamily: {
+            main: ['Poppins', 'sans-serif'],
+            title: ['Cinzel', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-[#fdf8f3] text-gray-800 font-main">
+
+<!-- NAVBAR -->
+<nav class="bg-white border-b border-brand-border sticky top-0 z-50">
+  <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+    <a href="home-page.html" class="font-title text-brand text-lg">AksaraLoka</a>
+    <div class="flex gap-2 text-sm font-bold">
+      <a href="materi.html" class="px-3 py-1.5 rounded-lg bg-brand-soft text-brand">Materi</a>
+    </div>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="max-w-5xl mx-auto px-5 py-8 space-y-6">
+
+  <!-- HEADER -->
+  <div class="bg-brand text-white rounded-2xl p-6">
+    <h1 class="text-2xl font-black">Bahasa Ngoko</h1>
+    <p class="text-sm text-white/80 mt-1">
+      Bahasa Jawa sehari-hari yang digunakan dalam situasi santai atau dengan teman sebaya
+    </p>
+  </div>
+
+  <!-- 1. PENGERTIAN -->
+  <div class="bg-white p-5 rounded-2xl border border-brand-border">
+    <h2 class="font-black text-brand mb-2">1. Pengertian Ngoko</h2>
+    <p class="text-sm text-gray-600">
+      Ngoko adalah tingkatan bahasa Jawa yang digunakan dalam percakapan sehari-hari,
+      terutama dengan teman, keluarga, atau orang yang sudah akrab.
+    </p>
+  </div>
+
+  <!-- 2. FUNGSI -->
+  <div class="bg-white p-5 rounded-2xl border border-brand-border">
+    <h2 class="font-black text-brand mb-2">2. Fungsi Penggunaan</h2>
+
+    <ul class="text-sm text-gray-600 space-y-1">
+      <li>• Berbicara dengan teman sebaya</li>
+      <li>• Berbicara dengan keluarga</li>
+      <li>• Situasi santai / tidak formal</li>
+    </ul>
+  </div>
+
+  <!-- 3. KOSAKATA -->
+  <div class="bg-white p-5 rounded-2xl border border-brand-border">
+    <h2 class="font-black text-brand mb-3">3. Kosakata Ngoko</h2>
+
+    <div class="grid grid-cols-2 gap-3 text-sm">
+
+      <div class="bg-brand-soft p-3 rounded-xl">Aku (Saya)</div>
+      <div class="bg-brand-soft p-3 rounded-xl">Kowe (Kamu)</div>
+      <div class="bg-brand-soft p-3 rounded-xl">Mangan (Makan)</div>
+      <div class="bg-brand-soft p-3 rounded-xl">Turu (Tidur)</div>
+      <div class="bg-brand-soft p-3 rounded-xl">Lunga (Pergi)</div>
+      <div class="bg-brand-soft p-3 rounded-xl">Ngombe (Minum)</div>
+
+    </div>
+  </div>
+
+  <!-- 4. KALIMAT -->
+  <div class="bg-white p-5 rounded-2xl border border-brand-border">
+    <h2 class="font-black text-brand mb-3">4. Contoh Kalimat</h2>
+
+    <ul class="text-sm space-y-2">
+      <li>• Aku mangan</li>
+      <li>• Kowe lunga neng endi?</li>
+      <li>• Aku arep turu</li>
+      <li>• Aku ngombe banyu</li>
+    </ul>
+  </div>
+
+  <!-- 5. PERCAKAPAN -->
+  <div class="bg-white p-5 rounded-2xl border border-brand-border">
+    <h2 class="font-black text-brand mb-3">5. Percakapan Sederhana</h2>
+
+    <div class="text-sm space-y-2">
+      <p><strong>A:</strong> Hei, kowe lagi apa?</p>
+      <p><strong>B:</strong> Aku lagi mangan</p>
+      <p><strong>A:</strong> Bareng aku yo</p>
+      <p><strong>B:</strong> Iyo ayo</p>
+    </div>
+  </div>
+
+  <!-- 6. LATIHAN -->
+  <div class="bg-brand-soft p-5 rounded-2xl border border-brand-border">
+    <h2 class="font-black text-brand mb-2">6. Latihan</h2>
+
+    <p class="text-sm text-gray-600 mb-2">
+      Terjemahkan ke bahasa ngoko:
+    </p>
+
+    <ul class="text-sm space-y-1">
+      <li>1. Saya makan</li>
+      <li>2. Kamu pergi</li>
+      <li>3. Saya tidur</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>

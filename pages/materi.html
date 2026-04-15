@@ -94,44 +94,94 @@
     >
   </div>
 
-  <!-- FILTER -->
-  <div class="flex gap-2">
-    <button onclick="filterMateri(event, 'all')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">Semua</button>
-    <button onclick="filterMateri(event, 'aksara')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Aksara</button>
-    <button onclick="filterMateri(event, 'ngoko')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Ngoko</button>
-    <button onclick="filterMateri(event, 'krama')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Krama</button>
-  </div>
+<!-- FILTER -->
+<div class="flex flex-wrap gap-2">
+  <button onclick="filterMateri(event, 'all')" 
+    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">
+    Semua
+  </button>
 
-  <!-- CARD -->
-  <div class="grid md:grid-cols-2 gap-5">
+  <button onclick="filterMateri(event, 'aksara')" 
+    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
+    Aksara
+  </button>
 
-    <!-- AKSARA (PINDAH HALAMAN) -->
-    <a href="materi-aksara.html" 
-       class="materi aksara block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
-      <div class="flex justify-between">
-        <h2 class="font-black text-sm">Aksara Jawa</h2>
-        <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
-      </div>
-      <p class="text-xs text-gray-500 mt-2 font-semibold">Belajar huruf aksara Jawa</p>
-    </a>
+  <button onclick="filterMateri(event, 'bahasa')" 
+    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
+    Bahasa
+  </button>
 
-    <!-- NGOKO -->
-    <div onclick="openMateri('ngoko')" class="materi ngoko bg-white rounded-2xl p-5 border border-brand-border cursor-pointer hover:bg-brand-soft transition hover:scale-[1.02]">
-      <div class="flex justify-between">
-        <h2 class="font-black text-sm">Bahasa Ngoko</h2>
-        <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
-      </div>
-      <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa sehari-hari</p>
+  <button onclick="filterMateri(event, 'kosakata')" 
+    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
+    Kosakata
+  </button>
+
+  <button onclick="filterMateri(event, 'cerita')" 
+    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
+    Cerita
+  </button>
+</div>
+
+<!-- CARD -->
+<div class="grid md:grid-cols-2 gap-5">
+
+  <!-- AKSARA -->
+  <a href="materi-aksara.html" 
+     class="materi aksara block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+    <div class="flex justify-between">
+      <h2 class="font-black text-sm">Aksara Jawa</h2>
+      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
     </div>
+    <p class="text-xs text-gray-500 mt-2 font-semibold">Belajar huruf aksara Jawa</p>
+  </a>
 
-    <!-- KRAMA -->
-    <div onclick="openMateri('krama')" class="materi krama bg-white rounded-2xl p-5 border border-brand-border cursor-pointer hover:bg-brand-soft transition hover:scale-[1.02]">
-      <div class="flex justify-between">
-        <h2 class="font-black text-sm">Krama Alus</h2>
-        <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Sopan</span>
-      </div>
-      <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa menghormati</p>
+  <!-- NGOKO -->
+  <a href="materi-ngoko.html" 
+     class="materi bahasa block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+    <div class="flex justify-between">
+      <h2 class="font-black text-sm">Bahasa Ngoko</h2>
+      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
     </div>
+    <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa sehari-hari</p>
+  </a>
+
+  <!-- KRAMA -->
+  <a href="materi-krama.html" 
+     class="materi bahasa block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+    <div class="flex justify-between">
+      <h2 class="font-black text-sm">Krama Alus</h2>
+      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Sopan</span>
+    </div>
+    <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa menghormati</p>
+  </a>
+
+  <!-- KOSAKATA -->
+  <a href="kosakata.html" 
+     class="materi kosakata block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+    <div class="flex justify-between">
+      <h2 class="font-black text-sm">Kosakata & Percakapan</h2>
+      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Kreatif</span>
+    </div>
+    <p class="text-xs text-gray-500 mt-2 font-semibold">
+      Salam, perkenalan, dan percakapan sehari-hari
+    </p>
+  </a>
+
+  <!-- CERITA -->
+  <a href="materi-cerita.html" 
+     class="materi cerita block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
+    <div class="flex justify-between">
+      <h2 class="font-black text-sm">Cerita Jawa</h2>
+      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Literasi</span>
+    </div>
+    <p class="text-xs text-gray-500 mt-2 font-semibold">
+      Cerita rakyat & pemahaman teks
+    </p>
+  </a>
+
+</div>
+
+</a>
 
   </div>
 </div>
