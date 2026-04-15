@@ -81,14 +81,13 @@
       </span>
     </div>
   </div>
-
-  <!-- FILTER -->
-  <div class="flex gap-2">
-    <button onclick="filterMateri('all')" class="filter-btn active px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">Semua</button>
-    <button onclick="filterMateri('aksara')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Aksara</button>
-    <button onclick="filterMateri('ngoko')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Ngoko</button>
-    <button onclick="filterMateri('krama')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Krama</button>
-  </div>
+  
+<div class="flex gap-2">
+  <button onclick="filterMateri(event, 'all')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">Semua</button>
+  <button onclick="filterMateri(event, 'aksara')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Aksara</button>
+  <button onclick="filterMateri(event, 'ngoko')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Ngoko</button>
+  <button onclick="filterMateri(event, 'krama')" class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">Krama</button>
+</div>
 
   <!-- CARD -->
   <div class="grid md:grid-cols-2 gap-5">
@@ -174,6 +173,29 @@ function closeModal(){
   modal.classList.remove('flex');
 }
 </script>
+<!-- ==================== SCRIPT ==================== -->
+<script>
+function filterMateri(e, kategori) {
 
+  // FILTER CARD
+  document.querySelectorAll('.materi').forEach(el => {
+    el.style.display = kategori === 'all' || el.classList.contains(kategori)
+      ? 'block'
+      : 'none';
+  });
+
+  // RESET BUTTON
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('bg-brand', 'text-white');
+    btn.classList.add('bg-brand-soft', 'text-brand');
+  });
+
+  // BUTTON YANG DIKLIK JADI COKLAT
+  e.target.classList.remove('bg-brand-soft', 'text-brand');
+  e.target.classList.add('bg-brand', 'text-white');
+}
+</script>
+</body>
+</html>
 </body>
 </html>
