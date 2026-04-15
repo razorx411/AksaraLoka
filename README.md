@@ -87,6 +87,154 @@ aksaraloka/
 
 ---
 
+📦 AksaraLoka Backend - Local Setup Guide
+🚀 Persiapan Awal
+Pastikan kamu sudah install:
+
+
+Laragon / XAMPP / LAMP
+
+
+PHP (>= 7.4)
+
+
+MySQL / MariaDB
+
+
+Browser (Chrome/Edge)
+
+
+
+📁 Struktur Project
+aksaraloka/│├── api/                # File backend PHP (endpoint API)├── config/│   └── db.php          # Koneksi database├── assets/             # Gambar, CSS, dll├── pages/              # Frontend (HTML, JS)├── .env                # Config database (jangan upload ke GitHub)└── index.html
+
+⚙️ Setup Database
+1. Jalankan Server
+
+
+Buka Laragon/XAMPP
+
+
+Start:
+
+
+Apache
+
+
+MySQL
+
+
+
+
+
+2. Buat Database
+Buka:
+http://localhost/phpmyadmin
+Lalu:
+
+
+Klik New
+
+
+Nama database:
+
+
+aksaraloka_db
+
+3. Import Database (Jika Ada)
+
+
+Klik database aksaraloka_db
+
+
+Klik Import
+
+
+Upload file .sql
+
+
+
+🔐 Konfigurasi .env
+Buat file .env di root project:
+DB_HOST=localhostDB_USER=rootDB_PASS=DB_NAME=aksaraloka_db
+⚠️ JANGAN upload file ini ke GitHub
+Tambahkan ke .gitignore:
+.env
+
+🔌 Setup Koneksi Database
+config/db.php
+<?php$host = 'localhost';$user = 'root';$pass = '';$db   = 'aksaraloka_db';$conn = new mysqli($host, $user, $pass, $db);if ($conn->connect_error) {    die("Koneksi gagal: " . $conn->connect_error);}?>
+
+📡 Contoh Endpoint API
+api/getUser.php
+<?phpinclude '../config/db.php';$result = $conn->query("SELECT * FROM users");$data = [];while ($row = $result->fetch_assoc()) {    $data[] = $row;}echo json_encode($data);?>
+
+🌐 Jalankan Project
+Jika pakai Laragon:
+http://localhost/aksaraloka
+
+🔄 Integrasi Frontend (Fetch API)
+Contoh di JS:
+fetch('http://localhost/aksaraloka/api/getUser.php')  .then(res => res.json())  .then(data => {    console.log(data);  });
+
+❗ Troubleshooting
+❌ Koneksi Database Gagal
+
+
+Cek MySQL sudah jalan
+
+
+Cek username/password
+
+
+Cek nama database
+
+
+
+❌ API Tidak Bisa Diakses
+
+
+Pastikan path benar:
+
+
+/api/namafile.php
+
+❌ Error CORS (Jika beda port)
+Tambahkan di PHP:
+header("Access-Control-Allow-Origin: *");
+
+💡 Best Practice
+
+
+Pisahkan frontend (pages) dan backend (api) ✔️
+
+
+Jangan hardcode database di banyak file ❌
+
+
+Gunakan 1 file koneksi (db.php) ✔️
+
+
+Gunakan .env untuk keamanan ✔️
+
+
+
+🧠 Catatan Developer
+Project ini menggunakan:
+
+
+PHP Native (Backend)
+
+
+MySQL (Database)
+
+
+Fetch API (Frontend)
+
+
+Arsitektur:
+Frontend (HTML + JS)        ↓Fetch API        ↓Backend PHP (api/)        ↓Database MySQL
+
 ## 📜 Lisensi
 
 Proyek ini dikembangkan untuk keperluan akademik dan pembelajaran.
