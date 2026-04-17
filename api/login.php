@@ -46,7 +46,7 @@ if (!empty($errors)) {
 require_once __DIR__ . '/../config/db.php';
 $pdo = getPDO();
 
-$stmt = $pdo->prepare('SELECT id, nama, email, password_hash FROM users WHERE email = ? LIMIT 1');
+$stmt = $pdo->prepare('SELECT id, nama, email, password_hash, is_active FROM users WHERE email = ? LIMIT 1');
 $stmt->execute([$email]);
 $user = $stmt->fetch();
 
@@ -59,16 +59,26 @@ if (!$user || !password_verify($pass, $user['password_hash'])) {
     exit;
 }
 
-// ── 4. Simpan session ─────────────────────────────────────────────────────
+// ── 4. Cek is_active ──────────────────────────────────────────────────────
+if ((int)$user['is_active'] === 0) {
+    http_response_code(403);
+    echo json_encode([
+        'success' => false,
+        'errors'  => ['email' => 'Akun ini telah dinonaktifkan.']
+    ]);
+    exit;
+}
+
+// ── 5. Simpan session ─────────────────────────────────────────────────────
 $_SESSION['user_id']    = $user['id'];
 $_SESSION['user_nama']  = $user['nama'];
 $_SESSION['user_email'] = $user['email'];
 
-// ── 5. Berhasil ───────────────────────────────────────────────────────────
+// ── 6. Berhasil ───────────────────────────────────────────────────────────
 http_response_code(200);
 echo json_encode([
     'success' => true,
-    'message' => 'Selamat datang, ' . $user['nama'] . '! !',
+    'message' => 'Selamat datang, ' . $user['nama'] . '!',
     'user'    => [
         'id'    => $user['id'],
         'nama'  => $user['nama'],

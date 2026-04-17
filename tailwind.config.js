@@ -10,5 +10,6 @@ tailwind.config = {
       },
       animation: { 'fade-up': 'fadeUp 0.6s ease forwards' }
     }
+    
   }
 }
