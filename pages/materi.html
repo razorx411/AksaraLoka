@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Materi - AksaraLoka</title>
-
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- CONFIG -->
   <script>
     tailwind.config = {
       theme: {
@@ -27,22 +23,52 @@
       }
     }
   </script>
-
-  <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .progress-bar-fill {
+      background: linear-gradient(90deg, #7c4a03 0%, #c47d2e 40%, #e6a84d 60%, #7c4a03 100%);
+      background-size: 200% auto;
+      animation: shimmer 2.5s linear infinite;
+      transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes fillBar {
+      from { width: 0%; }
+    }
+    .card-bar-fill {
+      animation: fillBar 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+    .dot-done { animation: pulse-dot 1.8s ease-in-out infinite; }
 
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card-enter { animation: fadeSlideIn 0.45s ease forwards; }
+
+    @keyframes bannerIn {
+      from { opacity: 0; transform: scaleY(0.8); }
+      to   { opacity: 1; transform: scaleY(1); }
+    }
+    .banner-in { animation: bannerIn 0.4s ease forwards; transform-origin: top; }
+  </style>
 </head>
 
 <body class="bg-[#fdf8f3] text-gray-800 min-h-screen font-main">
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="bg-white border-b border-brand-border sticky top-0 z-50">
   <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
-
     <a href="home-page.html">
       <span class="font-title text-brand text-lg">AksaraLoka</span>
     </a>
-
     <div class="hidden md:flex items-center gap-1 text-sm font-bold">
       <a href="home-page.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Beranda</a>
       <a href="materi.html" class="px-3 py-1.5 rounded-lg bg-brand-soft text-brand">Materi</a>
@@ -50,28 +76,25 @@
       <a href="peringkat.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Peringkat</a>
       <a href="komunitas.html" class="px-3 py-1.5 rounded-lg text-gray-500 hover:bg-gray-50">Komunitas</a>
     </div>
-
     <div class="flex items-center gap-2">
       <div class="hidden sm:flex items-center gap-1 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded-full text-xs font-bold text-orange-500">
-        🔥 12
+        <svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 0C5.5 0 8.5 3.5 8.5 6C8.5 7.38 7.66 8.57 6.5 9.13V7.5C6.5 7.5 4 9 4 11C4 12.1 4.48 13.08 5.24 13.76C2.26 13.22 0 10.64 0 7.5C0 4.5 3 1 5.5 0Z" fill="#f97316"/><path d="M6.5 9.13C7.66 8.57 8.5 7.38 8.5 6C8.5 8 11 9.5 11 11.5C11 12.88 10.08 14 8.5 14C7.67 14 6.93 13.64 6.42 13.07C6.64 12.45 6.75 11.74 6.5 11C6.09 9.89 5.03 9.36 5.03 9.36C5.03 9.36 5.5 9 6.5 9.13Z" fill="#fb923c"/></svg>
+        12
       </div>
       <button class="relative w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-100">
-        🔔
+        <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 18C9.1 18 10 17.1 10 16H6C6 17.1 6.9 18 8 18ZM14 12V7C14 3.93 12.36 1.36 9.5 0.68V0C9.5 -0.83 8.83 -1.5 8 -1.5C7.17 -1.5 6.5 -0.83 6.5 0V0.68C3.63 1.36 2 3.92 2 7V12L0 14V15H16V14L14 12Z" fill="#6b7280"/></svg>
         <span class="absolute top-1 right-1 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
       </button>
       <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white text-xs font-black">H</div>
     </div>
-
   </div>
 </nav>
-<!-- ================= END NAVBAR ================= -->
 
-
-<!-- ================= CONTENT ================= -->
+<!-- CONTENT -->
 <div class="max-w-5xl mx-auto px-5 py-8 space-y-6">
 
-  <!-- HEADER -->
-  <div class="bg-white rounded-2xl p-5 border border-brand-border">
+  <!-- HEADER + PROGRESS -->
+  <div class="bg-white rounded-2xl p-5 border border-brand-border space-y-4">
     <div class="flex justify-between items-center">
       <div>
         <h1 class="font-black text-gray-800">Materi Pembelajaran</h1>
@@ -81,12 +104,36 @@
         5 Materi
       </span>
     </div>
+
+    <!-- PROGRESS SECTION -->
+    <div class="space-y-1.5">
+      <div class="flex justify-between items-center">
+        <span class="text-xs font-bold text-gray-600">Progress Belajar</span>
+        <span id="progressLabel" class="text-xs font-black text-brand">0 / 5 selesai</span>
+      </div>
+
+      <!-- BAR -->
+      <div class="w-full h-3 bg-brand-soft rounded-full overflow-hidden border border-brand-border">
+        <div id="progressBar" class="h-full rounded-full progress-bar-fill" style="width: 0%"></div>
+      </div>
+
+      <!-- PERSENTASE -->
+      <div class="flex justify-end">
+        <span id="progressPercent" class="text-xs font-black text-brand">0%</span>
+      </div>
+    </div>
+
+    <!-- COMPLETION BANNER -->
+    <div id="completionBanner" class="hidden banner-in bg-green-50 border border-green-300 rounded-xl px-4 py-2.5 flex items-center gap-2">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#22c55e"/><path d="M4.5 8.5L7 11L11.5 6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="text-xs font-black text-green-700">Luar biasa! Semua materi telah diselesaikan.</span>
+    </div>
   </div>
 
-    <!-- 🔍 SEARCH -->
+  <!-- SEARCH -->
   <div class="bg-white rounded-2xl p-4 border border-brand-border">
-    <input 
-      type="text" 
+    <input
+      type="text"
       id="searchInput"
       placeholder="Cari materi..."
       class="w-full px-4 py-2 rounded-xl border border-brand-border text-sm font-semibold focus:outline-none focus:border-brand"
@@ -94,95 +141,115 @@
     >
   </div>
 
-<!-- FILTER -->
-<div class="flex flex-wrap gap-2">
-  <button onclick="filterMateri(event, 'all')" 
-    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">
-    Semua
-  </button>
+  <!-- FILTER -->
+  <div class="flex flex-wrap gap-2">
+    <button onclick="filterMateri(event, 'all')"
+      class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand text-white">
+      Semua
+    </button>
+    <button onclick="filterMateri(event, 'dasar')"
+      class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
+      Dasar
+    </button>
+    <button onclick="filterMateri(event, 'menengah')"
+      class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
+      Menengah
+    </button>
+    <button onclick="filterMateri(event, 'lanjutan')"
+      class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
+      Lanjutan
+    </button>
+  </div>
 
-  <button onclick="filterMateri(event, 'dasar')" 
-    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
-    Dasar
-  </button>
+  <!-- CARDS -->
+  <div class="grid md:grid-cols-2 gap-5" id="cardsGrid">
 
-  <button onclick="filterMateri(event, 'menengah')" 
-    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
-    Menengah
-  </button>
+    <!-- AKSARA -->
+    <a href="materi-aksara.html" id="card-materi-aksara"
+       class="materi dasar card-enter block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]"
+       style="animation-delay:0.05s; opacity:0">
+      <div class="flex justify-between items-start">
+        <h2 class="font-black text-sm">Aksara Jawa</h2>
+        <div class="flex gap-1.5 flex-wrap justify-end">
+          <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mt-2 font-semibold">Belajar huruf aksara Jawa</p>
+      <!-- mini bar -->
+      <div class="mt-3 w-full h-1 bg-brand-soft rounded-full overflow-hidden">
+        <div class="card-bar-fill h-full rounded-full bg-brand-border" style="width:0%" data-id="materi-aksara"></div>
+      </div>
+    </a>
 
-  <button onclick="filterMateri(event, 'lanjutan')" 
-    class="filter-btn px-3 py-1.5 text-xs font-bold rounded-xl bg-brand-soft text-brand border border-brand-border">
-    Lanjutan
-  </button>
-</div>
+    <!-- NGOKO -->
+    <a href="materi-ngoko.html" id="card-materi-ngoko"
+       class="materi dasar card-enter block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]"
+       style="animation-delay:0.1s; opacity:0">
+      <div class="flex justify-between items-start">
+        <h2 class="font-black text-sm">Bahasa Ngoko</h2>
+        <div class="flex gap-1.5 flex-wrap justify-end">
+          <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa sehari-hari</p>
+      <div class="mt-3 w-full h-1 bg-brand-soft rounded-full overflow-hidden">
+        <div class="card-bar-fill h-full rounded-full bg-brand-border" style="width:0%" data-id="materi-ngoko"></div>
+      </div>
+    </a>
 
-<!-- CARD -->
-<div class="grid md:grid-cols-2 gap-5">
+    <!-- KRAMA -->
+    <a href="materi-krama.html" id="card-materi-krama"
+       class="materi menengah card-enter block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]"
+       style="animation-delay:0.15s; opacity:0">
+      <div class="flex justify-between items-start">
+        <h2 class="font-black text-sm">Krama Alus</h2>
+        <div class="flex gap-1.5 flex-wrap justify-end">
+          <span class="text-xs bg-orange-100 text-brand px-2 py-1 rounded-full border border-orange-200 font-bold">Menengah</span>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa menghormati</p>
+      <div class="mt-3 w-full h-1 bg-brand-soft rounded-full overflow-hidden">
+        <div class="card-bar-fill h-full rounded-full bg-brand-border" style="width:0%" data-id="materi-krama"></div>
+      </div>
+    </a>
 
-  <!-- AKSARA -->
-  <a href="materi-aksara.html" id="card-materi-aksara"
-     class="materi dasar block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
-    <div class="flex justify-between">
-      <h2 class="font-black text-sm">Aksara Jawa</h2>
-      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
-    </div>
-    <p class="text-xs text-gray-500 mt-2 font-semibold">Belajar huruf aksara Jawa</p>
-  </a>
+    <!-- KOSAKATA -->
+    <a href="kosakata.html" id="card-kosakata"
+       class="materi menengah card-enter block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]"
+       style="animation-delay:0.2s; opacity:0">
+      <div class="flex justify-between items-start">
+        <h2 class="font-black text-sm">Kosakata & Percakapan</h2>
+        <div class="flex gap-1.5 flex-wrap justify-end">
+          <span class="text-xs bg-orange-100 text-brand px-2 py-1 rounded-full border border-orange-200 font-bold">Menengah</span>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mt-2 font-semibold">Salam, perkenalan, dan percakapan sehari-hari</p>
+      <div class="mt-3 w-full h-1 bg-brand-soft rounded-full overflow-hidden">
+        <div class="card-bar-fill h-full rounded-full bg-brand-border" style="width:0%" data-id="kosakata"></div>
+      </div>
+    </a>
 
-  <!-- NGOKO -->
-  <a href="materi-ngoko.html" id="card-materi-ngoko"
-     class="materi dasar block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
-    <div class="flex justify-between">
-      <h2 class="font-black text-sm">Bahasa Ngoko</h2>
-      <span class="text-xs bg-brand-soft text-brand px-2 py-1 rounded-full border border-brand-border font-bold">Dasar</span>
-    </div>
-    <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa sehari-hari</p>
-  </a>
-
-  <!-- KRAMA -->
-  <a href="materi-krama.html" id="card-materi-krama"
-     class="materi menengah block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
-    <div class="flex justify-between">
-      <h2 class="font-black text-sm">Krama Alus</h2>
-      <span class="text-xs bg-orange-100 text-brand px-2 py-1 rounded-full border border-orange-200 font-bold">Menengah</span>
-    </div>
-    <p class="text-xs text-gray-500 mt-2 font-semibold">Bahasa menghormati</p>
-  </a>
-
-  <!-- KOSAKATA -->
-  <a href="kosakata.html" id="card-kosakata"
-     class="materi menengah block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
-    <div class="flex justify-between">
-      <h2 class="font-black text-sm">Kosakata & Percakapan</h2>
-      <span class="text-xs bg-orange-100 text-brand px-2 py-1 rounded-full border border-orange-200 font-bold">Menengah</span>
-    </div>
-    <p class="text-xs text-gray-500 mt-2 font-semibold">
-      Salam, perkenalan, dan percakapan sehari-hari
-    </p>
-  </a>
-
-  <!-- CERITA -->
-  <a href="materi-cerita.html" id="card-materi-cerita"
-     class="materi lanjutan block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]">
-    <div class="flex justify-between">
-      <h2 class="font-black text-sm">Cerita Jawa</h2>
-      <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full border border-red-200 font-bold">Lanjutan</span>
-    </div>
-    <p class="text-xs text-gray-500 mt-2 font-semibold">
-      Cerita rakyat & pemahaman teks
-    </p>
-  </a>
-
-</div>
-
-</a>
+    <!-- CERITA -->
+    <a href="materi-cerita.html" id="card-materi-cerita"
+       class="materi lanjutan card-enter block bg-white rounded-2xl p-5 border border-brand-border hover:bg-brand-soft transition hover:scale-[1.02]"
+       style="animation-delay:0.25s; opacity:0">
+      <div class="flex justify-between items-start">
+        <h2 class="font-black text-sm">Cerita Jawa</h2>
+        <div class="flex gap-1.5 flex-wrap justify-end">
+          <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full border border-red-200 font-bold">Lanjutan</span>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mt-2 font-semibold">Cerita rakyat & pemahaman teks</p>
+      <div class="mt-3 w-full h-1 bg-brand-soft rounded-full overflow-hidden">
+        <div class="card-bar-fill h-full rounded-full bg-brand-border" style="width:0%" data-id="materi-cerita"></div>
+      </div>
+    </a>
 
   </div>
 </div>
 
-<!-- ================= MODAL ================= -->
-<div id="modal" class="fixed inset-0 bg-black/40 hidden items-center justify-center">
+<!-- MODAL -->
+<div id="modal" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50">
   <div class="bg-white rounded-2xl p-5 border border-brand-border w-full max-w-sm">
     <h2 id="modalTitle" class="font-black mb-2"></h2>
     <div id="modalContent" class="text-xs text-gray-600 font-semibold"></div>
@@ -192,89 +259,105 @@
   </div>
 </div>
 
-<!-- ================= SCRIPT ================= -->
 <script>
-function filterMateri(e, kategori) {
+  const materiList = ['materi-aksara', 'materi-ngoko', 'materi-krama', 'kosakata', 'materi-cerita'];
+  const TOTAL = materiList.length;
 
-  // FILTER CARD
-  document.querySelectorAll('.materi').forEach(el => {
-    el.style.display = kategori === 'all' || el.classList.contains(kategori)
-      ? 'block'
-      : 'none';
-  });
+  /* ── UPDATE PROGRESS ── */
+  function updateProgress() {
+    const done = materiList.filter(id => localStorage.getItem('selesai_' + id) === 'true').length;
+    const pct  = Math.round((done / TOTAL) * 100);
 
-  // RESET BUTTON
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.remove('bg-brand', 'text-white');
-    btn.classList.add('bg-brand-soft', 'text-brand');
-  });
+    // bar width
+    document.getElementById('progressBar').style.width = pct + '%';
 
-  // AKTIF BUTTON
-  e.target.classList.remove('bg-brand-soft', 'text-brand');
-  e.target.classList.add('bg-brand', 'text-white');
-}
+    // label
+    document.getElementById('progressLabel').textContent = done + ' / ' + TOTAL + ' selesai';
 
-function openMateri(type) {
-  const modal = document.getElementById('modal');
-  const title = document.getElementById('modalTitle');
-  const content = document.getElementById('modalContent');
+    // persentase di bawah bar
+    document.getElementById('progressPercent').textContent = pct + '%';
 
-  if(type==='ngoko'){
-    title.innerText='Ngoko';
-    content.innerHTML='Aku mangan<br>Kowe apa';
-  }
-  if(type==='krama'){
-    title.innerText='Krama';
-    content.innerHTML='Kula nedha<br>Panjenengan';
+    // completion banner
+    const banner = document.getElementById('completionBanner');
+    if (done === TOTAL) {
+      banner.classList.remove('hidden');
+      banner.classList.add('flex');
+    } else {
+      banner.classList.add('hidden');
+      banner.classList.remove('flex');
+    }
   }
 
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-}
+  /* ── MARK CARDS DONE ── */
+  function markDoneCards() {
+    materiList.forEach((materiId, i) => {
+      const isDone = localStorage.getItem('selesai_' + materiId) === 'true';
+      const card   = document.getElementById('card-' + materiId);
+      if (!card) return;
 
-// 🔍 SEARCH FUNCTION
-function searchMateri() {
-  const input = document.getElementById('searchInput').value.toLowerCase();
-  const items = document.querySelectorAll('.materi');
+      // mini bar
+      const miniBar = card.querySelector('[data-id="' + materiId + '"]');
+      if (miniBar) {
+        setTimeout(() => {
+          if (isDone) {
+            miniBar.style.width = '100%';
+            miniBar.classList.remove('bg-brand-border');
+            miniBar.classList.add('bg-green-500');
+          } else {
+            miniBar.style.width = '0%';
+          }
+        }, 200 + i * 80);
+      }
 
-  items.forEach(item => {
-    const text = item.innerText.toLowerCase();
-    item.style.display = text.includes(input) ? 'block' : 'none';
-  });
-}
-
-function closeModal(){
-  const modal = document.getElementById('modal');
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-}
-
-// 📌 TANDA MATERI SELESAI
-document.addEventListener('DOMContentLoaded', () => {
-  const materiList = [
-    'materi-aksara', 'materi-ngoko', 'materi-krama', 'kosakata', 'materi-cerita'
-  ];
-
-  materiList.forEach(materiId => {
-    if (localStorage.getItem('selesai_' + materiId) === 'true') {
-      const card = document.getElementById('card-' + materiId);
-      if (card) {
-        // Ganti style jadi "selesai" (hijau)
+      if (isDone) {
         card.classList.remove('bg-white', 'border-brand-border');
         card.classList.add('bg-green-50', 'border-green-400');
-        
-        // Ganti tag/span terakhir untuk tambahkan centang Selesai
-        const titleContainer = card.querySelector('.flex.justify-between');
-        const badgeSelesai = document.createElement('span');
-        badgeSelesai.className = 'text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full border border-green-300 font-bold flex items-center gap-1';
-        badgeSelesai.innerHTML = '✓ Selesai';
-        
-        // Tambahkan badge Selesai di sebelah tag kategori
-        titleContainer.appendChild(badgeSelesai);
+
+        const badgeContainer = card.querySelector('.flex.justify-between .flex');
+        if (badgeContainer && !badgeContainer.querySelector('.badge-selesai')) {
+          const badgeSelesai = document.createElement('span');
+          badgeSelesai.className = 'badge-selesai text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full border border-green-300 font-bold flex items-center gap-1';
+          badgeSelesai.innerHTML =
+            '<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="5" fill="#22c55e"/><path d="M2.5 5.5L4.5 7.5L7.5 3.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg> Selesai';
+          badgeContainer.appendChild(badgeSelesai);
+        }
       }
-    }
+    });
+  }
+
+  /* ── FILTER ── */
+  function filterMateri(e, kategori) {
+    document.querySelectorAll('.materi').forEach(el => {
+      el.style.display = (kategori === 'all' || el.classList.contains(kategori)) ? 'block' : 'none';
+    });
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('bg-brand', 'text-white');
+      btn.classList.add('bg-brand-soft', 'text-brand');
+    });
+    e.target.classList.remove('bg-brand-soft', 'text-brand');
+    e.target.classList.add('bg-brand', 'text-white');
+  }
+
+  /* ── SEARCH ── */
+  function searchMateri() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.materi').forEach(item => {
+      item.style.display = item.innerText.toLowerCase().includes(input) ? 'block' : 'none';
+    });
+  }
+
+  /* ── MODAL ── */
+  function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  /* ── INIT ── */
+  document.addEventListener('DOMContentLoaded', () => {
+    updateProgress();
+    markDoneCards();
   });
-});
 </script>
 
 </body>
