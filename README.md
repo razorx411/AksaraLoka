@@ -1,17 +1,5 @@
 <p align="center">
   <h1>🌐 AksaraLoka Web Project</h1>
-  <p align="center"><i>Platform Pembelajaran Bahasa Daerah Berbasis Web</i></p>
-</p>
-
-<p align="center">
-  <img src="assets/icons/icon_upn.png" width="180"/>
-</p>
-
-<p align="center">
-  Universitas Pembangunan Nasional “Veteran” Jawa Timur <br>
-  Fakultas Ilmu Komputer <br>
-  Program Studi Sistem Informasi
-</p>
 
 <hr>
 
