@@ -19,29 +19,20 @@
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="{{ route('register') }}" class="px-10 py-4 bg-primary text-on-primary text-sm font-semibold rounded-xl tactile-button flex items-center justify-center gap-2">Mulai Belajar Gratis<span class="material-symbols-outlined">arrow_forward</span>
                     </a>
-                    <button class="px-10 py-4 bg-white border-2 border-primary/20 text-primary text-sm font-semibold rounded-xl hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
-                    <span class="material-symbols-outlined">play_circle</span>
-                        Lihat Demo
-                    </button>
+                <a href="https://www.youtube.com/watch?v=wIwWfmdIVUE&list=RDwIwWfmdIVUE&start_radio=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-10 py-4 bg-white border-2 border-primary/20 text-primary text-sm font-semibold rounded-xl hover:bg-primary/5 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">play_circle</span>
+                        <span>Lihat Demo</span>
+                </a>
                 </div>
             </div>
             <div class="relative">
                 <div class="absolute -top-10 -right-10 w-64 h-64 bg-secondary-fixed/30 rounded-full blur-3xl"></div>
                 <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary-fixed/30 rounded-full blur-3xl"></div>
                 <div class="relative rounded-[2rem] overflow-hidden tactile-card shadow-xl border border-surface-variant transform rotate-2">
-                    <img alt="Candi Borobudur detail" class="w-full aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNimxSaIPY4z_VMQ-_MauW1w8ehqBCQHqGhyo6ZPEZzNOKORW9UMx4iEYxFtKbP17hqW_qjjqoIkpappfdlouA7uEZ1r7lEUv2m9wEHflth-D3lT1dun7Spipl3DIc7DS2NIUoF0Hb05LbynL0KAv1cWwiCHu6bZpTQ2QM6mde20dhm2H5wsnBF0fGlwEG2Zl-c4D9FCCUaHUNMKxs2DgqNzwlD-KlhIF5UzJLE9TQogdPkF1bW3ohR75yNemz6OmHP531hB7IxuM"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
-                    <div class="absolute bottom-6 left-6 right-6 p-4 bg-white/90 backdrop-blur rounded-xl">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-on-secondary">
-                                <span class="material-symbols-outlined">school</span>
-                            </div>
-                            <div>
-                                <p class="text-sm font-semibold text-primary">Kuis Harian: Hanacaraka</p>
-                                <p class="text-[12px] text-on-surface-variant">+50 Poin XP Tersedia</p>
-                            </div>
-                        </div>
-                    </div>
+                    <img alt="aksaraloka detail" class="" src="{{ asset('assets/background/bg_awal.png') }}"/>
                 </div>
             </div>
         </div>

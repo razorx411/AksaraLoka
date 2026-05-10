@@ -1,7 +1,7 @@
 <header class="fixed top-0 left-0 right-0 z-50 glass-header bg-surface/80">
     <nav class="max-w-[1140px] mx-auto px-6 h-20 flex items-center justify-between">
         <div class="flex items-center gap-4">
-            <span class="font-headline text-2xl font-bold text-primary">Aksaraloka</span>
+            <span class="font-headline text-2xl font-bold text-primary"><a href="/">Aksaraloka</a></span>
         </div>
         <div class="hidden md:flex items-center gap-10">
             <a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#tentang">Tentang Kami</a>
