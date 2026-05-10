@@ -19,4 +19,15 @@ Proyek ini dikembangkan sebagai bagian dari tugas mata kuliah **Pemrograman Webs
 | Hafid Fathurohman   | 24082010165 | [@razorx411](https://github.com/razorx411)   |
 ---
 
+## 🚧 Status Pengembangan
 
+> ⚠️ Proyek **AksaraLoka** saat ini masih dalam tahap pengembangan aktif.  
+> Beberapa fitur, tampilan, dan sistem backend masih akan terus diperbarui dan disempurnakan seiring proses development berlangsung.
+
+### 📍 Progress Saat Ini
+- ✅ Desain awal antarmuka website
+- ✅ Struktur Laravel project
+- ✅ Integrasi frontend
+- 🔄 Pengembangan fitur pembelajaran interaktif
+- 🔄 Optimalisasi database & backend
+- 🔄 Responsive design dan deployment
