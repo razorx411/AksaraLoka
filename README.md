@@ -1,6 +1,6 @@
 <p align="center">
   <h1>🌐 AksaraLoka Web Project</h1>
-<img src="public/assets/background/bg_github">
+<img src="./public/assets/background/bg_github.png" width="100%">
 <hr>
 
 ## 📌 Tentang Proyek
