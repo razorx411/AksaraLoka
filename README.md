@@ -42,19 +42,6 @@ Proyek ini dikembangkan sebagai bagian dari tugas mata kuliah **Pemrograman Webs
 
 ---
 
-## 🚀 Teknologi yang Digunakan
-
-- ⚡ Laravel v13.8.0
-- ⚡ Vite v8.0.11
-- 🎨 Tailwind CSS
-- 🐘 PHP 8+
-- 🗄️ MySQL
-- 🌐 HTML, CSS, JavaScript
-- 📦 Composer & NPM
-- 🔧 GitHub Version Control
-
----
-
 ## 🚧 Status Pengembangan
 
 > ⚠️ Proyek **AksaraLoka** saat ini masih dalam tahap pengembangan aktif.  
