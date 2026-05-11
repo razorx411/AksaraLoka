@@ -22,8 +22,11 @@
             <div>
                 <h4 class="text-sm font-semibold text-white mb-6">Ikuti Kami</h4>
                 <div class="flex gap-4">
-                    <a class="w-10 h-10 rounded-full bg-surface-variant/10 flex items-center justify-center hover:bg-primary-fixed hover:text-primary transition-all" href="#">
-                        <span class="material-symbols-outlined">brand_awareness</span>
+                    <a class="w-10 h-10 rounded-full bg-surface-variant/10 flex items-center justify-center hover:bg-primary-fixed hover:text-primary transition-all"
+                        href="https://instagram.com/aksaraloka.learn"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fa-brands fa-instagram text-lg"></i>
                     </a>
                     <a class="w-10 h-10 rounded-full bg-surface-variant/10 flex items-center justify-center hover:bg-primary-fixed hover:text-primary transition-all" href="#">
                         <span class="material-symbols-outlined">public</span>
@@ -35,7 +38,7 @@
             </div>
         </div>
         <div class="pt-12 border-t border-surface-variant/10 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-xs text-surface-variant">© 2024 Aksaraloka. Nguri-uri Budaya Jawi.</p>
+            <p class="text-xs text-surface-variant">© 2026 Aksaraloka. Nguri-uri Budaya Jawi.</p>
             <div class="flex gap-6 text-xs text-surface-variant">
                 <a class="hover:text-white" href="{{ route('privasi') }}">Kebijakan Privasi</a>
                 <a class="hover:text-white" href="#">Syarat & Ketentuan</a>

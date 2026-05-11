@@ -28,12 +28,10 @@
                 </a>
                 </div>
             </div>
-            <div class="relative">
-                <div class="absolute -top-10 -right-10 w-64 h-64 bg-secondary-fixed/30 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary-fixed/30 rounded-full blur-3xl"></div>
-                <div class="relative rounded-[2rem] overflow-hidden tactile-card shadow-xl border border-surface-variant transform rotate-2">
+            <div class="">
+                
                     <img alt="aksaraloka detail" class="" src="{{ asset('assets/background/bg_awal.png') }}"/>
-                </div>
+                
             </div>
         </div>
     </section>
