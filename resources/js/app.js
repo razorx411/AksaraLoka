@@ -15,7 +15,7 @@
     if (storedRaw) {
         try {
             const userObj = JSON.parse(storedRaw);
-            user = userObj.nama || 'User';
+            user = userObj.username || 'User';
             userInitial = user.charAt(0).toUpperCase();
         } catch (e) {
             user = storedRaw;
@@ -91,7 +91,7 @@
     if (!avatarEl) return;
     try {
         const u = JSON.parse(localStorage.getItem('user') || '{}');
-        if (u.nama) avatarEl.textContent = u.nama.charAt(0).toUpperCase();
+        if (u.username) avatarEl.textContent = u.username.charAt(0).toUpperCase();
     } catch (_) {}
 
     const notifBtn = document.getElementById('notifBtn');
@@ -189,12 +189,12 @@
     const form = document.getElementById('registrationForm');
     if (!form) return;
 
-    const namaEl = document.getElementById('nama');
+    const usernameEl = document.getElementById('username');
     const emailEl = document.getElementById('email');
     const passEl = document.getElementById('password');
     const confEl = document.getElementById('confirmPassword');
     const notifEl = document.getElementById('notif');
-    const namaErr = document.getElementById('namaErr');
+    const usernameErr = document.getElementById('usernameErr');
     const emailErr = document.getElementById('emailErr');
     const passErr = document.getElementById('passErr');
     const confErr = document.getElementById('confirmErr');
@@ -242,7 +242,7 @@
 
     function showErr(el, msg) { el.textContent = msg; el.classList.remove('hidden'); }
     function clearErr(el) { el.textContent = ''; el.classList.add('hidden'); }
-    function clearAllErrors() { [namaErr, emailErr, passErr, confErr].forEach(clearErr); }
+    function clearAllErrors() { [usernameErr, emailErr, passErr, confErr].forEach(clearErr); }
     function showNotif(msg, isSuccess = true) {
         notifEl.textContent = msg;
         notifEl.className = 'notif ' + (isSuccess ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200');
@@ -253,7 +253,7 @@
     function validateClient() {
         clearAllErrors();
         let valid = true;
-        if (!namaEl.value.trim()) { showErr(namaErr, 'Nama pengguna wajib diisi.'); valid = false; }
+        if (!usernameEl.value.trim()) { showErr(usernameErr, 'Nama pengguna wajib diisi.'); valid = false; }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) { showErr(emailErr, 'Format email tidak valid.'); valid = false; }
         if (passEl.value.length < 8) { showErr(passErr, 'Kata sandi minimal 8 karakter.'); valid = false; }
         if (passEl.value !== confEl.value) { showErr(confErr, 'Konfirmasi kata sandi tidak cocok.'); valid = false; }
@@ -275,7 +275,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': token },
                 body: JSON.stringify({
-                    nama: namaEl.value.trim(), email: emailEl.value.trim(),
+                    username: usernameEl.value.trim(), email: emailEl.value.trim(),
                     password: passEl.value, confirmPassword: confEl.value,
                 }),
             });
@@ -288,7 +288,7 @@
                 strengthLabel.classList.add('hidden');
                 setTimeout(() => { window.location.href = '/login'; }, 2000);
             } else if (data.errors) {
-                if (data.errors.nama) showErr(namaErr, data.errors.nama);
+                if (data.errors.username) showErr(usernameErr, data.errors.username);
                 if (data.errors.email) showErr(emailErr, data.errors.email);
                 if (data.errors.password) showErr(passErr, data.errors.password);
                 if (data.errors.confirmPassword) showErr(confErr, data.errors.confirmPassword);
@@ -315,11 +315,11 @@
             const res = await fetch('/api/profil', { credentials: 'include' });
             const data = await res.json();
             if (data.success && data.user) {
-                document.querySelector('[name="nama"]').value = data.user.nama || '';
+                document.querySelector('[name="username"]').value = data.user.username || '';
                 document.querySelector('[name="email"]').value = data.user.email || '';
                 document.querySelector('[name="bio"]').value = data.user.bio || '';
                 const initial = document.getElementById('avatarInitial');
-                if (initial) initial.textContent = (data.user.nama || '?').charAt(0).toUpperCase();
+                if (initial) initial.textContent = (data.user.username || '?').charAt(0).toUpperCase();
             } else {
                 tampilkanPesan('error', data.message || 'Gagal mengambil data profil.');
             }
@@ -336,7 +336,7 @@
         btnSimpan.textContent = 'Menyimpan...';
         bersihkanError();
 
-        const nama = document.querySelector('[name="nama"]').value.trim();
+        const username = document.querySelector('[name="username"]').value.trim();
         const email = document.querySelector('[name="email"]').value.trim();
         const bio = document.querySelector('[name="bio"]').value.trim();
         const password = document.querySelector('[name="password"]').value;
@@ -346,19 +346,19 @@
             const res = await fetch('/profil/update', {
                 method: 'POST', credentials: 'include',
                 headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': token },
-                body: JSON.stringify({ nama, email, bio, password }),
+                body: JSON.stringify({ username, email, bio, password }),
             });
             const data = await res.json();
 
             if (data.success) {
                 try {
                     const u = JSON.parse(localStorage.getItem('user') || '{}');
-                    u.nama = data.user.nama; u.email = data.user.email;
+                    u.username = data.user.username; u.email = data.user.email;
                     localStorage.setItem('user', JSON.stringify(u));
                 } catch (_) {}
                 tampilkanPesan('success', 'Profil berhasil diperbarui!');
                 const initial = document.getElementById('avatarInitial');
-                if (initial) initial.textContent = (data.user.nama || '?').charAt(0).toUpperCase();
+                if (initial) initial.textContent = (data.user.username || '?').charAt(0).toUpperCase();
                 document.querySelector('[name="password"]').value = '';
             } else {
                 if (data.errors) {
@@ -449,13 +449,13 @@
             const res = await fetch('/api/profil', { credentials: 'include' });
             const data = await res.json();
             if (data.success && data.user) {
-                setProfile(data.user.nama);
+                setProfile(data.user.username);
                 return;
             }
         } catch (_) {}
         try {
             const u = JSON.parse(localStorage.getItem('user') || '{}');
-            if (u?.nama) setProfile(u.nama);
+            if (u?.username) setProfile(u.username);
         } catch (_) {}
     });
 

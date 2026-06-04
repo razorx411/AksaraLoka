@@ -30,8 +30,8 @@
                     
                     <div class="space-y-2">
                         <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wider ml-1">Nama Pengguna</label>
-                        <input name="nama" class="w-full px-4 py-3 bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl transition-all outline-none text-sm font-medium" placeholder="Nama Lengkap" type="text" required/>
-                        <p id="error_nama" class="hidden text-[10px] text-error font-bold ml-1"></p>
+                        <input name="username" class="w-full px-4 py-3 bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl transition-all outline-none text-sm font-medium" placeholder="Nama Lengkap" type="text" required/>
+                        <p id="error_username" class="hidden text-[10px] text-error font-bold ml-1"></p>
                     </div>
 
                     <div class="space-y-2">

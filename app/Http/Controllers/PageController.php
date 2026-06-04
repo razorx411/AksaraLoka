@@ -11,7 +11,87 @@ class PageController extends Controller
 
     public function home()
     {
-        return view('pages.home');
+        $user = auth()->user();
+
+        // Auto-seed if database is empty
+        if (\App\Models\Chapter::count() == 0) {
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'LearningPathSeeder']);
+        }
+
+        // Get chapters with subchapters and levels
+        $chapters = \App\Models\Chapter::with(['subChapters.levels'])->orderBy('order_index')->get();
+
+        // Get user progress
+        $progress = \App\Models\UserLevelProgress::where('user_id', $user->id)
+            ->pluck('is_completed', 'level_id')
+            ->toArray(); // [level_id => is_completed]
+
+        // Flatten all levels to determine global order
+        $allLevels = [];
+        foreach ($chapters as $chapter) {
+            foreach ($chapter->subChapters as $subChapter) {
+                foreach ($subChapter->levels as $level) {
+                    $allLevels[] = $level;
+                }
+            }
+        }
+
+        // Determine level status: completed, active, or locked
+        $levelStatuses = [];
+        $foundActive = false;
+
+        foreach ($allLevels as $level) {
+            $isCompleted = isset($progress[$level->id]) && $progress[$level->id];
+
+            if ($isCompleted) {
+                $levelStatuses[$level->id] = 'completed';
+            } else {
+                if (!$foundActive) {
+                    $levelStatuses[$level->id] = 'active'; // This is the pause/play level
+                    $foundActive = true;
+                } else {
+                    $levelStatuses[$level->id] = 'locked';
+                }
+            }
+        }
+
+        return view('pages.home', compact('chapters', 'levelStatuses'));
+    }
+
+    public function showLevel($id)
+    {
+        $level = \App\Models\Level::with(['questions.options', 'subChapter.chapter'])->findOrFail($id);
+        
+        // Pass level and questions
+        return view('pages.level', compact('level'));
+    }
+
+    public function completeLevel($id)
+    {
+        $user = auth()->user();
+        $level = \App\Models\Level::findOrFail($id);
+
+        // Record progress
+        $progress = \App\Models\UserLevelProgress::updateOrCreate(
+            ['user_id' => $user->id, 'level_id' => $level->id],
+            ['is_completed' => true, 'completed_at' => now()]
+        );
+
+        // Add XP / total_points
+        $xpEarned = $level->xp_reward ?? 10;
+        $user->total_points += $xpEarned;
+
+        // Increment streak count
+        $user->streak_count = ($user->streak_count == 0) ? 1 : $user->streak_count + 1;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Level selesai!',
+            'xp_earned' => $xpEarned,
+            'new_xp' => $user->total_points,
+            'new_streak' => $user->streak_count,
+        ]);
     }
 
     public function materi()

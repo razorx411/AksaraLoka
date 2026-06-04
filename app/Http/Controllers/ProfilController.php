@@ -28,7 +28,7 @@ class ProfilController extends Controller
             'success' => true,
             'user' => [
                 'id'    => $user->id,
-                'nama'  => $user->nama,
+                'username' => $user->username,
                 'email' => $user->email,
                 'bio'   => $user->bio,
             ],
@@ -40,19 +40,19 @@ class ProfilController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'nama'     => 'required|max:100',
+            'username' => 'required|max:100',
             'email'    => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:8',
             'bio'      => 'nullable|max:500',
         ], [
-            'nama.required' => 'Nama pengguna wajib diisi (maks. 100 karakter).',
-            'email.email'   => 'Format email tidak valid.',
-            'email.unique'  => 'Email sudah digunakan akun lain.',
-            'password.min'  => 'Kata sandi minimal 8 karakter.',
-            'bio.max'       => 'Bio maksimal 500 karakter.',
+            'username.required' => 'Nama pengguna wajib diisi (maks. 100 karakter).',
+            'email.email'       => 'Format email tidak valid.',
+            'email.unique'      => 'Email sudah digunakan akun lain.',
+            'password.min'      => 'Kata sandi minimal 8 karakter.',
+            'bio.max'           => 'Bio maksimal 500 karakter.',
         ]);
 
-        $user->nama  = $request->nama;
+        $user->username = $request->username;
         $user->email = $request->email;
         $user->bio   = $request->bio;
 
@@ -65,7 +65,7 @@ class ProfilController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Profil berhasil diperbarui.',
-            'user'    => ['nama' => $user->nama, 'email' => $user->email],
+            'user'    => ['username' => $user->username, 'email' => $user->email],
         ]);
     }
 

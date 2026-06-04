@@ -33,4 +33,30 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Get user progress for learning levels.
+     */
+    public function levelProgress()
+    {
+        return $this->hasMany(UserLevelProgress::class);
+    }
+
+    /**
+     * Backward compatibility accessors.
+     */
+    public function getNamaAttribute()
+    {
+        return $this->username;
+    }
+
+    public function getStreakAttribute()
+    {
+        return $this->streak_count;
+    }
+
+    public function getXpAttribute()
+    {
+        return $this->total_points;
+    }
 }

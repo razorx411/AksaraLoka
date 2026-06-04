@@ -46,12 +46,12 @@
             <form id="registrationForm" class="space-y-4">
                 @csrf
                 <div class="space-y-2">
-                    <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wider ml-1" for="nama">Nama Pengguna</label>
+                    <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wider ml-1" for="username">Nama Pengguna</label>
                     <div class="relative">
                         <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">person</span>
-                        <input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl transition-all outline-none text-sm font-medium" id="nama" name="nama" placeholder="Contoh: Raden Mas" type="text" required/>
+                        <input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl transition-all outline-none text-sm font-medium" id="username" name="username" placeholder="Contoh: Raden Mas" type="text" required/>
                     </div>
-                    <p id="namaErr" class="hidden text-[10px] text-error font-bold ml-1"></p>
+                    <p id="usernameErr" class="hidden text-[10px] text-error font-bold ml-1"></p>
                 </div>
 
                 <div class="space-y-2">

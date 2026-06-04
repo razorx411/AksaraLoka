@@ -18,6 +18,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/home',      [PageController::class, 'home'])->name('home');
+    Route::get('/level/{id}', [PageController::class, 'showLevel'])->name('level.show');
+    Route::post('/level/{id}/complete', [PageController::class, 'completeLevel'])->name('level.complete');
     Route::get('/materi',    [PageController::class, 'materi'])->name('materi');
     Route::get('/materi/aksara',  [PageController::class, 'materiAksara'])->name('materi.aksara');
     Route::get('/materi/ngoko',   [PageController::class, 'materiNgoko'])->name('materi.ngoko');

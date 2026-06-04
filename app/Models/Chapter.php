@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chapter extends Model
 {
-    //
+    protected $fillable = ['title', 'description', 'order_index'];
+
+    public function subChapters()
+    {
+        return $this->hasMany(SubChapter::class)->orderBy('order_index');
+    }
 }

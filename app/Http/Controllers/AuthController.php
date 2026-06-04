@@ -38,11 +38,11 @@ class AuthController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Selamat datang, ' . Auth::user()->nama . '!',
+                'message' => 'Selamat datang, ' . Auth::user()->username . '!',
                 'user'    => [
-                    'id'    => Auth::id(),
-                    'nama'  => Auth::user()->nama,
-                    'email' => Auth::user()->email,
+                    'id'       => Auth::id(),
+                    'username' => Auth::user()->username,
+                    'email'    => Auth::user()->email,
                 ],
             ]);
         }
@@ -67,13 +67,13 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'nama'            => 'required|max:100',
+            'username'        => 'required|max:100',
             'email'           => 'required|email|unique:users,email',
             'password'        => 'required|min:8',
             'confirmPassword' => 'required|same:password',
         ], [
-            'nama.required'            => 'Nama pengguna wajib diisi.',
-            'nama.max'                 => 'Nama pengguna maksimal 100 karakter.',
+            'username.required'        => 'Nama pengguna wajib diisi.',
+            'username.max'             => 'Nama pengguna maksimal 100 karakter.',
             'email.required'           => 'Email wajib diisi.',
             'email.email'              => 'Format email tidak valid.',
             'email.unique'             => 'Email sudah terdaftar. Silakan masuk.',
@@ -84,7 +84,7 @@ class AuthController extends Controller
         ]);
 
         User::create([
-            'nama'     => $request->nama,
+            'username' => $request->username,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
