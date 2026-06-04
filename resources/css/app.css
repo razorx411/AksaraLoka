@@ -8,9 +8,10 @@
 @theme {
     --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
     --font-headline: 'Lexend', sans-serif;
+}
 
     /* Primary Colors */
-    --color-primary: #0f5238;
+    --color-primary: #6b3f00;
     --color-primary-container: #2d6a4f;
     --color-primary-fixed: #b1f0ce;
     --color-primary-fixed-dim: #95d4b3;
