@@ -8,23 +8,19 @@
 
 
 @theme {
-    --font-sans: 'Poppins', sans-serif;
-    --font-headline: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-headline: 'Lexend', sans-serif;
 
-
-
-
-/* Primary Colors */
---color-primary: #6b3f00;
---color-primary-container: #8c5a12;
---color-primary-fixed: #f4d7a1;
---color-primary-fixed-dim: #ddb56d;
---color-on-primary: #ffffff;
---color-on-primary-container: #fff4e1;
---color-on-primary-fixed: #2a1700;
---color-on-primary-fixed-variant: #5b3500;
---color-inverse-primary: #ddb56d;
-
+    /* Primary Colors */
+    --color-primary: #0f5238;
+    --color-primary-container: #2d6a4f;
+    --color-primary-fixed: #b1f0ce;
+    --color-primary-fixed-dim: #95d4b3;
+    --color-on-primary: #ffffff;
+    --color-on-primary-container: #a8e7c5;
+    --color-on-primary-fixed: #002114;
+    --color-on-primary-fixed-variant: #0e5138;
+    --color-inverse-primary: #95d4b3;
 
 /* Secondary Colors */
 --color-secondary: #7a5a2a;
