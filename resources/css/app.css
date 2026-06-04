@@ -1,117 +1,140 @@
 @import 'tailwindcss';
 
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+
 @theme {
-    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-headline: 'Lexend', sans-serif;
+    --font-sans: 'Poppins', sans-serif;
+    --font-headline: 'Cinzel', serif;
 
-    /* Primary Colors */
-    --color-primary: #0f5238;
-    --color-primary-container: #2d6a4f;
-    --color-primary-fixed: #b1f0ce;
-    --color-primary-fixed-dim: #95d4b3;
-    --color-on-primary: #ffffff;
-    --color-on-primary-container: #a8e7c5;
-    --color-on-primary-fixed: #002114;
-    --color-on-primary-fixed-variant: #0e5138;
-    --color-inverse-primary: #95d4b3;
 
-    /* Secondary Colors */
-    --color-secondary: #795900;
-    --color-secondary-container: #ffc641;
-    --color-secondary-fixed: #ffdfa0;
-    --color-secondary-fixed-dim: #f6be39;
-    --color-on-secondary: #ffffff;
-    --color-on-secondary-container: #715300;
-    --color-on-secondary-fixed: #261a00;
-    --color-on-secondary-fixed-variant: #5c4300;
 
-    /* Tertiary Colors */
-    --color-tertiary: #005503;
-    --color-tertiary-container: #206e1b;
-    --color-tertiary-fixed: #a4f792;
-    --color-tertiary-fixed-dim: #89da79;
-    --color-on-tertiary: #ffffff;
-    --color-on-tertiary-container: #9cee8a;
-    --color-on-tertiary-fixed: #002201;
-    --color-on-tertiary-fixed-variant: #005303;
 
-    /* Surface & Background */
-    --color-background: #fbf9f8;
-    --color-on-background: #1b1c1c;
-    --color-surface: #fbf9f8;
-    --color-on-surface: #1b1c1c;
-    --color-surface-variant: #e4e2e1;
-    --color-on-surface-variant: #404943;
-    --color-surface-tint: #2c694e;
-    --color-inverse-surface: #303030;
-    --color-inverse-on-surface: #f3f0f0;
-    --color-surface-bright: #fbf9f8;
-    --color-surface-dim: #dcd9d9;
-    --color-surface-container-lowest: #ffffff;
-    --color-surface-container-low: #f6f3f2;
-    --color-surface-container: #f0eded;
-    --color-surface-container-high: #eae8e7;
-    --color-surface-container-highest: #e4e2e1;
+/* Primary Colors */
+--color-primary: #6b3f00;
+--color-primary-container: #8c5a12;
+--color-primary-fixed: #f4d7a1;
+--color-primary-fixed-dim: #ddb56d;
+--color-on-primary: #ffffff;
+--color-on-primary-container: #fff4e1;
+--color-on-primary-fixed: #2a1700;
+--color-on-primary-fixed-variant: #5b3500;
+--color-inverse-primary: #ddb56d;
 
-    /* Error Colors */
-    --color-error: #ba1a1a;
-    --color-error-container: #ffdad6;
-    --color-on-error: #ffffff;
-    --color-on-error-container: #93000a;
 
-    /* Outline */
-    --color-outline: #707973;
-    --color-outline-variant: #bfc9c1;
+/* Secondary Colors */
+--color-secondary: #7a5a2a;
+--color-secondary-container: #f0d3a0;
+--color-secondary-fixed: #f8e4c2;
+--color-secondary-fixed-dim: #e5c28a;
+--color-on-secondary: #ffffff;
+--color-on-secondary-container: #3f2800;
+--color-on-secondary-fixed: #241400;
+--color-on-secondary-fixed-variant: #5a3f10;
+
+
+/* Tertiary Colors */
+--color-tertiary: #5b4b2f;
+--color-tertiary-container: #d9c8a9;
+--color-tertiary-fixed: #f0e5d0;
+--color-tertiary-fixed-dim: #d9c8a9;
+--color-on-tertiary: #ffffff;
+--color-on-tertiary-container: #2d1f07;
+--color-on-tertiary-fixed: #1c1304;
+--color-on-tertiary-fixed-variant: #4b3920;
+
+
+/* Surface & Background */
+--color-background: #faf8f5;
+--color-on-background: #2b2117;
+--color-surface: #faf8f5;
+--color-on-surface: #2b2117;
+--color-surface-variant: #e8dfd5;
+--color-on-surface-variant: #5c5146;
+--color-surface-tint: #6b3f00;
+--color-inverse-surface: #34281d;
+--color-inverse-on-surface: #f7f1eb;
+--color-surface-bright: #ffffff;
+--color-surface-dim: #e6dfd8;
+--color-surface-container-lowest: #ffffff;
+--color-surface-container-low: #f8f4ef;
+--color-surface-container: #f2ede8;
+--color-surface-container-high: #ece7e2;
+--color-surface-container-highest: #e5dfd8;
+
+
+/* Error Colors */
+--color-error: #ba1a1a;
+--color-error-container: #ffdad6;
+--color-on-error: #ffffff;
+--color-on-error-container: #93000a;
+
+
+/* Outline */
+--color-outline: #8a7d70;
+--color-outline-variant: #d2c5b8;
+
 
     /* Transitions & Animations */
     --animate-float-up: floatUp 0.8s ease forwards;
     --animate-bob: bob 3s ease-in-out infinite;
 }
 
+
 @keyframes floatUp {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
+
 
 @keyframes bob {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
 
+
 /* ── Custom Utilities ────────────────────────────────────── */
+
 
 .tactile-button {
     box-shadow: 0 4px 0 0 #083021;
     transition: all 0.1s ease;
 }
 
+
 .tactile-button:active {
     transform: translateY(2px);
     box-shadow: 0 2px 0 0 #083021;
 }
 
+
 .tactile-card {
     border-bottom: 3px solid #e4e2e1;
 }
+
 
 .glass-header {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
 
+
 .aksara-font {
-    font-family: 'Lexend', serif;
+    font-family: 'Cinzel', serif;
 }
+
 
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
+
 [data-icon-fill="true"] .material-symbols-outlined {
     font-variation-settings: 'FILL' 1;
 }
+
+
