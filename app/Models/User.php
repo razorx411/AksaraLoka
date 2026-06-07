@@ -20,9 +20,39 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'role',
         'streak_count',
         'total_points',
     ];
+
+    /**
+     * Check if user has admin role.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Get user level based on total XP.
+     * XP_CONFIG: baseXP = 300, increment = 200, maxLevel = 50
+     */
+    public function getUserLevel(): int
+    {
+        $xp = $this->total_points;
+        $lvl = 1;
+        $cumulative = 0;
+        
+        while ($lvl < 50) {
+            $cumulative += 300 + ($lvl - 1) * 200;
+            if ($xp < $cumulative) {
+                break;
+            }
+            $lvl++;
+        }
+        
+        return $lvl;
+    }
 
     /**
      * The attributes that should be hidden for serialization.

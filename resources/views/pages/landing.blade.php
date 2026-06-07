@@ -3,7 +3,7 @@
 @section('title', 'Lestarikan Budaya, Kuasai Aksara Jawa')
 
 @section('content')
-<main class="pt-20">
+<main class="pt-2">
     <!-- Hero Section -->
     <section class="relative overflow-hidden py-10 md:py-[100px]">
         <div class="max-w-[1140px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -17,7 +17,7 @@
                     Platform belajar interaktif yang menggabungkan warisan leluhur dengan teknologi gamifikasi modern. Mulailah perjalananmu menguasai Hanacaraka hari ini.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="{{ route('register') }}" class="px-10 py-4 bg-primary text-on-primary text-sm font-semibold rounded-xl tactile-button flex items-center justify-center gap-2">Mulai Belajar Gratis<span class="material-symbols-outlined">arrow_forward</span>
+                    <a href="{{ route('register') }}" class="px-10 py-4 bg-primary text-on-primary text-sm font-semibold rounded-xl tactile-button flex items-center justify-center gap-2 hover:bg-primary/90 hover:-translate-y-1 hover:scale-105 active:scale-95 transition-all duration-300 shadow-md hover:shadow-lg">Mulai Belajar Gratis<span class="material-symbols-outlined">arrow_forward</span>
                     </a>
                 <a href="https://www.youtube.com/watch?v=wIwWfmdIVUE&list=RDwIwWfmdIVUE&start_radio=1"
                     target="_blank"
@@ -41,20 +41,20 @@
         <div class="max-w-[1140px] mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="p-6 bg-white rounded-2xl tactile-card text-center">
-                    <h3 class="font-headline text-2xl text-primary mb-1">50K+</h3>
-                    <p class="text-xs font-medium text-on-surface-variant">Pelajar Aktif</p>
+                    <h3 class="font-headline text-2xl text-primary mb-1">5+</h3>
+                    <p class="text-xs font-medium text-on-surface-variant">Tingkatan Materi</p>
                 </div>
                 <div class="p-6 bg-white rounded-2xl tactile-card text-center">
-                    <h3 class="font-headline text-2xl text-secondary mb-1">100+</h3>
-                    <p class="text-xs font-medium text-on-surface-variant">Modul Aksara</p>
+                    <h3 class="font-headline text-2xl text-secondary mb-1">Puluhan</h3>
+                    <p class="text-xs font-medium text-on-surface-variant">Modul Belajar</p>
                 </div>
                 <div class="p-6 bg-white rounded-2xl tactile-card text-center">
-                    <h3 class="font-headline text-2xl text-tertiary mb-1">4.9</h3>
-                    <p class="text-xs font-medium text-on-surface-variant">Rating Pengguna</p>
+                    <h3 class="font-headline text-2xl text-tertiary mb-1">Ratusan</h3>
+                    <p class="text-xs font-medium text-on-surface-variant">Kamus Kosakata</p>
                 </div>
                 <div class="p-6 bg-white rounded-2xl tactile-card text-center">
-                    <h3 class="font-headline text-2xl text-primary-container mb-1">12M+</h3>
-                    <p class="text-xs font-medium text-on-surface-variant">Latihan Selesai</p>
+                    <h3 class="font-headline text-2xl text-primary-container mb-1">Kompetitif</h3>
+                    <p class="text-xs font-medium text-on-surface-variant">Sistem Peringkat</p>
                 </div>
             </div>
         </div>
@@ -94,40 +94,50 @@
     <section class="py-10 bg-primary text-on-primary scroll-mt-20" id="fitur">
         <div class="max-w-[1140px] mx-auto px-6">
             <div class="text-center mb-10">
-                <h2 class="font-headline text-4xl mb-2 font-bold">Belajar Menjadi Petualangan</h2>
+                <h2 class="font-headline text-4xl mb-2 font-bold">Belajar Menjadi Menyenangkan</h2>
                 <p class="text-lg text-on-primary-container max-w-2xl mx-auto">
-                    Fitur-fitur unggulan yang dirancang khusus untuk membuat proses belajar Aksara Jawa semudah bermain game favoritmu.
+                    AksaraLoka menghadirkan fitur-fitur unggulan yang dirancang khusus untuk membuat proses belajar Aksara Jawa interaktif dan asyik.
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Feature 1 -->
-                <div class="bg-white/10 backdrop-blur p-10 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
+                <div class="bg-white/10 backdrop-blur p-8 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
                     <div class="w-14 h-14 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-[32px]">map</span>
+                        <span class="material-symbols-outlined text-[32px]">menu_book</span>
                     </div>
-                    <h3 class="font-headline text-2xl mb-4 font-semibold">Gamified Path</h3>
-                    <p class="text-base text-on-primary-container">
-                        Ikuti peta perjalanan "The Path" yang membawamu dari tingkat pemula hingga mahir dengan tantangan yang seru di setiap posnya.
+                    <h3 class="font-headline text-xl mb-4 font-semibold">Materi Berjenjang</h3>
+                    <p class="text-sm text-on-primary-container">
+                        Belajar sistematis dari Aksara Nglegena, Sandhangan, hingga Pasangan melalui modul yang interaktif.
                     </p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="bg-white/10 backdrop-blur p-10 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
+                <div class="bg-white/10 backdrop-blur p-8 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
                     <div class="w-14 h-14 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-[32px]">draw</span>
+                        <span class="material-symbols-outlined text-[32px]">quiz</span>
                     </div>
-                    <h3 class="font-headline text-2xl mb-4 font-semibold">Interactive Lessons</h3>
-                    <p class="text-base text-on-primary-container">
-                        Latihan menulis langsung di layar dengan feedback instan menggunakan teknologi pendeteksi guratan aksara yang akurat.
+                    <h3 class="font-headline text-xl mb-4 font-semibold">Kuis Interaktif</h3>
+                    <p class="text-sm text-on-primary-container">
+                        Uji pemahamanmu di setiap akhir materi dengan kuis pilihan ganda yang menantang dan menyenangkan.
                     </p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="bg-white/10 backdrop-blur p-10 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
+                <div class="bg-white/10 backdrop-blur p-8 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
                     <div class="w-14 h-14 bg-on-secondary-container text-white rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-[32px]">leaderboard</span>
                     </div>
-                    <h3 class="font-headline text-2xl mb-4 font-semibold">Social Leaderboard</h3>
-                    <p class="text-base text-on-primary-container">
-                        Bersaing secara sehat dengan teman atau sesama pelajar di seluruh Indonesia. Raih peringkat teratas dan kumpulkan badge eksklusif.
+                    <h3 class="font-headline text-xl mb-4 font-semibold">Papan Peringkat</h3>
+                    <p class="text-sm text-on-primary-container">
+                        Kumpulkan poin dari setiap kuis, tingkatkan levelmu, dan raih posisi puncak di Papan Peringkat.
+                    </p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="bg-white/10 backdrop-blur p-8 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
+                    <div class="w-14 h-14 bg-white text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[32px]">library_books</span>
+                    </div>
+                    <h3 class="font-headline text-xl mb-4 font-semibold">Kamus Kosakata</h3>
+                    <p class="text-sm text-on-primary-container">
+                        Eksplorasi kumpulan kata bahasa Jawa dari berbagai tingkatan bahasa (Ngoko, Krama) beserta aksaranya.
                     </p>
                 </div>
             </div>
@@ -148,19 +158,19 @@
                             <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0 mt-1">
                                 <span class="material-symbols-outlined text-[20px]">check</span>
                             </div>
-                            <p class="text-base">Sistem pengulangan cerdas (Spaced Repetition)</p>
+                            <p class="text-base">Materi komprehensif: Nglegena, Sandhangan, Pasangan, dll.</p>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0 mt-1">
                                 <span class="material-symbols-outlined text-[20px]">check</span>
                             </div>
-                            <p class="text-base">Panduan fonetik asli untuk pelafalan yang tepat</p>
+                            <p class="text-base">Kuis untuk mengukur pemahaman di setiap tahap.</p>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0 mt-1">
                                 <span class="material-symbols-outlined text-[20px]">check</span>
                             </div>
-                            <p class="text-base">Kamus digital Aksara Jawa lengkap</p>
+                            <p class="text-base">Kamus kosakata bahasa Jawa lengkap dengan tingkatannya.</p>
                         </div>
                     </div>
                 </div>
@@ -198,10 +208,62 @@
                     <p class="text-lg text-on-secondary-fixed-variant mb-10 max-w-xl mx-auto">
                         Gabung dengan ribuan pelajar lainnya dan buktikan cintamu pada budaya dengan menguasai Aksara Jawa.
                     </p>
-                    <a href="{{ route('register') }}" class="px-10 py-4 bg-primary text-on-primary text-sm font-semibold rounded-xl tactile-button inline-flex items-center gap-2">
+                    <a href="{{ route('register') }}" class="px-10 py-4 bg-primary text-on-primary text-sm font-semibold rounded-xl tactile-button inline-flex items-center gap-2 hover:bg-primary/90 hover:-translate-y-1 hover:scale-105 active:scale-95 transition-all duration-300 shadow-md hover:shadow-lg">
                         Mulai Sekarang
                         <span class="material-symbols-outlined">arrow_forward</span>
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Partner Section -->
+    <style>
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+            animation: scroll 30s linear infinite;
+        }
+        .animate-scroll:hover {
+            animation-play-state: paused;
+        }
+    </style>
+    <section class="py-10 mb-10 overflow-hidden relative">
+
+        <div class="relative w-full overflow-hidden flex py-4">
+            <!-- Fade masks -->
+            <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
+            
+            <div class="flex w-max animate-scroll hover:[animation-play-state:paused]">
+                <!-- Set 1 -->
+                <div class="flex items-center gap-16 px-8 shrink-0">
+                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    
+                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    
+                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                </div>
+                <!-- Set 2 (Duplikat persis Set 1 untuk looping seamless) -->
+                <div class="flex items-center gap-16 px-8 shrink-0">
+                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    
+                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    
+                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
+                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
                 </div>
             </div>
         </div>

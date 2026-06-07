@@ -23,27 +23,26 @@ class PageController extends Controller
             ->pluck('is_completed', 'level_id')
             ->toArray();
 
-        $allLevels = [];
+        // ── Locking: chapter bebas, level dalam sub-chapter berurutan ──
+        // Level pertama tiap sub-chapter selalu aktif/terbuka.
+        // Level berikutnya dalam sub-chapter yang sama terkunci sampai
+        // level sebelumnya selesai. Antar chapter tidak saling mengunci.
+        $levelStatuses = [];
         foreach ($chapters as $chapter) {
             foreach ($chapter->subChapters as $subChapter) {
-                foreach ($subChapter->levels as $level) {
-                    $allLevels[] = $level;
-                }
-            }
-        }
-
-        $levelStatuses = [];
-        $foundActive   = false;
-        foreach ($allLevels as $level) {
-            $isCompleted = isset($progress[$level->id]) && $progress[$level->id];
-            if ($isCompleted) {
-                $levelStatuses[$level->id] = 'completed';
-            } else {
-                if (!$foundActive) {
-                    $levelStatuses[$level->id] = 'active';
-                    $foundActive = true;
-                } else {
-                    $levelStatuses[$level->id] = 'locked';
+                $levels      = $subChapter->levels->sortBy('order_index')->values();
+                $prevDone    = true; // level pertama selalu terbuka
+                foreach ($levels as $i => $level) {
+                    $isCompleted = isset($progress[$level->id]) && $progress[$level->id];
+                    if ($isCompleted) {
+                        $levelStatuses[$level->id] = 'completed';
+                        $prevDone = true;
+                    } elseif ($prevDone) {
+                        $levelStatuses[$level->id] = 'active'; // berikutnya setelah yg selesai
+                        $prevDone = false;
+                    } else {
+                        $levelStatuses[$level->id] = 'locked';
+                    }
                 }
             }
         }
@@ -64,7 +63,11 @@ class PageController extends Controller
             $chapterProgress[$chapter->id] = $total > 0 ? round(($done / $total) * 100) : 0;
         }
 
-        return view('pages.home', compact('chapters', 'levelStatuses', 'chapterProgress'));
+        $streak = $user->streak_count;
+        $totalXp = $user->total_points;
+        $userLevel = $user->getUserLevel();
+
+        return view('pages.home', compact('chapters', 'levelStatuses', 'chapterProgress', 'streak', 'totalXp', 'userLevel'));
     }
 
     // ── BARU ──────────────────────────────────────────────────
@@ -79,27 +82,19 @@ class PageController extends Controller
             ->pluck('is_completed', 'level_id')
             ->toArray();
 
-        // Flatten semua level secara global untuk urutan active/locked yang konsisten
-        $allChapters = \App\Models\Chapter::with(['subChapters.levels'])->orderBy('order_index')->get();
-        $allLevels   = [];
-        foreach ($allChapters as $ch) {
-            foreach ($ch->subChapters as $sub) {
-                foreach ($sub->levels as $level) {
-                    $allLevels[] = $level;
-                }
-            }
-        }
-
+        // ── Locking: chapter bebas, level dalam sub-chapter berurutan ──
         $levelStatuses = [];
-        $foundActive   = false;
-        foreach ($allLevels as $level) {
-            $isCompleted = isset($progress[$level->id]) && $progress[$level->id];
-            if ($isCompleted) {
-                $levelStatuses[$level->id] = 'completed';
-            } else {
-                if (!$foundActive) {
+        foreach ($chapter->subChapters as $subChapter) {
+            $levels   = $subChapter->levels->sortBy('order_index')->values();
+            $prevDone = true;
+            foreach ($levels as $level) {
+                $isCompleted = isset($progress[$level->id]) && $progress[$level->id];
+                if ($isCompleted) {
+                    $levelStatuses[$level->id] = 'completed';
+                    $prevDone = true;
+                } elseif ($prevDone) {
                     $levelStatuses[$level->id] = 'active';
-                    $foundActive = true;
+                    $prevDone = false;
                 } else {
                     $levelStatuses[$level->id] = 'locked';
                 }
@@ -140,23 +135,74 @@ class PageController extends Controller
     {
         $user  = auth()->user();
         $level = \App\Models\Level::findOrFail($id);
+        $today = now()->toDateString();
 
+        // ── Cek apakah sudah pernah selesai (anti-cheat: tidak dapat XP lagi) ──
+        $existing = \App\Models\UserLevelProgress::where('user_id', $user->id)
+            ->where('level_id', $level->id)
+            ->first();
+
+        $alreadyCompleted = $existing && $existing->is_completed;
+
+        // Simpan/update progress
         \App\Models\UserLevelProgress::updateOrCreate(
             ['user_id' => $user->id, 'level_id' => $level->id],
             ['is_completed' => true, 'completed_at' => now()]
         );
 
-        $xpEarned            = $level->xp_reward ?? 10;
-        $user->total_points += $xpEarned;
-        $user->streak_count  = ($user->streak_count == 0) ? 1 : $user->streak_count + 1;
+        // ── Hitung XP (hanya kalau belum pernah selesai) ──────────────────────
+        $xpBase     = 0;
+        $multiplier = 1.0;
+        $xpEarned   = 0;
+
+        if (! $alreadyCompleted) {
+            $xpBase     = $level->xp_reward ?? 50;
+            $multiplier = $user->streakMultiplier();
+            $xpEarned   = (int) round($xpBase * $multiplier);
+            $user->total_points += $xpEarned;
+        }
+
+        // ── Update streak harian ───────────────────────────────────────────────
+        // Streak naik jika: selesaikan minimal 1 level per hari.
+        // - Hari ini pertama kali → streak +1, catat last_activity_date
+        // - Sudah aktif hari ini → streak tidak berubah
+        // - Skip 1+ hari → streak reset ke 1
+        $streakChanged  = false;
+        $streakBroken   = false;
+        $lastDate       = $user->last_activity_date; // Carbon date atau null
+
+        if (is_null($lastDate)) {
+            // Pertama kali ever aktif
+            $user->streak_count      = 1;
+            $user->last_activity_date = $today;
+            $streakChanged = true;
+        } elseif ($lastDate->toDateString() === $today) {
+            // Sudah aktif hari ini — streak tetap, tidak berubah
+        } elseif ($lastDate->toDateString() === now()->subDay()->toDateString()) {
+            // Aktif kemarin → lanjutkan streak
+            $user->streak_count      += 1;
+            $user->last_activity_date = $today;
+            $streakChanged = true;
+        } else {
+            // Skip lebih dari 1 hari → streak putus, mulai dari 1
+            $user->streak_count      = 1;
+            $user->last_activity_date = $today;
+            $streakChanged = true;
+            $streakBroken  = true;
+        }
+
         $user->save();
 
         return response()->json([
-            'success'    => true,
-            'message'    => 'Level selesai!',
-            'xp_earned'  => $xpEarned,
-            'new_xp'     => $user->total_points,
-            'new_streak' => $user->streak_count,
+            'success'         => true,
+            'already_done'    => $alreadyCompleted,
+            'xp_earned'       => $xpEarned,
+            'xp_base'         => $xpBase,
+            'multiplier'      => $multiplier,
+            'new_xp'          => $user->total_points,
+            'new_streak'      => $user->streak_count,
+            'streak_changed'  => $streakChanged,
+            'streak_broken'   => $streakBroken,
         ]);
     }
 

@@ -18,7 +18,7 @@
         <div class="flex-grow text-center md:text-left">
             <div class="flex flex-col md:flex-row md:items-center gap-2 mb-1">
                 <h2 id="profileName" class="font-headline text-3xl text-on-surface font-bold">{{ Auth::user()->nama }}</h2>
-                <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1 rounded-full text-xs font-bold inline-block w-fit mx-auto md:mx-0">Pelajar Elit</span>
+                <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-4 py-1 rounded-full text-xs font-bold inline-block w-fit mx-auto md:mx-0">Level {{ Auth::user()->getUserLevel() }}</span>
             </div>
             <p id="profileUsername" class="text-sm font-bold text-primary mb-2">@<span>{{ strtolower(str_replace(' ', '', Auth::user()->nama)) }}</span></p>
             <p class="text-base text-on-surface-variant max-w-2xl mb-4">
@@ -49,7 +49,7 @@
                             <span class="material-symbols-outlined text-secondary text-[32px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
                             <div>
                                 <p class="text-[10px] font-bold text-on-surface-variant uppercase">Hari Beruntun</p>
-                                <p class="font-headline text-xl text-on-surface font-bold">42 Hari</p>
+                                <p class="font-headline text-xl text-on-surface font-bold">{{ Auth::user()->streak_count ?? 0 }} Hari</p>
                             </div>
                         </div>
                         <span class="material-symbols-outlined text-outline-variant">chevron_right</span>
@@ -59,7 +59,7 @@
                             <span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">stars</span>
                             <div>
                                 <p class="text-[10px] font-bold text-on-surface-variant uppercase">Total XP</p>
-                                <p class="font-headline text-xl text-on-surface font-bold">12,450</p>
+                                <p class="font-headline text-xl text-on-surface font-bold">{{ number_format(Auth::user()->total_points ?? 0) }}</p>
                             </div>
                         </div>
                         <span class="material-symbols-outlined text-outline-variant">chevron_right</span>

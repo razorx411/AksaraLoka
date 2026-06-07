@@ -3,6 +3,12 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminChapterController;
+use App\Http\Controllers\Admin\AdminLevelController;
+use App\Http\Controllers\Admin\AdminQuestionController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminSubChapterController;
 use Illuminate\Support\Facades\Route;
 
 // ── Public routes ────────────────────────────────────────────
@@ -35,3 +41,30 @@ Route::middleware('auth')->group(function () {
     Route::post('/profil/delete',[ProfilController::class, 'destroy'])->name('profil.delete');
     Route::get('/api/profil',    [ProfilController::class, 'apiGet'])->name('api.profil');
 });
+
+// ── Admin routes ─────────────────────────────────────────────
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+        // Chapters CRUD
+        Route::resource('chapters', AdminChapterController::class);
+
+        // Sub-Chapters CRUD (nested, pakai chapter_id dari URL)
+        Route::post('/chapters/{chapter}/sub-chapters',          [AdminSubChapterController::class, 'store'])->name('sub-chapters.store');
+        Route::put('/chapters/{chapter}/sub-chapters/{sc}',      [AdminSubChapterController::class, 'update'])->name('sub-chapters.update');
+        Route::delete('/chapters/{chapter}/sub-chapters/{sc}',   [AdminSubChapterController::class, 'destroy'])->name('sub-chapters.destroy');
+
+        // Levels CRUD
+        Route::resource('levels', AdminLevelController::class);
+
+        // Questions CRUD
+        Route::resource('questions', AdminQuestionController::class);
+
+        // User management
+        Route::get('/users',                         [AdminUserController::class, 'index'])->name('users.index');
+        Route::get('/users/{user}',                  [AdminUserController::class, 'show'])->name('users.show');
+        Route::patch('/users/{user}/toggle',         [AdminUserController::class, 'toggleStatus'])->name('users.toggle');
+    });

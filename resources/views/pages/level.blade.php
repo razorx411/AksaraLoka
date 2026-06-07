@@ -76,13 +76,14 @@
                 <div class="bg-primary/5 border border-primary/20 rounded-2xl p-4 flex flex-col items-center shadow-inner">
                     <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">stars</span>
                     <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mt-2">XP Didapatkan</span>
-                    <span class="text-xl font-headline font-extrabold text-primary mt-1">+{{ $level->xp_reward }} XP</span>
+                    <span class="text-xl font-headline font-extrabold text-primary mt-1" id="lbl-xp-earned">+{{ $level->xp_reward }} XP</span>
+                    <span class="text-[10px] text-on-surface-variant mt-1 hidden" id="lbl-multiplier"></span>
                 </div>
                 <!-- Streak Card -->
                 <div class="bg-secondary/5 border border-secondary/20 rounded-2xl p-4 flex flex-col items-center shadow-inner">
                     <span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                    <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mt-2">Streak Baru</span>
-                    <span class="text-xl font-headline font-extrabold text-secondary mt-1" id="lbl-new-streak">{{ (Auth::user()->streak_count ?? 0) + 1 }} Hari</span>
+                    <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mt-2" id="lbl-streak-label">Streak</span>
+                    <span class="text-xl font-headline font-extrabold text-secondary mt-1" id="lbl-new-streak">{{ Auth::user()->streak_count ?? 0 }} Hari</span>
                 </div>
             </div>
 
@@ -324,38 +325,100 @@
             async function saveProgressAndClose() {
                 const btnFinish = document.getElementById('btn-finish');
                 btnFinish.disabled = true;
-                btnFinish.textContent = 'Menyimpan progres...';
+                btnFinish.innerHTML = '<span class="animate-spin inline-block mr-2">⏳</span> Menyimpan...';
 
                 try {
                     const token = document.querySelector('meta[name="csrf-token"]').content;
                     const response = await fetch(LEVEL_DATA.completeRoute, {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': token
-                        }
+                        headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': token }
                     });
                     const data = await response.json();
-                    
-                    if (data.success) {
-                        // Update local storage streak and points if possible
-                        try {
-                            const u = JSON.parse(localStorage.getItem('user') || '{}');
-                            u.total_points = data.new_xp;
-                            u.streak_count = data.new_streak;
-                            localStorage.setItem('user', JSON.stringify(u));
-                        } catch (_) {}
 
-                        window.location.href = LEVEL_DATA.redirectUrl;
+                    if (data.success) {
+                        // ── Update XP card ──────────────────────────────────
+                        const lblXp = document.getElementById('lbl-xp-earned');
+                        const lblMult = document.getElementById('lbl-multiplier');
+                        if (data.already_done) {
+                            lblXp.textContent = '+0 XP';
+                            lblXp.classList.add('text-on-surface-variant');
+                            lblMult.textContent = 'Level ini sudah pernah diselesaikan';
+                            lblMult.classList.remove('hidden');
+                        } else {
+                            lblXp.textContent = `+${data.xp_earned} XP`;
+                            if (data.multiplier > 1.0) {
+                                lblMult.textContent = `🔥 Bonus streak ${data.multiplier}×`;
+                                lblMult.classList.remove('hidden');
+                            }
+                        }
+
+                        // ── Update streak card ──────────────────────────────
+                        const lblStreak = document.getElementById('lbl-new-streak');
+                        const lblStreakLabel = document.getElementById('lbl-streak-label');
+                        lblStreak.textContent = `${data.new_streak} Hari`;
+                        if (data.streak_broken) {
+                            lblStreakLabel.textContent = 'Streak Reset 💔';
+                            lblStreak.classList.add('text-red-500');
+                        } else if (data.streak_changed) {
+                            lblStreakLabel.textContent = `🔥 Streak +1!`;
+                        } else {
+                            lblStreakLabel.textContent = 'Streak (sudah aktif hari ini)';
+                        }
+
+                        // ── XP_CONFIG — threshold naik level user ───────────
+                        const XP_CONFIG = { baseXP: 300, increment: 200, maxLevel: 50 };
+                        function xpForLevel(n) {
+                            return XP_CONFIG.baseXP + (n - 1) * XP_CONFIG.increment;
+                        }
+                        function getUserLevel(totalXp) {
+                            let lvl = 1, cumulative = 0;
+                            while (lvl < XP_CONFIG.maxLevel) {
+                                cumulative += xpForLevel(lvl);
+                                if (totalXp < cumulative) break;
+                                lvl++;
+                            }
+                            return lvl;
+                        }
+
+                        // Deteksi level-up (bandingkan XP sebelum vs sesudah)
+                        const xpBefore = data.new_xp - data.xp_earned;
+                        const lvlBefore = getUserLevel(xpBefore);
+                        const lvlAfter  = getUserLevel(data.new_xp);
+                        if (lvlAfter > lvlBefore && !data.already_done) {
+                            showLevelUpToast(lvlAfter);
+                        }
+
+                        // Redirect setelah 2s
+                        setTimeout(() => { window.location.href = LEVEL_DATA.redirectUrl; }, 2200);
                     } else {
-                        alert('Gagal menyimpan kemajuan. Mengarahkan kembali ke dashboard.');
                         window.location.href = LEVEL_DATA.redirectUrl;
                     }
                 } catch (err) {
                     console.error('Error saving progress:', err);
-                    alert('Kesalahan koneksi jaringan. Mengarahkan kembali ke dashboard.');
                     window.location.href = LEVEL_DATA.redirectUrl;
                 }
+            }
+
+            function showLevelUpToast(newLevel) {
+                const toast = document.createElement('div');
+                toast.style.cssText = [
+                    'position:fixed;top:1.5rem;left:50%;transform:translateX(-50%) translateY(-120%)',
+                    'background:linear-gradient(135deg,#f4d7a1,#6b3f00)',
+                    'color:#fff;padding:0.9rem 1.5rem;border-radius:1rem',
+                    'font-family:Lexend,sans-serif;font-weight:700;font-size:1rem',
+                    'box-shadow:0 8px 32px rgba(107,63,0,0.35)',
+                    'display:flex;align-items:center;gap:0.6rem',
+                    'transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1);z-index:9999',
+                ].join(';');
+                toast.innerHTML = `<span style="font-size:1.5rem">🎉</span> Selamat! Kamu naik ke Level <strong>${newLevel}</strong>!`;
+                document.body.appendChild(toast);
+                requestAnimationFrame(() => {
+                    toast.style.transform = 'translateX(-50%) translateY(0)';
+                });
+                setTimeout(() => {
+                    toast.style.transform = 'translateX(-50%) translateY(-120%)';
+                    setTimeout(() => toast.remove(), 600);
+                }, 3500);
             }
 
             // Bind click events

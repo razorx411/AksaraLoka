@@ -36,13 +36,20 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            $user        = Auth::user();
+            $redirectUrl = $user->isAdmin()
+                ? route('admin.dashboard')
+                : route('home');
+
             return response()->json([
-                'success' => true,
-                'message' => 'Selamat datang, ' . Auth::user()->username . '!',
-                'user'    => [
-                    'id'       => Auth::id(),
-                    'username' => Auth::user()->username,
-                    'email'    => Auth::user()->email,
+                'success'      => true,
+                'message'      => 'Selamat datang, ' . $user->username . '!',
+                'redirect_url' => $redirectUrl,
+                'user'         => [
+                    'id'       => $user->id,
+                    'username' => $user->username,
+                    'email'    => $user->email,
+                    'role'     => $user->role,
                 ],
             ]);
         }

@@ -39,12 +39,12 @@ class LearningPathSeeder extends Seeder
             'order_index' => 1,
         ]);
 
-        // Level 1: Sugeng Enjang
+        // Level 1: Sugeng Enjang (50 XP — tier Pemula)
         $level1 = Level::create([
             'sub_chapter_id' => $subChapter1->id,
-            'title' => 'Mulai: Sugeng Enjang',
-            'order_index' => 1,
-            'xp_reward' => 10,
+            'title'          => 'Mulai: Sugeng Enjang',
+            'order_index'    => 1,
+            'xp_reward'      => 50,
         ]);
 
         $q1_1 = Question::create([

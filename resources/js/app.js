@@ -36,7 +36,7 @@
     greetingTime.innerText = greeting;
 
     // XP & Level System
-    const XP_CONFIG = { baseXP: 1200, increment: 200, maxLevel: 45 };
+    const XP_CONFIG = { baseXP: 300, increment: 200, maxLevel: 50 };
 
     function xpRequiredForLevel(level) {
         if (level >= XP_CONFIG.maxLevel) return Infinity;
@@ -167,7 +167,7 @@
             if (data.success) {
                 localStorage.setItem('user', JSON.stringify(data.user));
                 showNotif(data.message, true);
-                setTimeout(() => { window.location.href = '/home'; }, 1500);
+                setTimeout(() => { window.location.href = data.redirect_url || '/home'; }, 1500);
             } else if (data.errors) {
                 if (data.errors.email) showErr(emailErr, data.errors.email);
                 if (data.errors.password) showErr(passErr, data.errors.password);

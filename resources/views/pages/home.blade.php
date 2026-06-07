@@ -147,15 +147,16 @@
         <!-- Community Card -->
         <div class="rounded-2xl border-2 border-primary/20 p-6 flex flex-col gap-4 bg-white/50">
             <img alt="Komunitas Aksara Jawa"
-                 class="rounded-xl w-full h-24 object-cover shadow-sm"
-                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIyHhfuAsaSoerY2G7oFVBum8Y_zw0TJdzD8Z-wbon6lEhdCYY4npObPqL6MyN30ZICgUG04YP5O3jmQ4--TBtidRFL9pZmqWj7url-odS5xR3HLx-_vAYmjC6n-v0jhdPGSm7oifSSxvrKHL84TapXuUi0AEnGIpYfsfCdxTOk7VQA47-KoiRHDy_ymFHa8gMxip9HLw8Jw-3VgIrHJYu5i8_nMsdBYJ0bt9Prxk1DC04RKrpDcVaaP2Bs203-Oudl7xGOdu9Dqc"/>
+                class="rounded-xl w-full h-24 object-cover shadow-sm"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIyHhfuAsaSoerY2G7oFVBum8Y_zw0TJdzD8Z-wbon6lEhdCYY4npObPqL6MyN30ZICgUG04YP5O3jmQ4--TBtidRFL9pZmqWj7url-odS5xR3HLx-_vAYmjC6n-v0jhdPGSm7oifSSxvrKHL84TapXuUi0AEnGIpYfsfCdxTOk7VQA47-KoiRHDy_ymFHa8gMxip9HLw8Jw-3VgIrHJYu5i8_nMsdBYJ0bt9Prxk1DC04RKrpDcVaaP2Bs203-Oudl7xGOdu9Dqc"/>
             <div>
                 <h5 class="text-sm font-bold text-on-surface">Pusat Komunitas</h5>
                 <p class="text-[10px] font-medium text-on-surface-variant mt-1">Terhubung dengan 5.000+ orang lainnya yang mempelajari aksara kuno.</p>
             </div>
-            <button class="w-full py-2 bg-surface-container-high rounded-xl font-bold text-xs text-primary hover:bg-primary-container hover:text-on-primary-container transition-colors border border-surface-container-highest">
-                Gabung Grup
-            </button>
+            <a href="https://youtube.com"
+            class="block w-full py-2 bg-surface-container-high rounded-xl font-bold text-xs text-primary hover:bg-primary-container hover:text-on-primary-container transition-colors border border-surface-container-highest text-center">
+            Gabung Grup
+            </a>
         </div>
 
     </aside>
