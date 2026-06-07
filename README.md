@@ -52,6 +52,8 @@ Proyek ini dikembangkan sebagai bagian dari tugas mata kuliah **Pemrograman Webs
 - ✅ Desain awal antarmuka website
 - ✅ Struktur Laravel project
 - ✅ Integrasi frontend
-- 🔄 Pengembangan fitur pembelajaran interaktif
-- 🔄 Optimalisasi database & backend
+- ✅ Pengembangan fitur pembelajaran interaktif
+- ✅ Optimalisasi database & backend
 - 🔄 Responsive design dan deployment
+
+  HAH KURANG DEPLOYMENT? FOR REAL??????????????????
