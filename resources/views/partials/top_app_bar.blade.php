@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center w-full px-8 py-4 sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-surface-container-high">
+<header class="flex justify-between items-center w-full px-4 md:px-8 py-4 sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-surface-container-high">
     <div class="flex flex-col">
         <h2 class="font-headline text-2xl font-bold text-primary">@yield('title', 'Dashboard')</h2>
         <p class="text-[10px] font-medium text-on-surface-variant">@yield('subtitle', 'Selamat datang di Aksaraloka')</p>

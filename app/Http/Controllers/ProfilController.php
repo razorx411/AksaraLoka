@@ -30,7 +30,7 @@ class ProfilController extends Controller
                 'color'       => $a->color,
                 'earned'      => $isEarned,
                 'date'        => $isEarned
-                    ? $earned[$a->id]->pivot->earned_at->format('d/m/y')
+                    ? \Illuminate\Support\Carbon::parse($earned[$a->id]->pivot->earned_at)->format('d/m/y')
                     : 'Terkunci',
             ];
         });
@@ -149,6 +149,22 @@ class ProfilController extends Controller
         ]);
 
         $user = Auth::user();
+        $file = $request->file('avatar');
+
+        if (! $file || ! $file->isValid()) {
+            $errorCode = $file ? $file->getError() : 'No file';
+            return response()->json([
+                'success' => false,
+                'message' => "Gagal mengunggah file (PHP Error Code: {$errorCode}). Silakan periksa konfigurasi upload_tmp_dir di php.ini.",
+            ], 422);
+        }
+
+        if (empty($file->getRealPath())) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal membaca temporary path file. Silakan periksa izin tulis (write permissions) folder temp di sistem/server PHP Anda.',
+            ], 422);
+        }
 
         // Delete old avatar if exists
         if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
@@ -156,7 +172,7 @@ class ProfilController extends Controller
         }
 
         // Store new avatar under storage/app/public/avatars/
-        $path = $request->file('avatar')->store('avatars', 'public');
+        $path = $file->store('avatars', 'public');
 
         $user->avatar = $path;
         $user->save();

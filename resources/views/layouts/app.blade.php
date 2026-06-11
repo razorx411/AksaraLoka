@@ -14,12 +14,13 @@
 
     @auth
         @include('partials.sidebar')
-        <main class="ml-64 min-h-screen">
+        <main class="ml-0 md:ml-64 min-h-screen pb-20 md:pb-6">
             @include('partials.top_app_bar')
-            <div class="p-6">
+            <div class="p-4 md:p-6">
                 @yield('content')
             </div>
         </main>
+        @include('partials.bottom_nav')
     @else
         @yield('content')
     @endauth

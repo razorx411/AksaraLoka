@@ -464,3 +464,182 @@
         document.getElementById('profileUsername').textContent = '@' + nama.replace(/\s+/g, '').toLowerCase();
     }
 })();
+
+// ── FORGOT PASSWORD PAGE ────────────────────────────────────
+(function initForgotPassword() {
+    const form = document.getElementById('forgotPasswordForm');
+    if (!form) return;
+
+    const emailEl = document.getElementById('email');
+    const notifEl = document.getElementById('notif');
+    const emailErr = document.getElementById('emailErr');
+
+    function showErr(el, msg) { el.textContent = msg; el.classList.remove('hidden'); }
+    function clearErr(el) { el.textContent = ''; el.classList.add('hidden'); }
+    function showNotif(msg, isSuccess = true) {
+        notifEl.textContent = msg;
+        notifEl.className = 'notif ' + (isSuccess
+            ? 'bg-green-50 text-green-700 border border-green-200 p-4 rounded-xl text-sm font-bold'
+            : 'bg-red-50 text-red-700 border border-red-200 p-4 rounded-xl text-sm font-bold');
+        notifEl.classList.remove('hidden');
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        notifEl.classList.add('hidden');
+        clearErr(emailErr);
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+            showErr(emailErr, 'Format email tidak valid.');
+            return;
+        }
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Mengirim…';
+
+        try {
+            const token = document.querySelector('meta[name="csrf-token"]').content;
+            const response = await fetch('/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': token },
+                body: JSON.stringify({ email: emailEl.value.trim() }),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                showNotif(data.message, true);
+                form.reset();
+            } else if (data.errors && data.errors.email) {
+                showErr(emailErr, data.errors.email);
+            } else {
+                showNotif(data.message || 'Terjadi kesalahan. Coba lagi.', false);
+            }
+        } catch (err) {
+            console.error('FORGOT PASSWORD ERROR:', err);
+            showNotif('Tidak dapat terhubung ke server. Periksa koneksi kamu.', false);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Kirim Tautan Atur Ulang';
+        }
+    });
+})();
+
+// ── RESET PASSWORD PAGE ──────────────────────────────────────
+(function initResetPassword() {
+    const form = document.getElementById('resetPasswordForm');
+    if (!form) return;
+
+    const passEl = document.getElementById('password');
+    const confEl = document.getElementById('confirmPassword');
+    const notifEl = document.getElementById('notif');
+    const passErr = document.getElementById('passErr');
+    const confErr = document.getElementById('confirmErr');
+    const bars = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3'), document.getElementById('bar4')];
+    const strengthLabel = document.getElementById('strengthLabel');
+
+    function setupEye(btnId, iconId, inputEl) {
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+            const isHidden = inputEl.type === 'password';
+            inputEl.type = isHidden ? 'text' : 'password';
+            document.getElementById(iconId).src = isHidden ? '/assets/icons/icon_view.png' : '/assets/icons/icon_hidden.png';
+        });
+    }
+    setupEye('eyeBtn', 'eyeIcon', passEl);
+    setupEye('eyeBtn2', 'eyeIcon2', confEl);
+
+    const STRENGTH_CONFIG = [
+        { label: 'Sangat Lemah', color: '#ef4444' }, { label: 'Lemah', color: '#f97316' },
+        { label: 'Cukup', color: '#eab308' }, { label: 'Kuat', color: '#22c55e' },
+    ];
+
+    function calcStrength(pwd) {
+        let score = 0;
+        if (pwd.length >= 8) score++;
+        if (/[A-Z]/.test(pwd)) score++;
+        if (/[0-9]/.test(pwd)) score++;
+        if (/[^A-Za-z0-9]/.test(pwd)) score++;
+        return score;
+    }
+
+    passEl.addEventListener('input', () => {
+        const score = calcStrength(passEl.value);
+        const filled = score === 0 && passEl.value.length === 0 ? 0 : Math.max(score, 1);
+        bars.forEach((bar, i) => {
+            bar.style.background = i < filled ? STRENGTH_CONFIG[Math.min(score - 1, 3)]?.color ?? '#e5e7eb' : '#e5e7eb';
+        });
+        if (passEl.value.length > 0) {
+            strengthLabel.classList.remove('hidden');
+            strengthLabel.textContent = STRENGTH_CONFIG[Math.min(score - 1, 3)]?.label ?? '';
+            strengthLabel.style.color = STRENGTH_CONFIG[Math.min(score - 1, 3)]?.color ?? '';
+        } else {
+            strengthLabel.classList.add('hidden');
+        }
+    });
+
+    function showErr(el, msg) { el.textContent = msg; el.classList.remove('hidden'); }
+    function clearErr(el) { el.textContent = ''; el.classList.add('hidden'); }
+    function showNotif(msg, isSuccess = true) {
+        notifEl.textContent = msg;
+        notifEl.className = 'notif ' + (isSuccess ? 'bg-green-50 text-green-700 border border-green-200 p-4 rounded-xl text-sm font-bold' : 'bg-red-50 text-red-700 border border-red-200 p-4 rounded-xl text-sm font-bold');
+        notifEl.classList.remove('hidden');
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        notifEl.classList.add('hidden');
+        clearErr(passErr);
+        clearErr(confErr);
+
+        let valid = true;
+        if (passEl.value.length < 8) {
+            showErr(passErr, 'Kata sandi minimal 8 karakter.');
+            valid = false;
+        }
+        if (passEl.value !== confEl.value) {
+            showErr(confErr, 'Konfirmasi kata sandi tidak cocok.');
+            valid = false;
+        }
+        if (!valid) return;
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Menyimpan…';
+
+        try {
+            const token = document.querySelector('meta[name="csrf-token"]').content;
+            const tokenVal = form.querySelector('input[name="token"]').value;
+            const emailVal = form.querySelector('input[name="email"]').value;
+
+            const response = await fetch('/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': token },
+                body: JSON.stringify({
+                    token: tokenVal,
+                    email: emailVal,
+                    password: passEl.value,
+                    confirmPassword: confEl.value
+                }),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                showNotif(data.message, true);
+                form.reset();
+                bars.forEach(b => b.style.background = '#e5e7eb');
+                strengthLabel.classList.add('hidden');
+                setTimeout(() => { window.location.href = '/login'; }, 2000);
+            } else {
+                showNotif(data.message || 'Terjadi kesalahan. Coba lagi.', false);
+            }
+        } catch (err) {
+            console.error('RESET PASSWORD ERROR:', err);
+            showNotif('Tidak dapat terhubung ke server. Periksa koneksi kamu.', false);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Simpan Kata Sandi Baru';
+        }
+    });
+})();

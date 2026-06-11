@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminChapterController;
 use App\Http\Controllers\Admin\AdminLevelController;
 use App\Http\Controllers\Admin\AdminNotificationController;
+use App\Http\Controllers\Admin\AdminLibraryController;
 use App\Http\Controllers\Admin\AdminQuestionController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminSubChapterController;
@@ -19,6 +20,10 @@ Route::get('/login',    [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login',   [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register',[AuthController::class, 'register']);
+Route::get('/forgot-password',  [AuthController::class, 'showForgotPassword'])->name('password.request');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
+Route::post('/reset-password',  [AuthController::class, 'resetPassword'])->name('password.update');
 Route::get('/privasi',  [PageController::class, 'privasi'])->name('privasi');
 
 // ── Auth required ────────────────────────────────────────────
@@ -29,12 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/chapter/{id}', [PageController::class, 'showChapter'])->name('chapter.show');
     Route::get('/level/{id}', [PageController::class, 'showLevel'])->name('level.show');
     Route::post('/level/{id}/complete', [PageController::class, 'completeLevel'])->name('level.complete');
-    Route::get('/materi',    [PageController::class, 'materi'])->name('materi');
-    Route::get('/materi/aksara',  [PageController::class, 'materiAksara'])->name('materi.aksara');
-    Route::get('/materi/ngoko',   [PageController::class, 'materiNgoko'])->name('materi.ngoko');
-    Route::get('/materi/krama',   [PageController::class, 'materiKrama'])->name('materi.krama');
-    Route::get('/materi/kosakata',[PageController::class, 'kosakata'])->name('materi.kosakata');
-    Route::get('/materi/cerita',  [PageController::class, 'materiCerita'])->name('materi.cerita');
+    Route::get('/materi',        [PageController::class, 'materi'])->name('materi');
+    Route::get('/materi/{slug}', [PageController::class, 'materiShow'])->name('materi.show');
     Route::get('/peringkat', [PageController::class, 'peringkat'])->name('peringkat');
 
     // ── Profile ───────────────────────────────────────────────
@@ -71,6 +72,9 @@ Route::middleware(['auth', 'admin'])
 
         // Questions CRUD
         Route::resource('questions', AdminQuestionController::class);
+
+        // Libraries CRUD
+        Route::resource('libraries', AdminLibraryController::class);
 
         // User management
         Route::get('/users',                         [AdminUserController::class, 'index'])->name('users.index');

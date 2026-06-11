@@ -1,4 +1,4 @@
-<nav class="flex flex-col h-screen py-6 px-4 gap-4 w-64 fixed left-0 top-0 bg-surface-container-low border-r border-surface-container-high z-50">
+<nav class="hidden md:flex flex-col h-screen py-6 px-4 gap-4 w-64 fixed left-0 top-0 bg-surface-container-low border-r border-surface-container-high z-50">
     <div class="flex items-center gap-2 px-2 mb-8">
         <span class="material-symbols-outlined text-primary text-[32px]">menu_book</span>
         <div>

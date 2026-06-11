@@ -366,6 +366,12 @@
             Soal
         </a>
 
+        <a href="{{ route('admin.libraries.index') }}"
+           class="admin-nav-item {{ request()->routeIs('admin.libraries*') ? 'active' : '' }}">
+            <span class="material-symbols-outlined">auto_stories</span>
+            Perpustakaan
+        </a>
+
         <div class="nav-section-label" style="margin-top:0.5rem;">Pengguna</div>
 
         <a href="{{ route('admin.users.index') }}"
