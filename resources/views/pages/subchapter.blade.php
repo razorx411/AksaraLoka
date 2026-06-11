@@ -182,8 +182,8 @@
                     @php
                         $status = $levelStatuses[$level->id] ?? 'locked';
                         $shiftClass = '';
-                        if ($globalLevelIndex % 4 == 1)     $shiftClass = 'translate-x-20';
-                        elseif ($globalLevelIndex % 4 == 3) $shiftClass = '-translate-x-20';
+                        if ($globalLevelIndex % 4 == 1)     $shiftClass = 'md:translate-x-20 translate-x-8';
+                        elseif ($globalLevelIndex % 4 == 3) $shiftClass = 'md:-translate-x-20 -translate-x-8';
                         $delay = ($globalLevelIndex * 0.07) . 's';
                         $globalLevelIndex++;
                     @endphp

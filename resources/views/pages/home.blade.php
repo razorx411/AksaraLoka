@@ -15,7 +15,7 @@
         </div>
 
         <!-- Stats Row -->
-        <div class="grid grid-cols-3 gap-4 mb-10">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
             <!-- Streak -->
             <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-5 flex items-center gap-4 tactile-card shadow-sm">
                 <div class="w-12 h-12 bg-error/10 rounded-xl flex items-center justify-center shrink-0">
@@ -75,7 +75,7 @@
                             <h4 class="font-headline text-xl font-bold truncate">{{ $chapter->title }}</h4>
 
                             <!-- Progress Bar -->
-                            <div class="mt-3 h-1.5 w-48 bg-white/20 rounded-full overflow-hidden">
+                            <div class="mt-3 h-1.5 w-full max-w-[12rem] bg-white/20 rounded-full overflow-hidden">
                                 <div class="h-full bg-[#FFA726] rounded-full transition-all duration-700"
                                      style="width: {{ $progress }}%"></div>
                             </div>
