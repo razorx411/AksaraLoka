@@ -12,6 +12,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        if (DB::table('users')->where('id', 1)->exists()) {
+            return;
+        }
+
         DB::table('users')->insert([
             [
                 'id' => 1,
