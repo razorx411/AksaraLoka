@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             LearningPathSeeder::class,
             AdminSeeder::class,
+            AchievementSeeder::class,
+            LibrarySeeder::class,
         ]);
     }
 }
