@@ -373,6 +373,14 @@
             <span class="material-symbols-outlined">group</span>
             Pengguna
         </a>
+
+        <div class="nav-section-label" style="margin-top:0.5rem;">Sistem</div>
+
+        <a href="{{ route('admin.notifications.index') }}"
+           class="admin-nav-item {{ request()->routeIs('admin.notifications*') ? 'active' : '' }}">
+            <span class="material-symbols-outlined">notifications</span>
+            Notifikasi
+        </a>
     </div>
 
     <!-- Bottom: back to app + logout -->

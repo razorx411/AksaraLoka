@@ -109,3 +109,201 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const avatarInitial = document.getElementById('avatarInitial');
+    const avatarUpload = document.getElementById('avatarUpload');
+    const formProfil = document.getElementById('formProfil');
+    const pesanGlobal = document.getElementById('pesanGlobal');
+    
+    const modalHapus = document.getElementById('modalHapus');
+    const btnHapusAkun = document.getElementById('btnHapusAkun');
+    const btnBatalHapus = document.getElementById('btnBatalHapus');
+    const btnKonfirmasiHapus = document.getElementById('btnKonfirmasiHapus');
+    const inputKonfirmasiPassword = document.getElementById('inputKonfirmasiPassword');
+    const errorKonfirmasi = document.getElementById('errorKonfirmasi');
+
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // Load user profile
+    fetch("{{ route('api.profil') }}")
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const user = data.user;
+                formProfil.elements['username'].value = user.username || '';
+                formProfil.elements['email'].value = user.email || '';
+                formProfil.elements['bio'].value = user.bio || '';
+                
+                updateAvatarDisplay(user.avatar_url, user.username);
+            }
+        })
+        .catch(err => console.error('Gagal mengambil data profil:', err));
+
+    function updateAvatarDisplay(url, username) {
+        if (url) {
+            avatarInitial.innerHTML = `<img src="${url}" class="w-full h-full rounded-full object-cover" alt="Avatar">`;
+        } else {
+            const initial = username ? username.charAt(0).toUpperCase() : '?';
+            avatarInitial.innerHTML = initial;
+        }
+    }
+
+    function showPesan(text, isError = false) {
+        pesanGlobal.textContent = text;
+        pesanGlobal.className = `p-4 rounded-xl text-sm font-bold mb-6 ${
+            isError ? 'bg-error-container text-error border border-error/20' : 'bg-primary-container text-primary border border-primary/20'
+        }`;
+        pesanGlobal.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function clearErrors() {
+        document.querySelectorAll('[id^="error_"]').forEach(el => {
+            el.textContent = '';
+            el.classList.add('hidden');
+        });
+    }
+
+    // Handle profile update
+    formProfil.addEventListener('submit', function(e) {
+        e.preventDefault();
+        clearErrors();
+        
+        const formData = new FormData(formProfil);
+        const data = {};
+        formData.forEach((value, key) => data[key] = value);
+
+        fetch("{{ route('profil.update') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(async response => {
+            const res = await response.json();
+            if (response.ok) {
+                return res;
+            } else {
+                throw res;
+            }
+        })
+        .then(res => {
+            showPesan(res.message || 'Profil berhasil diperbarui.', false);
+            formProfil.elements['password'].value = '';
+            
+            // If username changed, update avatar initial if no image
+            const avatarImg = avatarInitial.querySelector('img');
+            if (!avatarImg) {
+                updateAvatarDisplay(null, data.username);
+            }
+        })
+        .catch(err => {
+            console.error('Error updating profile:', err);
+            if (err.errors) {
+                for (const [key, msgs] of Object.entries(err.errors)) {
+                    const errorEl = document.getElementById(`error_${key}`);
+                    if (errorEl) {
+                        errorEl.textContent = msgs[0];
+                        errorEl.classList.remove('hidden');
+                    }
+                }
+            }
+            showPesan(err.message || 'Gagal menyimpan profil.', true);
+        });
+    });
+
+    // Handle avatar upload
+    avatarUpload.addEventListener('change', function() {
+        if (!avatarUpload.files || avatarUpload.files.length === 0) return;
+        
+        const file = avatarUpload.files[0];
+        const formData = new FormData();
+        formData.append('avatar', file);
+
+        showPesan('Mengunggah foto profil...', false);
+
+        fetch("{{ route('profil.avatar') }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json'
+            },
+            body: formData
+        })
+        .then(async response => {
+            const res = await response.json();
+            if (response.ok) {
+                return res;
+            } else {
+                throw res;
+            }
+        })
+        .then(res => {
+            showPesan(res.message || 'Foto profil berhasil diperbarui.', false);
+            updateAvatarDisplay(res.avatar_url, formProfil.elements['username'].value);
+        })
+        .catch(err => {
+            console.error('Error uploading avatar:', err);
+            showPesan(err.message || 'Gagal mengunggah foto profil.', true);
+        });
+    });
+
+    // Modal controls
+    btnHapusAkun.addEventListener('click', () => {
+        modalHapus.classList.remove('hidden');
+        inputKonfirmasiPassword.value = '';
+        errorKonfirmasi.textContent = '';
+        errorKonfirmasi.classList.add('hidden');
+    });
+
+    btnBatalHapus.addEventListener('click', () => {
+        modalHapus.classList.add('hidden');
+    });
+
+    btnKonfirmasiHapus.addEventListener('click', () => {
+        const password = inputKonfirmasiPassword.value;
+        errorKonfirmasi.textContent = '';
+        errorKonfirmasi.classList.add('hidden');
+
+        if (!password) {
+            errorKonfirmasi.textContent = 'Kata sandi konfirmasi wajib diisi.';
+            errorKonfirmasi.classList.remove('hidden');
+            return;
+        }
+
+        fetch("{{ route('profil.delete') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ password: password })
+        })
+        .then(async response => {
+            const res = await response.json();
+            if (response.ok) {
+                return res;
+            } else {
+                throw res;
+            }
+        })
+        .then(res => {
+            // Success - redirect to landing page
+            window.location.href = "{{ route('landing') }}";
+        })
+        .catch(err => {
+            console.error('Error deleting account:', err);
+            errorKonfirmasi.textContent = err.message || 'Gagal menghapus akun. Pastikan kata sandi benar.';
+            errorKonfirmasi.classList.remove('hidden');
+        });
+    });
+});
+</script>
+@endpush

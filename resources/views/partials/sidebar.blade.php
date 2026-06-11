@@ -30,10 +30,6 @@
     </div>
     
     <div class="mt-auto flex flex-col gap-2">
-        <button class="w-full bg-primary text-on-primary py-3 rounded-xl font-bold border-b-[3px] border-primary-container active:translate-y-[1px] active:border-b-0 transition-all text-sm">
-            Misi Harian
-        </button>
-        
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="w-full px-4 py-3 text-sm font-semibold text-error hover:bg-error/5 rounded-xl flex items-center gap-4 transition-all">

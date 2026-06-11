@@ -116,33 +116,7 @@
             </div>
         </div>
 
-        <!-- Daily Quests -->
-        <div class="bg-surface-container-low border-2 border-surface-variant rounded-2xl p-6 tactile-card shadow-sm">
-            <div class="flex justify-between items-center mb-5">
-                <h4 class="text-xs font-bold text-on-surface uppercase tracking-wider">Misi Harian</h4>
-                <span class="material-symbols-outlined text-primary text-xl">event_note</span>
-            </div>
-            <div class="flex flex-col gap-5">
-                <div>
-                    <div class="flex justify-between text-[10px] font-bold mb-2">
-                        <span class="text-on-surface-variant uppercase">XP Hari Ini</span>
-                        <span class="text-primary" id="daily-xp-label">0/50 XP</span>
-                    </div>
-                    <div class="h-2.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                        <div class="h-full bg-primary rounded-full transition-all duration-700" id="daily-xp-bar" style="width: 0%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between text-[10px] font-bold mb-2">
-                        <span class="text-on-surface-variant uppercase">Pelajaran</span>
-                        <span class="text-primary" id="daily-lesson-label">0/2</span>
-                    </div>
-                    <div class="h-2.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
-                        <div class="h-full bg-primary rounded-full transition-all duration-700" id="daily-lesson-bar" style="width: 0%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         <!-- Community Card -->
         <div class="rounded-2xl border-2 border-primary/20 p-6 flex flex-col gap-4 bg-white/50">
@@ -178,25 +152,7 @@
     if (greetingText) greetingText.textContent = g.label;
     if (greetingTime) greetingTime.textContent  = g.sub;
 
-    // Animate daily quest bars
-    document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-            const dailyXp       = {{ $dailyXp ?? 0 }};
-            const dailyXpGoal   = 50;
-            const dailyLesson   = {{ $dailyLessons ?? 0 }};
-            const dailyLessonGoal = 2;
 
-            const xpBar       = document.getElementById('daily-xp-bar');
-            const xpLabel     = document.getElementById('daily-xp-label');
-            const lessonBar   = document.getElementById('daily-lesson-bar');
-            const lessonLabel = document.getElementById('daily-lesson-label');
-
-            if (xpBar)       xpBar.style.width       = Math.min((dailyXp / dailyXpGoal) * 100, 100) + '%';
-            if (xpLabel)     xpLabel.textContent      = `${dailyXp}/${dailyXpGoal} XP`;
-            if (lessonBar)   lessonBar.style.width    = Math.min((dailyLesson / dailyLessonGoal) * 100, 100) + '%';
-            if (lessonLabel) lessonLabel.textContent  = `${dailyLesson}/${dailyLessonGoal}`;
-        }, 300);
-    });
 </script>
 @endpush
 @endsection

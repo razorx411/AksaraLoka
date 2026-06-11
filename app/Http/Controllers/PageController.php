@@ -163,28 +163,29 @@ class PageController extends Controller
         }
 
         // ── Update streak harian ───────────────────────────────────────────────
-        // Streak naik jika: selesaikan minimal 1 level per hari.
-        // - Hari ini pertama kali → streak +1, catat last_activity_date
-        // - Sudah aktif hari ini → streak tidak berubah
-        // - Skip 1+ hari → streak reset ke 1
         $streakChanged  = false;
         $streakBroken   = false;
-        $lastDate       = $user->last_activity_date; // Carbon date atau null
+        $lastDate       = $user->last_activity_date;
+        $lastDateString = null;
+        if ($lastDate) {
+            if ($lastDate instanceof \Carbon\Carbon || $lastDate instanceof \Illuminate\Support\Carbon) {
+                $lastDateString = $lastDate->toDateString();
+            } else {
+                $lastDateString = date('Y-m-d', strtotime($lastDate));
+            }
+        }
 
-        if (is_null($lastDate)) {
-            // Pertama kali ever aktif
+        if (is_null($lastDateString)) {
             $user->streak_count      = 1;
             $user->last_activity_date = $today;
             $streakChanged = true;
-        } elseif ($lastDate->toDateString() === $today) {
-            // Sudah aktif hari ini — streak tetap, tidak berubah
-        } elseif ($lastDate->toDateString() === now()->subDay()->toDateString()) {
-            // Aktif kemarin → lanjutkan streak
+        } elseif ($lastDateString === $today) {
+            // sudah aktif hari ini
+        } elseif ($lastDateString === now()->subDay()->toDateString()) {
             $user->streak_count      += 1;
             $user->last_activity_date = $today;
             $streakChanged = true;
         } else {
-            // Skip lebih dari 1 hari → streak putus, mulai dari 1
             $user->streak_count      = 1;
             $user->last_activity_date = $today;
             $streakChanged = true;
@@ -193,18 +194,30 @@ class PageController extends Controller
 
         $user->save();
 
+        // ── Cek & berikan achievement baru ────────────────────────────────────
+        $newAchievements = \App\Models\Achievement::checkAndAward($user);
+        $achievementData = array_map(fn ($a) => [
+            'name'        => $a->name,
+            'description' => $a->description,
+            'icon'        => $a->icon,
+            'color'       => $a->color,
+        ], $newAchievements);
+
         return response()->json([
-            'success'         => true,
-            'already_done'    => $alreadyCompleted,
-            'xp_earned'       => $xpEarned,
-            'xp_base'         => $xpBase,
-            'multiplier'      => $multiplier,
-            'new_xp'          => $user->total_points,
-            'new_streak'      => $user->streak_count,
-            'streak_changed'  => $streakChanged,
-            'streak_broken'   => $streakBroken,
+            'success'          => true,
+            'message'          => 'Level selesai!',
+            'already_done'     => $alreadyCompleted,
+            'xp_earned'        => $xpEarned,
+            'xp_base'          => $xpBase,
+            'multiplier'       => $multiplier,
+            'new_xp'           => $user->total_points,
+            'new_streak'       => $user->streak_count,
+            'streak_changed'   => $streakChanged,
+            'streak_broken'    => $streakBroken,
+            'new_achievements' => $achievementData,
         ]);
     }
+
 
     public function materi()
     {
