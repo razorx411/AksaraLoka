@@ -44,7 +44,7 @@ Proyek ini dikembangkan sebagai bagian dari tugas mata kuliah **Pemrograman Webs
 
 ## 🚀 Status Proyek
 
-> 🎉 **AksaraLoka telah berhasil dikembangkan dan dideploy.**
+> **AksaraLoka telah berhasil dikembangkan dan dideploy.**
 > Platform ini siap digunakan sebagai media pembelajaran Bahasa Jawa berbasis web dengan pendekatan interaktif dan gamifikasi.
 
 AksaraLoka dikembangkan sebagai proyek akademik yang bertujuan untuk mendukung pelestarian bahasa dan budaya daerah melalui pemanfaatan teknologi digital. Pengembangan dilakukan menggunakan Laravel sebagai framework utama dengan dukungan berbagai teknologi modern untuk menghadirkan pengalaman belajar yang menarik dan mudah diakses.
@@ -87,4 +87,3 @@ AksaraLoka dikembangkan sebagai proyek akademik yang bertujuan untuk mendukung p
 * ✅ Responsive design
 * ✅ Deployment aplikasi
 
-.
