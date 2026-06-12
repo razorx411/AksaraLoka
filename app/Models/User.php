@@ -36,6 +36,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user has guru role.
+     */
+    public function isGuru(): bool
+    {
+        return $this->role === 'guru';
+    }
+
+    /**
      * Get user level based on total XP.
      * XP_CONFIG: baseXP = 300, increment = 200, maxLevel = 50
      */
@@ -96,6 +104,18 @@ class User extends Authenticatable
     public function levelProgress()
     {
         return $this->hasMany(UserLevelProgress::class);
+    }
+
+    public function classroomsAsTeacher()
+    {
+        return $this->hasMany(Classroom::class, 'teacher_id');
+    }
+
+    public function classroomsAsStudent()
+    {
+        return $this->belongsToMany(Classroom::class, 'classroom_student', 'student_id', 'classroom_id')
+            ->withPivot('joined_at')
+            ->withTimestamps();
     }
 
     public function notifications()

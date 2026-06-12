@@ -5,10 +5,12 @@
     </div>
     <div class="flex items-center gap-4">
         {{-- Streak badge --}}
+        @if(!Auth::user()->isAdmin() && !Auth::user()->isGuru())
         <div class="hidden sm:flex items-center gap-2 bg-secondary-container/50 px-3 py-1.5 rounded-full text-xs font-bold text-secondary border border-secondary/20">
             <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
             <span>{{ Auth::user()->streak ?? 0 }} Hari</span>
         </div>
+        @endif
 
         {{-- Notification Bell --}}
         <div class="relative" id="notifWrapper">

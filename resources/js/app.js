@@ -277,6 +277,7 @@
                 body: JSON.stringify({
                     username: usernameEl.value.trim(), email: emailEl.value.trim(),
                     password: passEl.value, confirmPassword: confEl.value,
+                    role: document.getElementById('role') ? document.getElementById('role').value : 'user',
                 }),
             });
             const data = await response.json();

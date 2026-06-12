@@ -38,9 +38,13 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             $user        = Auth::user();
-            $redirectUrl = $user->isAdmin()
-                ? route('admin.dashboard')
-                : route('home');
+            if ($user->isAdmin()) {
+                $redirectUrl = route('admin.dashboard');
+            } elseif ($user->isGuru()) {
+                $redirectUrl = route('guru.dashboard');
+            } else {
+                $redirectUrl = route('home');
+            }
 
             return response()->json([
                 'success'      => true,
@@ -79,6 +83,7 @@ class AuthController extends Controller
             'email'           => 'required|email|unique:users,email',
             'password'        => 'required|min:8',
             'confirmPassword' => 'required|same:password',
+            'role'            => 'required|in:user,guru',
         ], [
             'username.required'        => 'Nama pengguna wajib diisi.',
             'username.max'             => 'Nama pengguna maksimal 100 karakter.',
@@ -89,12 +94,15 @@ class AuthController extends Controller
             'password.min'             => 'Kata sandi minimal 8 karakter.',
             'confirmPassword.required' => 'Konfirmasi kata sandi wajib diisi.',
             'confirmPassword.same'     => 'Konfirmasi kata sandi tidak cocok.',
+            'role.required'            => 'Pilihan peran wajib diisi.',
+            'role.in'                  => 'Pilihan peran tidak valid.',
         ]);
 
         User::create([
             'username' => $request->username,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
+            'role'     => $request->role,
         ]);
 
         return response()->json([

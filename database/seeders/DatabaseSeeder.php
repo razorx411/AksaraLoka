@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             LearningPathSeeder::class,
             AdminSeeder::class,
+            TeacherSeeder::class,
             AchievementSeeder::class,
             LibrarySeeder::class,
         ]);

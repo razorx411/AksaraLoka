@@ -50,6 +50,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/notifications',               [NotificationController::class, 'index'])->name('api.notifications');
     Route::post('/api/notifications/read-all',     [NotificationController::class, 'markAllRead'])->name('api.notifications.read-all');
     Route::post('/api/notifications/{id}/read',    [NotificationController::class, 'markRead'])->name('api.notifications.read');
+
+    // ── Guru (Teacher) routes ─────────────────────────────────
+    Route::middleware(['guru'])->prefix('guru')->name('guru.')->group(function () {
+        Route::get('/dashboard', [\App\Http\Controllers\Guru\GuruDashboardController::class, 'index'])->name('dashboard');
+        Route::post('/classrooms', [\App\Http\Controllers\Guru\GuruDashboardController::class, 'store'])->name('classrooms.store');
+        Route::get('/classrooms/{id}', [\App\Http\Controllers\Guru\GuruDashboardController::class, 'show'])->name('classrooms.show');
+        Route::delete('/classrooms/{id}', [\App\Http\Controllers\Guru\GuruDashboardController::class, 'destroy'])->name('classrooms.destroy');
+        Route::get('/classrooms/{classId}/students/{studentId}', [\App\Http\Controllers\Guru\GuruDashboardController::class, 'studentProgress'])->name('classrooms.student-progress');
+    });
+
+    // ── Student classroom routes ──────────────────────────────
+    Route::get('/classrooms', [\App\Http\Controllers\Student\StudentClassroomController::class, 'index'])->name('student.classrooms.index');
+    Route::post('/classrooms/join', [\App\Http\Controllers\Student\StudentClassroomController::class, 'join'])->name('student.classrooms.join');
+    Route::get('/classrooms/{id}', [\App\Http\Controllers\Student\StudentClassroomController::class, 'show'])->name('student.classrooms.show');
+    Route::post('/classrooms/{id}/leave', [\App\Http\Controllers\Student\StudentClassroomController::class, 'leave'])->name('student.classrooms.leave');
 });
 
 // ── Admin routes ─────────────────────────────────────────────

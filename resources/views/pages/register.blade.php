@@ -85,6 +85,18 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-on-surface-variant uppercase tracking-wider ml-1" for="role">Daftar Sebagai</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-[20px]">school</span>
+                        <select class="w-full pl-12 pr-10 py-3 bg-surface-container-low border-2 border-transparent focus:border-primary rounded-xl transition-all outline-none text-sm font-medium appearance-none" id="role" name="role" required>
+                            <option value="user">Siswa / Pelajar (Belajar Mandiri & Gabung Kelas)</option>
+                            <option value="guru">Guru / Pengajar (Buat Kelas & Monitoring Progres)</option>
+                        </select>
+                        <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">arrow_drop_down</span>
+                    </div>
+                </div>
                 
                 <div class="px-1 space-y-2">
                     <div class="flex gap-1 h-1.5">
