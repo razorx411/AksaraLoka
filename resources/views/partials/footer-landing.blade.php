@@ -33,6 +33,10 @@
   <div class="border-t border-brand-border bg-brand-soft">
     <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
       <p class="text-xs text-gray-400 font-semibold cursor-default select-none">&copy; {{ date('Y') }} AksaraLoka — Kelompok 11</p>
+      <div class="flex gap-4">
+        <a href="{{ route('dokumentasi') }}" class="text-xs text-brand font-bold hover:underline">Dokumentasi</a>
+        <a href="{{ route('privasi') }}" class="text-xs text-brand font-bold hover:underline">Kebijakan Privasi</a>
+      </div>
     </div>
   </div>
 </footer>

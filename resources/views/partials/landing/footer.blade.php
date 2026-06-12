@@ -16,6 +16,7 @@
                     <li><a class="hover:text-primary-fixed transition-colors" href="#">Beranda</a></li>
                     <li><a class="hover:text-primary-fixed transition-colors" href="#tentang">Tentang Kami</a></li>
                     <li><a class="hover:text-primary-fixed transition-colors" href="#fitur">Fitur</a></li>
+                    <li><a class="hover:text-primary-fixed transition-colors" href="{{ route('dokumentasi') }}">Dokumentasi</a></li>
                     <li><a class="hover:text-primary-fixed transition-colors" href="#">Hubungi Kami</a></li>
                 </ul>
             </div>
@@ -40,6 +41,7 @@
         <div class="pt-12 border-t border-surface-variant/10 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-xs text-surface-variant">© 2026 Aksaraloka. Nguri-uri Budaya Jawi.</p>
             <div class="flex gap-6 text-xs text-surface-variant">
+                <a class="hover:text-white" href="{{ route('dokumentasi') }}">Dokumentasi</a>
                 <a class="hover:text-white" href="{{ route('privasi') }}">Kebijakan Privasi</a>
                 <a class="hover:text-white" href="#">Syarat & Ketentuan</a>
             </div>

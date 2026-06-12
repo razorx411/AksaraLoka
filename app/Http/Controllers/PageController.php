@@ -267,6 +267,11 @@ class PageController extends Controller
         return view('pages.peringkat', compact('topThree', 'sisaRanking', 'leaderboard'));
     }
 
+    public function dokumentasi()
+    {
+        return view('pages.dokumentasi');
+    }
+
     public function privasi()
     {
         $pasal = [
