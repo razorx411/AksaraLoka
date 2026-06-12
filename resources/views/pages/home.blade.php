@@ -102,14 +102,15 @@
     <aside class="w-80 p-6 hidden xl:flex flex-col gap-6 sticky top-24 h-[calc(100vh-10rem)]">
 
         <!-- Weekly League -->
-        <div class="bg-secondary-container text-on-secondary-container rounded-2xl p-6 tactile-card relative overflow-hidden shadow-sm">
+        <div class="bg-secondary-container text-on-secondary-container rounded-2xl p-6 tactile-card relative overflow-hidden shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+             onclick="window.location='{{ route('peringkat') }}'">
             <div class="relative z-10">
-                <h4 class="text-[10px] font-bold uppercase tracking-widest mb-1 opacity-80">Liga Mingguan</h4>
+                <h4 class="text-[10px] font-bold uppercase tracking-widest mb-1 opacity-80">Liga AksaraLoka</h4>
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
-                    <span class="font-headline text-xl font-bold">Liga Perak</span>
+                    <span class="font-headline text-xl font-bold">Liga Utama</span>
                 </div>
-                <p class="text-[10px] font-bold mt-2 opacity-80">15 teratas lanjut ke Liga Emas!</p>
+                <p class="text-[10px] font-bold mt-2 opacity-80">Raih skor tertinggi se-Indonesia!</p>
             </div>
             <div class="absolute right-[-10px] bottom-[-10px] opacity-20">
                 <span class="material-symbols-outlined text-[80px]" style="font-variation-settings: 'FILL' 1;">trophy</span>

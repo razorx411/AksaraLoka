@@ -241,18 +241,27 @@ class PageController extends Controller
 
     public function peringkat()
     {
-        $leaderboard = [
-            ['rank' => 1,  'nama' => 'Dwiki A.R.',       'xp' => 4200, 'level' => 12, 'badge' => '🥇'],
-            ['rank' => 2,  'nama' => 'Zaki W.L.',        'xp' => 3750, 'level' => 11, 'badge' => '🥈'],
-            ['rank' => 3,  'nama' => 'Hafid F.',         'xp' => 3200, 'level' => 10, 'badge' => '🥉'],
-            ['rank' => 4,  'nama' => 'Arjuna Pratama',   'xp' => 2800, 'level' => 9,  'badge' => ''],
-            ['rank' => 5,  'nama' => 'Siti Rahayu',      'xp' => 2400, 'level' => 8,  'badge' => ''],
-            ['rank' => 6,  'nama' => 'Bima Sakti',       'xp' => 2100, 'level' => 7,  'badge' => ''],
-            ['rank' => 7,  'nama' => 'Dewi Ratnasari',   'xp' => 1800, 'level' => 6,  'badge' => ''],
-            ['rank' => 8,  'nama' => 'Raka Firmansyah',  'xp' => 1500, 'level' => 5,  'badge' => ''],
-            ['rank' => 9,  'nama' => 'Nadia Putri',      'xp' => 1200, 'level' => 4,  'badge' => ''],
-            ['rank' => 10, 'nama' => 'Galih Wicaksono',  'xp' => 900,  'level' => 3,  'badge' => ''],
-        ];
+        $users = \App\Models\User::where('role', 'user')
+            ->orderByDesc('total_points')
+            ->get();
+
+        $leaderboard = [];
+        foreach ($users as $index => $u) {
+            $rank = $index + 1;
+            $badge = '';
+            if ($rank === 1) $badge = '🥇';
+            elseif ($rank === 2) $badge = '🥈';
+            elseif ($rank === 3) $badge = '🥉';
+
+            $leaderboard[] = [
+                'rank'  => $rank,
+                'nama'  => $u->username,
+                'xp'    => $u->total_points,
+                'level' => $u->getUserLevel(),
+                'badge' => $badge,
+            ];
+        }
+
         $topThree    = array_slice($leaderboard, 0, 3);
         $sisaRanking = array_slice($leaderboard, 3);
         return view('pages.peringkat', compact('topThree', 'sisaRanking', 'leaderboard'));
