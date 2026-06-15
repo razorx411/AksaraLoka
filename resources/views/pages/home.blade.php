@@ -119,6 +119,22 @@
 
 
 
+        <!-- Friends List Sidebar Card -->
+        <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-4 shrink-0">
+                <h4 class="text-xs font-bold text-on-surface uppercase tracking-wider">Teman Saya</h4>
+                <span class="material-symbols-outlined text-[#6B3A00] text-lg" style="font-variation-settings: 'FILL' 1;">group</span>
+            </div>
+            
+            <div id="sidebarFriendsList" class="flex flex-col gap-2 mb-3">
+                <p class="text-[10px] text-outline text-center py-4 font-medium">Memuat daftar teman...</p>
+            </div>
+            
+            <button onclick="toggleChatPanel()" class="block w-full py-2 bg-surface-container-high rounded-xl font-bold text-[10px] text-[#6B3A00] hover:bg-[#6B3A00]/10 transition-colors border border-outline-variant/60 text-center uppercase tracking-wider">
+                Cari &amp; Tambah Teman
+            </button>
+        </div>
+
         <!-- Community Card -->
         <div class="rounded-2xl border-2 border-primary/20 p-6 flex flex-col gap-4 bg-white/50">
             <img alt="Komunitas Aksara Jawa"

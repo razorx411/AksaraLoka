@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\FriendshipController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminChapterController;
 use App\Http\Controllers\Admin\AdminLevelController;
@@ -52,6 +54,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/notifications',               [NotificationController::class, 'index'])->name('api.notifications');
     Route::post('/api/notifications/read-all',     [NotificationController::class, 'markAllRead'])->name('api.notifications.read-all');
     Route::post('/api/notifications/{id}/read',    [NotificationController::class, 'markRead'])->name('api.notifications.read');
+
+    // ── Pertemanan (Friendship) API ───────────────────────────
+    Route::get('/api/friends',                     [FriendshipController::class, 'listFriends']);
+    Route::get('/api/users/search',                [FriendshipController::class, 'searchUsers']);
+    Route::post('/api/friends/request',            [FriendshipController::class, 'sendRequest']);
+    Route::post('/api/friends/accept',             [FriendshipController::class, 'acceptRequest']);
+    Route::post('/api/friends/decline',            [FriendshipController::class, 'declineRequest']);
+    Route::get('/api/users/{id}/preview',          [FriendshipController::class, 'friendProfilePreview']);
+
+    // ── Obrolan (Chat) API ────────────────────────────────────
+    Route::get('/api/chat/updates',                [MessageController::class, 'getUpdates']);
+    Route::get('/api/chat/{friend_id}',            [MessageController::class, 'getChatHistory']);
+    Route::post('/api/chat/{friend_id}',           [MessageController::class, 'sendMessage']);
 
     // ── Guru (Teacher) routes ─────────────────────────────────
     Route::middleware(['guru'])->prefix('guru')->name('guru.')->group(function () {

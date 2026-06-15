@@ -172,6 +172,26 @@
                     </ul>
                 </div>
 
+                {{-- Category 6 --}}
+                <div class="space-y-2 docs-sidebar-cat">
+                    <h4 class="text-xs font-bold text-on-surface-variant/70 uppercase tracking-wider flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg">diversity_3</span>
+                        Fitur Sosial &amp; Game
+                    </h4>
+                    <ul class="space-y-1 border-l-2 border-surface-container-highest">
+                        <li>
+                            <a href="#sec-6-1" class="docs-sidebar-link block pl-4 py-1.5 text-sm text-on-surface-variant hover:text-primary transition-all border-l-2 border-transparent -ml-[2px]">
+                                6.1 Sistem Obrolan &amp; Pertemanan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#sec-6-2" class="docs-sidebar-link block pl-4 py-1.5 text-sm text-on-surface-variant hover:text-primary transition-all border-l-2 border-transparent -ml-[2px]">
+                                6.2 Pratinjau Profil &amp; Flex Lencana
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </nav>
         </aside>
 
@@ -507,6 +527,70 @@ $middleware->alias([
                     <p class="text-sm text-on-surface-variant leading-relaxed mb-6">
                         Guru memantau data progress belajar mahasiswa terdaftar lewat visualisasi persentase penyelesaian level di halaman detail kelas. Pada menu monitor detail mahasiswa, kueri database menarik riwayat pengerjaan dari tabel `user_level_progress` yang disandingkan dengan alur belajar lengkap untuk melahirkan checklist progres belajar siswa.
                     </p>
+                </section>
+
+                {{-- Section 6.1 --}}
+                <section id="sec-6-1" class="docs-section scroll-mt-20">
+                    <h2 class="font-headline text-3xl font-bold text-on-surface mb-4">6.1 Sistem Obrolan &amp; Pertemanan</h2>
+                    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">
+                        AksaraLoka mengimplementasikan fitur sosial untuk memfasilitasi interaksi antar pengguna berupa hubungan pertemanan (*friendships*) dan obrolan langsung (*chat messages*) secara real-time.
+                    </p>
+                    <div class="mb-6 bg-surface-container-low border border-outline-variant/60 rounded-2xl p-5 leading-relaxed">
+                        <h5 class="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1.5 mb-2 font-headline">
+                            <span class="material-symbols-outlined text-base">sync_alt</span> Mekanisme Sinkronisasi Polling
+                        </h5>
+                        <p class="text-xs text-on-surface-variant mb-2">
+                            Untuk menjaga keringanan sistem tanpa memerlukan WebSocket eksternal, obrolan memanfaatkan polling berkala melalui AJAX request dari browser ke server:
+                        </p>
+                        <ul class="text-xs text-on-surface-variant space-y-1 list-disc pl-4">
+                            <li><strong>Interval Polling:</strong> Request dikirimkan secara berkala setiap **3 detik** saat panel obrolan terbuka, dan melambat ke **5 detik** saat panel tertutup.</li>
+                            <li><strong>Endpoint Polling:</strong> Memanggil route <code class="bg-surface-container-high px-1 py-0.5 rounded font-mono text-xs">GET /api/chat/updates</code> untuk memeriksa pesan baru, hitungan unread badge global, serta status chat per individu secara dinamis.</li>
+                            <li><strong>Pengiriman Pesan:</strong> Dikirim melalui request <code class="bg-surface-container-high px-1 py-0.5 rounded font-mono text-xs">POST /api/chat/{friend_id}</code> yang langsung menyisipkan pesan baru ke database.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                {{-- Section 6.2 --}}
+                <section id="sec-6-2" class="docs-section scroll-mt-20">
+                    <h2 class="font-headline text-3xl font-bold text-on-surface mb-4">6.2 Pratinjau Profil &amp; Flex Lencana</h2>
+                    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">
+                        Fitur **Pratinjau Profil Teman (Friend Profile Preview)** dirancang sebagai kartu profil sekilas (popup view) yang memungkinkan pengguna melihat statistik belajar teman lain serta memamerkan (*flexing*) lencana pencapaian (*achievements gallery*) yang telah diraih secara interaktif.
+                    </p>
+                    <div class="mb-6 bg-surface-container-low border border-outline-variant/60 rounded-2xl p-5 leading-relaxed">
+                        <h5 class="font-bold text-sm text-primary flex items-center gap-2 mb-3 font-headline">
+                            <span class="material-symbols-outlined text-lg">emoji_events</span> Desain &amp; Fitur Interaktif Flex
+                        </h5>
+                        <ul class="text-xs text-on-surface-variant space-y-2 list-disc pl-4">
+                            <li><strong>Visualisasi Premium (Prasasti Pencapaian):</strong> Header kartu profil didesain dengan gradasi emas Javanese mewah, cincin avatar bercahaya (pulsing glow), dan indikator level ksatria yang dihitung dinamis dari total XP pengguna.</li>
+                            <li><strong>Lencana Berkilau (Shine Animation):</strong> Lencana pencapaian yang berhasil diraih memiliki warna metalik (emas, tembaga, perak) dan efek kilatan cahaya menyapu (*diagonal shine*) ketika disorot kursor mouse. Lencana yang belum terbuka akan digantikan ikon gembok abu-abu (*grayscale*).</li>
+                            <li><strong>Papan Keterangan Dinamis:</strong> Di bagian bawah kartu, terdapat papan informasi interaktif. Saat pengguna menyorot atau mengetuk lencana apa saja di grid pencapaian, deskripsi lencana, persyaratan, dan tanggal perolehan (`earned_at`) akan terisi secara dinamis tanpa pop-up yang rentan terpotong di layar HP.</li>
+                            <li><strong>Contextual CTA Action Button:</strong> Tombol interaksi di bagian bawah merespons status hubungan pengguna. Jika sudah berteman, tombol akan bertuliskan **Kirim Pesan** (untuk langsung masuk ke chat room). Jika belum berteman, menampilkan tombol **Tambah Teman**, atau tombol konfirmasi jika ada permintaan tertunda.</li>
+                        </ul>
+                    </div>
+
+                    <h4 class="font-headline text-sm font-bold text-on-surface mb-3">API &amp; Integrasi Controller</h4>
+                    <p class="text-xs text-on-surface-variant leading-relaxed mb-4">
+                        Data pratinjau diambil melalui endpoint <code class="bg-surface-container-high px-1 py-0.5 rounded font-mono text-[11px]">GET /api/users/{id}/preview</code> yang ditangani oleh metode berikut di <code class="bg-surface-container-high px-1 py-0.5 rounded font-mono text-[11px]">FriendshipController</code>:
+                    </p>
+                    <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-5 font-mono text-xs text-on-surface overflow-x-auto">
+<pre class="text-[#206e1b]"><span class="text-outline-variant">// Pengambilan data profil &amp; lencana di controller</span>
+$allAchievements = Achievement::orderBy('id')->get();
+$earned = $targetUser->achievements()->withPivot('earned_at')->get()->keyBy('id');
+
+$achievements = $allAchievements->map(function ($a) use ($earned) {
+    $isEarned = $earned->has($a->id);
+    return [
+        'name'        => $a->name,
+        'description' => $a->description,
+        'icon'        => $a->icon,
+        'color'       => $a->color,
+        'earned'      => $isEarned,
+        'date'        => $isEarned
+            ? Carbon::parse($earned[$a->id]->pivot->earned_at)->format('d/m/Y')
+            : null,
+    ];
+});</pre>
+                    </div>
                 </section>
 
             </div>

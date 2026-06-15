@@ -137,6 +137,54 @@ class User extends Authenticatable
         )->withPivot('earned_at');
     }
 
+    // ── Pertemanan & Obrolan (Friendship & Chat) ─────────────────
+
+    public function sentFriendships()
+    {
+        return $this->hasMany(Friendship::class, 'user_id');
+    }
+
+    public function receivedFriendships()
+    {
+        return $this->hasMany(Friendship::class, 'friend_id');
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    /**
+     * Get list of accepted friends.
+     */
+    public function friends()
+    {
+        $sent = $this->sentFriendships()->where('status', 'accepted')->with('friend')->get()->pluck('friend');
+        $received = $this->receivedFriendships()->where('status', 'accepted')->with('user')->get()->pluck('user');
+        return $sent->merge($received);
+    }
+
+    /**
+     * Get list of pending friend requests (received).
+     */
+    public function pendingFriendRequests()
+    {
+        return $this->receivedFriendships()->where('status', 'pending')->with('user')->get()->pluck('user');
+    }
+
+    /**
+     * Get list of sent friend requests (still pending).
+     */
+    public function sentFriendRequests()
+    {
+        return $this->sentFriendships()->where('status', 'pending')->with('friend')->get()->pluck('friend');
+    }
+
     // ── Backward compatibility accessors ─────────────────────
 
     public function getNamaAttribute()

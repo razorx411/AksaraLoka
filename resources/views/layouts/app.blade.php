@@ -94,5 +94,9 @@
         });
     }
     </script>
+    
+    @auth
+        @include('partials.chat_widget')
+    @endauth
 </body>
 </html>
