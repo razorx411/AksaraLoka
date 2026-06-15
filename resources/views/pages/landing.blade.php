@@ -216,57 +216,5 @@
             </div>
         </div>
     </section>
-    <!-- Partner Section -->
-    <style>
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-scroll {
-            animation: scroll 30s linear infinite;
-        }
-        .animate-scroll:hover {
-            animation-play-state: paused;
-        }
-    </style>
-    <section class="py-10 mb-10 overflow-hidden relative">
-
-        <div class="relative w-full overflow-hidden flex py-4">
-            <!-- Fade masks -->
-            <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
-            
-            <div class="flex w-max animate-scroll hover:[animation-play-state:paused]">
-                <!-- Set 1 -->
-                <div class="flex items-center gap-16 px-8 shrink-0">
-                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    
-                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    
-                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                </div>
-                <!-- Set 2 (Duplikat persis Set 1 untuk looping seamless) -->
-                <div class="flex items-center gap-16 px-8 shrink-0">
-                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    
-                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    
-                    <img src="{{ asset('assets/images/upn.webp') }}" alt="UPN Veteran Jatim" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/sifo.png') }}" alt="Sistem Informasi" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                    <img src="{{ asset('assets/images/Logo-HIMASIFO.png') }}" alt="Himasifo" class="h-16 w-auto max-w-none shrink-0 object-contain opacity-50 hover:opacity-100 grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer" />
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 @endsection

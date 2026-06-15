@@ -94,6 +94,11 @@
                                 2.2 Schema & Migrasi DB
                             </a>
                         </li>
+                        <li>
+                            <a href="#sec-2-3" class="docs-sidebar-link block pl-4 py-1.5 text-sm text-on-surface-variant hover:text-primary transition-all border-l-2 border-transparent -ml-[2px]">
+                                2.3 Cloud Storage (Cloudinary)
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -331,6 +336,38 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </section>
+
+                {{-- Section 2.3 --}}
+                <section id="sec-2-3" class="docs-section scroll-mt-20">
+                    <h2 class="font-headline text-3xl font-bold text-on-surface mb-4">2.3 Cloud Storage (Cloudinary)</h2>
+                    <p class="text-sm text-on-surface-variant leading-relaxed mb-6">
+                        Untuk mendukung deployment di platform cloud *stateless* seperti **Railway**, AksaraLoka mengintegrasikan penyimpanan gambar eksternal (Cloud Storage) menggunakan **Cloudinary REST API** secara native untuk foto profil pengguna.
+                    </p>
+
+                    <div class="mb-6 bg-primary-fixed-dim/10 border-l-4 border-primary p-5 rounded-r-2xl bg-[#6b3f00]/5">
+                        <p class="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1.5 mb-1.5">
+                            <span class="material-symbols-outlined text-base">cloud_done</span> Integrasi Cloudinary Native
+                        </p>
+                        <p class="text-xs text-on-surface-variant leading-relaxed mb-3">
+                            Integrasi ini dibangun secara native menggunakan HTTP Client Laravel (tanpa dependensi composer tambahan) guna memastikan kecocokan dengan Laravel 13 dan performa yang optimal.
+                        </p>
+                        <ul class="text-xs text-on-surface-variant space-y-1.5 list-disc pl-4">
+                            <li><strong>Helper Class:</strong> <code class="bg-surface-container-high px-1 py-0.5 rounded font-mono text-xs">App\Services\CloudinaryService</code> menangani upload menggunakan signed request signature (SHA1) dan penghapusan asset lama dari Cloudinary.</li>
+                            <li><strong>Fallback Mekanisme:</strong> Jika variabel lingkungan Cloudinary tidak diisi, sistem akan otomatis mendeteksi dan beralih menggunakan disk penyimpanan lokal (<code class="bg-surface-container-high px-1 py-0.5 rounded font-mono text-xs">public</code> disk).</li>
+                        </ul>
+                    </div>
+
+                    <p class="text-sm text-on-surface-variant leading-relaxed mb-4">
+                        Tambahkan variabel lingkungan berikut pada server produksi (seperti Railway Dashboard) untuk mengaktifkan integrasi:
+                    </p>
+
+                    <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-5 font-mono text-xs text-on-surface overflow-x-auto mb-6">
+<pre class="text-[#206e1b]"><span class="text-outline-variant"># Konfigurasi Cloudinary di .env atau Panel Kredensial Railway</span>
+CLOUDINARY_CLOUD_NAME=nama_cloud_anda
+CLOUDINARY_API_KEY=api_key_anda
+CLOUDINARY_API_SECRET=api_secret_anda</pre>
                     </div>
                 </section>
 

@@ -14,7 +14,7 @@
                 <h4 class="text-sm font-semibold text-white mb-6">Navigasi</h4>
                 <ul class="space-y-4 text-sm text-surface-variant">
                     <li><a class="hover:text-primary-fixed transition-colors" href="#">Beranda</a></li>
-                    <li><a class="hover:text-primary-fixed transition-colors" href="#tentang">Tentang Kami</a></li>
+                    <li><a class="hover:text-primary-fixed transition-colors" href="{{ route('tentang-kami') }}">Tentang Kami</a></li>
                     <li><a class="hover:text-primary-fixed transition-colors" href="#fitur">Fitur</a></li>
                     <li><a class="hover:text-primary-fixed transition-colors" href="{{ route('dokumentasi') }}">Dokumentasi</a></li>
                     <li><a class="hover:text-primary-fixed transition-colors" href="#">Hubungi Kami</a></li>

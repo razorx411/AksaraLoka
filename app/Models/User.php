@@ -83,6 +83,9 @@ class User extends Authenticatable
     public function getAvatarUrlAttribute(): ?string
     {
         if ($this->avatar) {
+            if (filter_var($this->avatar, FILTER_VALIDATE_URL)) {
+                return $this->avatar;
+            }
             return asset('storage/' . $this->avatar);
         }
         return null;

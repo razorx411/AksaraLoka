@@ -4,7 +4,7 @@
             <span class="font-headline text-2xl font-bold text-primary"><a href="/">Aksaraloka</a></span>
         </div>
         <div class="hidden md:flex items-center gap-10">
-            <a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#tentang">Tentang Kami</a>
+            <a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="{{ route('tentang-kami') }}">Tentang Kami</a>
             <a class="text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors" href="#fitur">Fitur</a>
         </div>
         <div class="flex items-center gap-4">

@@ -167,14 +167,31 @@ class ProfilController extends Controller
         }
 
         // Delete old avatar if exists
-        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
-            Storage::disk('public')->delete($user->avatar);
+        if ($user->avatar) {
+            if (filter_var($user->avatar, FILTER_VALIDATE_URL)) {
+                \App\Services\CloudinaryService::delete($user->avatar);
+            } elseif (Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
         }
 
-        // Store new avatar under storage/app/public/avatars/
-        $path = $file->store('avatars', 'public');
+        // Upload to Cloudinary if configured, fallback to local storage
+        if (env('CLOUDINARY_CLOUD_NAME')) {
+            $url = \App\Services\CloudinaryService::upload($file);
+            if ($url) {
+                $user->avatar = $url;
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gagal mengunggah foto profil ke Cloudinary.',
+                ], 500);
+            }
+        } else {
+            // Fallback to local storage (for development)
+            $path = $file->store('avatars', 'public');
+            $user->avatar = $path;
+        }
 
-        $user->avatar = $path;
         $user->save();
 
         return response()->json([
@@ -206,8 +223,12 @@ class ProfilController extends Controller
         }
 
         // Delete avatar from storage
-        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
-            Storage::disk('public')->delete($user->avatar);
+        if ($user->avatar) {
+            if (filter_var($user->avatar, FILTER_VALIDATE_URL)) {
+                \App\Services\CloudinaryService::delete($user->avatar);
+            } elseif (Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
         }
 
         $user->delete();

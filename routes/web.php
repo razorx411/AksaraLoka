@@ -26,6 +26,7 @@ Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword
 Route::post('/reset-password',  [AuthController::class, 'resetPassword'])->name('password.update');
 Route::get('/dokumentasi', [PageController::class, 'dokumentasi'])->name('dokumentasi');
 Route::get('/privasi',  [PageController::class, 'privasi'])->name('privasi');
+Route::get('/tentang-kami', [PageController::class, 'tentangKami'])->name('tentang-kami');
 
 // ── Auth required ────────────────────────────────────────────
 Route::middleware('auth')->group(function () {

@@ -284,4 +284,9 @@ class PageController extends Controller
         ];
         return view('pages.privasi', compact('pasal'));
     }
+
+    public function tentangKami()
+    {
+        return view('pages.tentang-kami');
+    }
 }

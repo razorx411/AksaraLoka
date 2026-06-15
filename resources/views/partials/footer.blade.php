@@ -20,7 +20,7 @@
     <div class="space-y-3">
       <h3 class="text-brand font-black text-xs uppercase tracking-widest">Platform</h3>
       <ul class="space-y-1.5">
-        <li><a href="#" class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors">Tentang Kami</a></li>
+        <li><a href="{{ route('tentang-kami') }}" class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors">Tentang Kami</a></li>
         <li><a href="{{ route('materi') }}" class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors">Materi</a></li>
         <li><a href="{{ route('dokumentasi') }}" class="text-sm text-gray-500 hover:text-brand font-semibold transition-colors">Dokumentasi</a></li>
       </ul>
