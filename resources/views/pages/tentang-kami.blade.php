@@ -125,7 +125,7 @@
                              onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center gap-3\'><span class=\'material-symbols-outlined text-[80px] text-white/30\'>person</span><span class=\'text-xs text-white/40 font-medium\'>Foto belum tersedia</span></div>';">
                     </div>
                     <div class="p-8 text-center">
-                        <h3 class="font-headline text-xl font-bold mb-1">Dwiki</h3>
+                        <h3 class="font-headline text-xl font-bold mb-1">Hafid</h3>
                         <p class="text-sm text-on-primary-container font-medium mb-4">Full-Stack Developer</p>
                         <p class="text-sm text-white/70 leading-relaxed">
                             Bertanggung jawab atas arsitektur sistem, pengembangan backend Laravel, dan integrasi frontend.
@@ -181,7 +181,7 @@
                              onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center gap-3\'><span class=\'material-symbols-outlined text-[80px] text-white/30\'>person</span><span class=\'text-xs text-white/40 font-medium\'>Foto belum tersedia</span></div>';">
                     </div>
                     <div class="p-8 text-center">
-                        <h3 class="font-headline text-xl font-bold mb-1">Hafid</h3>
+                        <h3 class="font-headline text-xl font-bold mb-1">Dwiki</h3>
                         <p class="text-sm text-on-primary-container font-medium mb-4">Content & QA</p>
                         <p class="text-sm text-white/70 leading-relaxed">
                             Menyusun materi pembelajaran aksara dan memastikan kualitas konten serta fungsionalitas platform.
