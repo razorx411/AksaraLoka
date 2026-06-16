@@ -26,6 +26,7 @@ class AdminChapterController extends Controller
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
             'order_index' => 'required|integer|min:1',
+            'image'       => 'required|string|in:mascot_girl_wave.png,mascot_boy_cross.png,mascot_boy_salam.png,mascot_girl_teacher.png',
         ]);
 
         Chapter::create($data);
@@ -46,6 +47,7 @@ class AdminChapterController extends Controller
             'title'       => 'required|string|max:255',
             'description' => 'nullable|string',
             'order_index' => 'required|integer|min:1',
+            'image'       => 'required|string|in:mascot_girl_wave.png,mascot_boy_cross.png,mascot_boy_salam.png,mascot_girl_teacher.png',
         ]);
 
         $chapter->update($data);

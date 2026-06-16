@@ -31,6 +31,7 @@ class LearningPathSeeder extends Seeder
             'title' => 'Salam Dasar',
             'description' => 'Mulai perjalananmu dengan Hanacaraka',
             'order_index' => 1,
+            'image' => 'mascot_girl_wave.png',
         ]);
 
         $subChapter1 = SubChapter::create([

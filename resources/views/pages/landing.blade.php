@@ -91,12 +91,12 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-10 bg-primary text-on-primary scroll-mt-20" id="fitur">
+    <section class="py-16 bg-primary text-on-primary scroll-mt-20" id="fitur">
         <div class="max-w-[1140px] mx-auto px-6">
-            <div class="text-center mb-10">
-                <h2 class="font-headline text-4xl mb-2 font-bold">Belajar Menjadi Menyenangkan</h2>
+            <div class="text-center mb-12">
+                <h2 class="font-headline text-4xl mb-3 font-bold">Belajar Menjadi Lebih Seru & Interaktif</h2>
                 <p class="text-lg text-on-primary-container max-w-2xl mx-auto">
-                    AksaraLoka menghadirkan fitur-fitur unggulan yang dirancang khusus untuk membuat proses belajar Aksara Jawa interaktif dan asyik.
+                    AksaraLoka menghadirkan fitur-fitur unggulan modern yang dirancang khusus untuk memudahkan proses belajar Aksara Jawa secara mandiri maupun kolaboratif.
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -105,41 +105,49 @@
                     <div class="w-14 h-14 bg-secondary-container text-on-secondary-container rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <span class="material-symbols-outlined text-[32px]">menu_book</span>
                     </div>
-                    <h3 class="font-headline text-xl mb-4 font-semibold">Materi Berjenjang</h3>
+                    <h3 class="font-headline text-xl mb-4 font-semibold">Materi & Kuis</h3>
                     <p class="text-sm text-on-primary-container">
-                        Belajar sistematis dari Aksara Nglegena, Sandhangan, hingga Pasangan melalui modul yang interaktif.
+                        Belajar sistematis dari Aksara Nglegena hingga Pasangan dengan modul menarik dan kuis interaktif di setiap tingkat.
                     </p>
                 </div>
                 <!-- Feature 2 -->
                 <div class="bg-white/10 backdrop-blur p-8 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
                     <div class="w-14 h-14 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-[32px]">quiz</span>
+                        <span class="material-symbols-outlined text-[32px]">school</span>
                     </div>
-                    <h3 class="font-headline text-xl mb-4 font-semibold">Kuis Interaktif</h3>
+                    <h3 class="font-headline text-xl mb-4 font-semibold">Platform Kelas</h3>
                     <p class="text-sm text-on-primary-container">
-                        Uji pemahamanmu di setiap akhir materi dengan kuis pilihan ganda yang menantang dan menyenangkan.
+                        Guru dapat membuat ruang kelas digital untuk memberikan tugas, memantau perkembangan, dan membimbing siswa secara real-time.
                     </p>
                 </div>
                 <!-- Feature 3 -->
                 <div class="bg-white/10 backdrop-blur p-8 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
                     <div class="w-14 h-14 bg-on-secondary-container text-white rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-[32px]">leaderboard</span>
+                        <span class="material-symbols-outlined text-[32px]">forum</span>
                     </div>
-                    <h3 class="font-headline text-xl mb-4 font-semibold">Papan Peringkat</h3>
+                    <h3 class="font-headline text-xl mb-4 font-semibold">Obrolan & Teman</h3>
                     <p class="text-sm text-on-primary-container">
-                        Kumpulkan poin dari setiap kuis, tingkatkan levelmu, dan raih posisi puncak di Papan Peringkat.
+                        Hubungkan jejaring sosial belajarmu dengan mencari teman baru, mengirim permintaan, dan berdiskusi lewat chat real-time.
                     </p>
                 </div>
                 <!-- Feature 4 -->
                 <div class="bg-white/10 backdrop-blur p-8 rounded-[2rem] border border-white/20 hover:bg-white/15 transition-all group">
                     <div class="w-14 h-14 bg-white text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-[32px]">library_books</span>
+                        <span class="material-symbols-outlined text-[32px]">workspace_premium</span>
                     </div>
-                    <h3 class="font-headline text-xl mb-4 font-semibold">Kamus Kosakata</h3>
+                    <h3 class="font-headline text-xl mb-4 font-semibold">Gamifikasi Seru</h3>
                     <p class="text-sm text-on-primary-container">
-                        Eksplorasi kumpulan kata bahasa Jawa dari berbagai tingkatan bahasa (Ngoko, Krama) beserta aksaranya.
+                        Kumpulkan XP, pertahankan streak harian, bersaing di papan peringkat global, dan dapatkan lencana pencapaian menarik.
                     </p>
                 </div>
+            </div>
+            
+            <!-- Detail Link Button -->
+            <div class="text-center mt-12">
+                <a href="{{ route('fitur') }}" class="px-8 py-3.5 bg-white text-primary text-sm font-semibold rounded-xl tactile-button inline-flex items-center gap-2 hover:bg-white/90 hover:scale-105 active:scale-95 transition-all duration-300 shadow-md hover:shadow-lg">
+                    <span>Jelajahi Semua Fitur Kami</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
             </div>
         </div>
     </section>

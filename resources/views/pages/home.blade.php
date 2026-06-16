@@ -82,6 +82,13 @@
                             <p class="text-[10px] font-bold mt-1 opacity-60">{{ round($progress) }}% selesai</p>
                         </div>
 
+                        <!-- Mascot Character -->
+                        <div class="hidden sm:flex items-center shrink-0 mx-4">
+                            <img src="{{ asset('assets/images/' . ($chapter->image ?? 'mascot_girl_wave.png')) }}" 
+                                 alt="Maskot" 
+                                 class="h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                        </div>
+
                         <a href="{{ $targetUrl }}"
                            class="ml-6 shrink-0 bg-white text-[#6B3A00] px-6 py-2 rounded-xl font-bold text-xs shadow hover:shadow-md active:scale-95 transition-all"
                            onclick="event.stopPropagation()">

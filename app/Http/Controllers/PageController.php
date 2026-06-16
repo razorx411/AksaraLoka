@@ -269,7 +269,7 @@ class PageController extends Controller
 
     public function dokumentasi()
     {
-        return view('pages.dokumentasi');
+        return response()->file(public_path('dokumentasi.html'));
     }
 
     public function privasi()
@@ -288,5 +288,10 @@ class PageController extends Controller
     public function tentangKami()
     {
         return view('pages.tentang-kami');
+    }
+
+    public function fitur()
+    {
+        return view('pages.fitur');
     }
 }

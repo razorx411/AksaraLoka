@@ -29,6 +29,7 @@ Route::post('/reset-password',  [AuthController::class, 'resetPassword'])->name(
 Route::get('/dokumentasi', [PageController::class, 'dokumentasi'])->name('dokumentasi');
 Route::get('/privasi',  [PageController::class, 'privasi'])->name('privasi');
 Route::get('/tentang-kami', [PageController::class, 'tentangKami'])->name('tentang-kami');
+Route::get('/fitur', [PageController::class, 'fitur'])->name('fitur');
 
 // ── Auth required ────────────────────────────────────────────
 Route::middleware('auth')->group(function () {
