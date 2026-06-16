@@ -69,6 +69,13 @@
                         <span class="material-symbols-outlined text-[90px]" style="font-variation-settings: 'FILL' 1;">history_edu</span>
                     </div>
 
+                    <!-- Mascot Character -->
+                    <div class="hidden sm:block absolute right-32 bottom-0 h-[108%] z-10 pointer-events-none select-none">
+                        <img src="{{ asset('assets/images/' . ($chapter->image ?? 'mascot_girl_wave.png')) }}" 
+                             alt="Maskot" 
+                             class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105 origin-bottom">
+                    </div>
+
                     <div class="relative z-10 flex items-center justify-between p-6">
                         <div class="flex-1 min-w-0">
                             <p class="text-[10px] font-bold uppercase tracking-widest opacity-70 mb-1">BAGIAN {{ $chapter->order_index }}</p>
@@ -82,12 +89,8 @@
                             <p class="text-[10px] font-bold mt-1 opacity-60">{{ round($progress) }}% selesai</p>
                         </div>
 
-                        <!-- Mascot Character -->
-                        <div class="hidden sm:flex items-center shrink-0 mx-4">
-                            <img src="{{ asset('assets/images/' . ($chapter->image ?? 'mascot_girl_wave.png')) }}" 
-                                 alt="Maskot" 
-                                 class="h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
-                        </div>
+                        <!-- Spacer to reserve space for absolute mascot -->
+                        <div class="hidden sm:block w-28 shrink-0"></div>
 
                         <a href="{{ $targetUrl }}"
                            class="ml-6 shrink-0 bg-white text-[#6B3A00] px-6 py-2 rounded-xl font-bold text-xs shadow hover:shadow-md active:scale-95 transition-all"
