@@ -115,13 +115,14 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                {{-- Member 1: Dwiki --}}
+                {{-- Member 1: Hafid --}}
                 <div class="bg-white/10 backdrop-blur rounded-[2rem] border border-white/20 overflow-hidden group hover:bg-white/15 transition-all duration-300">
                     <div class="aspect-square bg-white/5 flex items-center justify-center overflow-hidden">
                         {{-- Placeholder foto: ganti src dengan foto asli --}}
-                        <img src="{{ asset('assets/images/team/dwiki.jpg') }}" 
-                             alt="Foto Dwiki" 
+                        <img src="{{ asset('assets/images/img_hafid3.jpeg') }}" 
+                             alt="Foto Hafid" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             style="object-position: center 70%"
                              onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center gap-3\'><span class=\'material-symbols-outlined text-[80px] text-white/30\'>person</span><span class=\'text-xs text-white/40 font-medium\'>Foto belum tersedia</span></div>';">
                     </div>
                     <div class="p-8 text-center">
@@ -131,13 +132,13 @@
                             Bertanggung jawab atas arsitektur sistem, pengembangan backend Laravel, dan integrasi frontend.
                         </p>
                         <div class="flex justify-center gap-3 mt-5">
-                            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
+                            <a href="https://github.com/razorx411" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
                                 <i class="fa-brands fa-github text-sm"></i>
                             </a>
-                            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
+                            <a href="https://www.instagram.com/oryvexia/" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
                                 <i class="fa-brands fa-instagram text-sm"></i>
                             </a>
-                            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
+                            <a href="https://www.linkedin.com/in/hafid-fathurrohman-99455b325/" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
                                 <i class="fa-brands fa-linkedin-in text-sm"></i>
                             </a>
                         </div>
@@ -147,9 +148,9 @@
                 {{-- Member 2: Zaki --}}
                 <div class="bg-white/10 backdrop-blur rounded-[2rem] border border-white/20 overflow-hidden group hover:bg-white/15 transition-all duration-300">
                     <div class="aspect-square bg-white/5 flex items-center justify-center overflow-hidden">
-                        <img src="{{ asset('assets/images/team/zaki.jpg') }}" 
+                        <img src="{{ asset('assets/images/img_zaki.jpeg') }}" 
                              alt="Foto Zaki" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                              onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center gap-3\'><span class=\'material-symbols-outlined text-[80px] text-white/30\'>person</span><span class=\'text-xs text-white/40 font-medium\'>Foto belum tersedia</span></div>';">
                     </div>
                     <div class="p-8 text-center">
@@ -172,12 +173,12 @@
                     </div>
                 </div>
 
-                {{-- Member 3: Hafid --}}
+                {{-- Member 3: Dwiki --}}
                 <div class="bg-white/10 backdrop-blur rounded-[2rem] border border-white/20 overflow-hidden group hover:bg-white/15 transition-all duration-300">
                     <div class="aspect-square bg-white/5 flex items-center justify-center overflow-hidden">
-                        <img src="{{ asset('assets/images/team/hafid.jpg') }}" 
-                             alt="Foto Hafid" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        <img src="{{ asset('assets/images/img_dwiki.jpeg') }}" 
+                             alt="Foto Dwiki" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                              onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center gap-3\'><span class=\'material-symbols-outlined text-[80px] text-white/30\'>person</span><span class=\'text-xs text-white/40 font-medium\'>Foto belum tersedia</span></div>';">
                     </div>
                     <div class="p-8 text-center">

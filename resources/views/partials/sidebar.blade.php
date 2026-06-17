@@ -1,11 +1,15 @@
 <nav class="hidden md:flex flex-col h-screen py-6 px-4 gap-4 w-64 fixed left-0 top-0 bg-surface-container-low border-r border-surface-container-high z-50">
-    <div class="flex items-center gap-2 px-2 mb-8">
-        <span class="material-symbols-outlined text-primary text-[32px]">menu_book</span>
-        <div>
-            <h1 class="font-headline text-2xl font-bold text-primary leading-none">Aksaraloka</h1>
-            <p class="text-[10px] font-medium text-on-surface-variant">Nguri-uri Budaya</p>
+    {{-- Brand Logo --}}
+    <a href="{{ route('home') }}" class="flex items-center gap-3 px-2 mb-6 group">
+        <img src="{{ asset('assets/icons/logo_aksaraloka.png') }}"
+             alt="AksaraLoka Logo"
+             class="w-12 h-12 object-contain drop-shadow-sm transition-transform duration-200 group-hover:scale-105">
+        <div class="flex flex-col">
+            <span class="font-headline text-[22px] font-extrabold text-primary leading-none tracking-tight">Aksaraloka</span>
+            <span class="text-[10px] font-semibold text-on-surface-variant tracking-widest uppercase mt-0.5">Nguri-uri Budaya</span>
         </div>
-    </div>
+    </a>
+    <div class="h-px bg-outline-variant/40 mx-2 mb-4"></div>
     <div class="flex flex-col gap-1 flex-grow">
         @if(auth()->user()->isGuru())
             <!-- Nav Item: Dashboard Guru -->
