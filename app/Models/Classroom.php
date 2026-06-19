@@ -34,3 +34,4 @@ class Classroom extends Model
             ->withTimestamps();
     }
 }
+

@@ -976,3 +976,4 @@
         setInterval(checkUpdates, 5000); // slow global background poll (5s) when panel is closed
     });
 </script>
+

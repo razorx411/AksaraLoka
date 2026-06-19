@@ -59,3 +59,4 @@ class Achievement extends Model
         return $newly;
     }
 }
+

@@ -122,3 +122,4 @@ class GuruDashboardController extends Controller
         return redirect()->route('guru.dashboard')->with('success', 'Kelas berhasil dihapus.');
     }
 }
+

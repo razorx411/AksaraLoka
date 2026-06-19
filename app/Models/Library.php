@@ -23,3 +23,4 @@ class Library extends Model
         'content' => 'array',
     ];
 }
+

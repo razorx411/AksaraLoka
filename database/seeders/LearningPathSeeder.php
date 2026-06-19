@@ -205,3 +205,4 @@ class LearningPathSeeder extends Seeder
         QuestionOption::create(['question_id' => $q4_3->id, 'option_text' => 'Alur', 'is_correct' => false]);
     }
 }
+

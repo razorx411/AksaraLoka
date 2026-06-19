@@ -55,3 +55,4 @@ class ResetPasswordNotification extends Notification
             ->salutation('Salam hangat,' . "\n" . 'Tim Aksaraloka');
     }
 }
+

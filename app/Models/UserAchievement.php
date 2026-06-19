@@ -15,3 +15,4 @@ class UserAchievement extends Model
         'earned_at' => 'datetime',
     ];
 }
+

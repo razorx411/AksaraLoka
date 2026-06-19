@@ -83,3 +83,4 @@ class StudentClassroomController extends Controller
             ->with('success', 'Anda telah keluar dari kelas ' . $classroom->name . '.');
     }
 }
+

@@ -8,3 +8,4 @@ class MaterialContent extends Model
 {
     //
 }
+

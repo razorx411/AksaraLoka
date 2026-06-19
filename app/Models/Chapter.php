@@ -13,3 +13,4 @@ class Chapter extends Model
         return $this->hasMany(SubChapter::class)->orderBy('order_index');
     }
 }
+

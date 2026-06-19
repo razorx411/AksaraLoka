@@ -253,3 +253,4 @@ class ProfilController extends Controller
         return response()->json(['success' => true, 'message' => 'Akun berhasil dihapus.']);
     }
 }
+

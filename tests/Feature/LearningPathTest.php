@@ -73,3 +73,4 @@ class LearningPathTest extends TestCase
         $this->assertEquals(1, $user->streak_count);
     }
 }
+

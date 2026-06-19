@@ -51,3 +51,4 @@ class AdminNotificationController extends Controller
             ->with('success', 'Notifikasi berhasil dihapus.');
     }
 }
+

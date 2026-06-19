@@ -68,3 +68,4 @@ class AdminLevelController extends Controller
             ->with('success', 'Level berhasil dihapus.');
     }
 }
+

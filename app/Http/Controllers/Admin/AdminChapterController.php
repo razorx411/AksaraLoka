@@ -64,3 +64,4 @@ class AdminChapterController extends Controller
             ->with('success', 'Chapter berhasil dihapus.');
     }
 }
+

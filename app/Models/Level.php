@@ -23,3 +23,4 @@ class Level extends Model
         return $this->hasMany(UserLevelProgress::class);
     }
 }
+

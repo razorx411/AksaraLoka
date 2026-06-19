@@ -16,3 +16,4 @@ class UserNotification extends Model
         'created_at' => 'datetime',
     ];
 }
+

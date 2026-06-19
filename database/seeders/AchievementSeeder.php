@@ -107,3 +107,4 @@ class AchievementSeeder extends Seeder
         $this->command->info('✅ ' . count($achievements) . ' achievements seeded.');
     }
 }
+

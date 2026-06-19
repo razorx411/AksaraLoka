@@ -87,3 +87,4 @@ AksaraLoka dikembangkan sebagai proyek akademik yang bertujuan untuk mendukung p
 * ✅ Responsive design
 * ✅ Deployment aplikasi
 
+

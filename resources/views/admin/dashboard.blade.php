@@ -223,3 +223,4 @@ new Chart(document.getElementById('chartComp'), {
 });
 </script>
 @endpush
+
