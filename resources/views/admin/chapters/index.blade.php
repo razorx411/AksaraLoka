@@ -1,12 +1,12 @@
 @extends('admin.layouts.app')
-@section('title', 'Manajemen Konten')
+@section('title', 'Manajemen Chapter')
 @section('breadcrumb', 'Chapter')
 
 @section('content')
 
 <div class="page-header" style="display:flex;align-items:center;justify-content:space-between;">
     <div>
-        <div class="page-title">Manajemen Konten</div>
+        <div class="page-title">Chapter</div>
         <div class="page-sub">Kelola chapter dan struktur materi pembelajaran AksaraLoka.</div>
     </div>
     <a href="{{ route('admin.chapters.create') }}" class="btn-primary">
@@ -15,8 +15,7 @@
     </a>
 </div>
 
-{{-- ── Chapter Cards Grid ────────────────────────────────── --}}
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.875rem;margin-bottom:1.5rem;">
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.875rem;">
     @foreach($chapters as $chapter)
     <div class="chapter-card">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.6rem;">
@@ -59,61 +58,6 @@
         </div>
         <div style="font-size:0.8rem;font-weight:600;color:#707973;">Buat Unit Baru</div>
     </a>
-</div>
-
-{{-- ── Recent Levels Table ───────────────────────────────── --}}
-<div class="a-card">
-    <div class="a-card-header">
-        <div style="font-size:0.88rem;font-weight:700;color:#1b1c1c;">Recent Levels</div>
-        <a href="{{ route('admin.levels.index') }}" style="font-size:0.72rem;color:#6b3f00;font-weight:600;text-decoration:none;">Lihat semua →</a>
-    </div>
-    <table class="a-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Judul Level</th>
-                <th>Sub-Chapter</th>
-                <th>Chapter</th>
-                <th>XP</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-                $recentLevels = \App\Models\Level::with('subChapter.chapter')->latest()->limit(8)->get();
-            @endphp
-            @forelse($recentLevels as $level)
-            <tr>
-                <td style="color:#707973;font-size:0.75rem;">{{ $level->id }}</td>
-                <td style="font-weight:500;">{{ $level->title }}</td>
-                <td>{{ $level->subChapter?->title ?? '—' }}</td>
-                <td>
-                    @if($level->subChapter?->chapter)
-                    <span class="badge badge-brown">{{ $level->subChapter->chapter->title }}</span>
-                    @else —
-                    @endif
-                </td>
-                <td><span class="badge badge-amber">{{ $level->xp_reward }} XP</span></td>
-                <td>
-                    <div style="display:flex;gap:0.3rem;">
-                        <a href="{{ route('admin.levels.edit', $level) }}" class="btn-icon btn-icon-edit">
-                            <span class="material-symbols-outlined" style="font-size:0.85rem;">edit</span>
-                        </a>
-                        <form method="POST" action="{{ route('admin.levels.destroy', $level) }}"
-                              onsubmit="return confirm('Hapus level ini?')">
-                            @csrf @method('DELETE')
-                            <button type="submit" class="btn-icon btn-icon-del">
-                                <span class="material-symbols-outlined" style="font-size:0.85rem;">delete</span>
-                            </button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            @empty
-            <tr><td colspan="6" style="text-align:center;color:#707973;padding:1.5rem;">Belum ada level.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
 </div>
 
 @endsection

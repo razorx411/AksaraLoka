@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 
 class AdminSubChapterController extends Controller
 {
+    public function index()
+    {
+        $chapters = Chapter::with(['subChapters' => function ($q) {
+            $q->orderBy('order_index')->withCount('levels');
+        }])->withCount('subChapters')->orderBy('order_index')->get();
+
+        return view('admin.sub_chapters.index', compact('chapters'));
+    }
+
     public function store(Request $request, Chapter $chapter)
     {
         $data = $request->validate([
@@ -18,8 +27,10 @@ class AdminSubChapterController extends Controller
 
         $chapter->subChapters()->create($data);
 
-        return redirect()
-            ->route('admin.chapters.edit', $chapter)
+        $back = url()->previous();
+        $editRoute = route('admin.chapters.edit', $chapter);
+
+        return redirect($back ?: $editRoute)
             ->with('success', "Sub-chapter \"{$data['title']}\" berhasil ditambahkan!");
     }
 
@@ -32,8 +43,10 @@ class AdminSubChapterController extends Controller
 
         $sc->update($data);
 
-        return redirect()
-            ->route('admin.chapters.edit', $chapter)
+        $back = url()->previous();
+        $editRoute = route('admin.chapters.edit', $chapter);
+
+        return redirect($back ?: $editRoute)
             ->with('success', "Sub-chapter \"{$data['title']}\" berhasil diperbarui!");
     }
 
@@ -41,8 +54,10 @@ class AdminSubChapterController extends Controller
     {
         $sc->delete();
 
-        return redirect()
-            ->route('admin.chapters.edit', $chapter)
+        $back = url()->previous();
+        $editRoute = route('admin.chapters.edit', $chapter);
+
+        return redirect($back ?: $editRoute)
             ->with('success', 'Sub-chapter berhasil dihapus.');
     }
 }

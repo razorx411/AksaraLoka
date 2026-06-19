@@ -4,6 +4,16 @@
 
 @section('content')
 
+@if($user->deleted_at)
+<div style="display:flex;align-items:center;gap:0.6rem;padding:0.75rem 1rem;background:#ffdad6;border:1px solid #ffb4ab;border-radius:0.75rem;margin-bottom:1rem;">
+    <span class="material-symbols-outlined" style="font-size:1.1rem;color:#93000a;font-variation-settings:'FILL' 1">person_off</span>
+    <div>
+        <span style="font-size:0.82rem;font-weight:700;color:#93000a;">Akun Nonaktif</span>
+        <span style="font-size:0.78rem;color:#93000a;margin-left:0.5rem;">Dinonaktifkan sejak {{ $user->deleted_at->format('d M Y, H:i') }}</span>
+    </div>
+</div>
+@endif
+
 <div style="display:grid;grid-template-columns:280px 1fr;gap:1rem;max-width:900px;">
 
     {{-- ── Profile Card ─────────────────────────────────── --}}

@@ -20,11 +20,12 @@
 
 {{-- ── Stat Cards ─────────────────────────────────────────── --}}
 @php
-    $totalAll   = \App\Models\User::where('role','user')->count();
-    $activeCount= \App\Models\User::where('role','user')->whereNull('deleted_at')->count();
-    $newMonth   = \App\Models\User::where('role','user')->where('created_at','>=',now()->subDays(30))->count();
+    $totalAll      = \App\Models\User::withTrashed()->where('role','user')->count();
+    $activeCount   = \App\Models\User::where('role','user')->whereNull('deleted_at')->count();
+    $inactiveCount = \App\Models\User::withTrashed()->where('role','user')->whereNotNull('deleted_at')->count();
+    $newMonth      = \App\Models\User::withTrashed()->where('role','user')->where('created_at','>=',now()->subDays(30))->count();
 @endphp
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.875rem;margin-bottom:1.25rem;">
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.875rem;margin-bottom:1.25rem;">
     <div class="stat-card">
         <div class="stat-icon brown">
             <span class="material-symbols-outlined" style="font-size:1.2rem;font-variation-settings:'FILL' 1">group</span>
@@ -40,7 +41,16 @@
         </div>
         <div>
             <div class="stat-value">{{ number_format($activeCount) }}</div>
-            <div class="stat-label">Pengguna Aktif</div>
+            <div class="stat-label">Aktif</div>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon red">
+            <span class="material-symbols-outlined" style="font-size:1.2rem;font-variation-settings:'FILL' 1">person_off</span>
+        </div>
+        <div>
+            <div class="stat-value">{{ number_format($inactiveCount) }}</div>
+            <div class="stat-label">Nonaktif</div>
         </div>
     </div>
     <div class="stat-card">
@@ -59,17 +69,31 @@
     <div class="a-card-header">
         <div style="font-size:0.88rem;font-weight:700;color:#1b1c1c;">Daftar Pengguna</div>
         <div style="display:flex;align-items:center;gap:0.6rem;">
-            <form method="GET" action="{{ route('admin.users.index') }}" style="display:flex;gap:0.5rem;">
+            <form method="GET" action="{{ route('admin.users.index') }}" style="display:flex;gap:0.5rem;align-items:center;">
+                {{-- Filter tab status --}}
+                <div style="display:flex;gap:0.25rem;background:#f6f3f2;border-radius:0.5rem;padding:0.2rem;">
+                    @foreach(['all' => 'Semua', 'active' => 'Aktif', 'inactive' => 'Nonaktif'] as $val => $label)
+                    <button type="submit" name="status" value="{{ $val }}"
+                            style="padding:0.3rem 0.65rem;border-radius:0.35rem;font-size:0.72rem;font-weight:600;border:none;cursor:pointer;
+                                   background:{{ $status === $val ? '#fff' : 'transparent' }};
+                                   color:{{ $status === $val ? '#1b1c1c' : '#707973' }};
+                                   box-shadow:{{ $status === $val ? '0 1px 3px #0000000f' : 'none' }}">
+                        {{ $label }}
+                    </button>
+                    @endforeach
+                    <input type="hidden" name="search" value="{{ $search }}">
+                </div>
                 <div class="search-bar">
                     <span class="material-symbols-outlined">search</span>
                     <input type="text" name="search" value="{{ $search }}"
                            placeholder="Cari nama atau email..." />
+                    <input type="hidden" name="status" value="{{ $status }}">
                 </div>
                 <button type="submit" class="btn-primary" style="padding:0.45rem 0.8rem;">
                     <span class="material-symbols-outlined" style="font-size:0.9rem;">search</span>
                 </button>
                 @if($search)
-                <a href="{{ route('admin.users.index') }}" class="btn-secondary" style="padding:0.45rem 0.8rem;">
+                <a href="{{ route('admin.users.index', ['status' => $status]) }}" class="btn-secondary" style="padding:0.45rem 0.8rem;">
                     <span class="material-symbols-outlined" style="font-size:0.9rem;">close</span>
                 </a>
                 @endif
@@ -92,12 +116,15 @@
         </thead>
         <tbody>
             @forelse($users as $user)
-            <tr>
+            <tr style="{{ $user->deleted_at ? 'background:#fff8f7;' : '' }}">
                 <td>
                     <div style="display:flex;align-items:center;gap:0.6rem;">
-                        <div class="a-avatar">{{ strtoupper(substr($user->username, 0, 1)) }}</div>
+                        <div class="a-avatar" style="{{ $user->deleted_at ? 'opacity:0.5;' : '' }}">{{ strtoupper(substr($user->username, 0, 1)) }}</div>
                         <div>
-                            <div style="font-weight:600;font-size:0.82rem;">{{ $user->username }}</div>
+                            <div style="font-weight:600;font-size:0.82rem;{{ $user->deleted_at ? 'color:#707973;text-decoration:line-through;' : '' }}">{{ $user->username }}</div>
+                            @if($user->deleted_at)
+                            <div style="font-size:0.68rem;color:#ba1a1a;margin-top:0.05rem;">Dinonaktifkan {{ $user->deleted_at->format('d M Y') }}</div>
+                            @endif
                         </div>
                     </div>
                 </td>

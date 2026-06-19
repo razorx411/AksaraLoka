@@ -354,6 +354,12 @@
             Chapter
         </a>
 
+        <a href="{{ route('admin.sub-chapters.index') }}"
+           class="admin-nav-item {{ request()->routeIs('admin.sub-chapters*') ? 'active' : '' }}">
+            <span class="material-symbols-outlined">format_list_bulleted</span>
+            Sub-Chapter
+        </a>
+
         <a href="{{ route('admin.levels.index') }}"
            class="admin-nav-item {{ request()->routeIs('admin.levels*') ? 'active' : '' }}">
             <span class="material-symbols-outlined">format_list_numbered</span>

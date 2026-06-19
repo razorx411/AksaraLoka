@@ -96,6 +96,7 @@ Route::middleware(['auth', 'admin'])
         Route::resource('chapters', AdminChapterController::class);
 
         // Sub-Chapters CRUD
+        Route::get('/sub-chapters',                              [AdminSubChapterController::class, 'index'])->name('sub-chapters.index');
         Route::post('/chapters/{chapter}/sub-chapters',          [AdminSubChapterController::class, 'store'])->name('sub-chapters.store');
         Route::put('/chapters/{chapter}/sub-chapters/{sc}',      [AdminSubChapterController::class, 'update'])->name('sub-chapters.update');
         Route::delete('/chapters/{chapter}/sub-chapters/{sc}',   [AdminSubChapterController::class, 'destroy'])->name('sub-chapters.destroy');

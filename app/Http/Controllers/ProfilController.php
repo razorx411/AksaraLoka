@@ -35,43 +35,56 @@ class ProfilController extends Controller
             ];
         });
 
-        // ── Skill Progress (per chapter, up to 4) ────────────────────
-        $skillDefs = [
-            ['name' => 'Membaca',   'icon' => 'menu_book'],
-            ['name' => 'Menulis',   'icon' => 'edit_note'],
-            ['name' => 'Berbicara', 'icon' => 'record_voice_over'],
-            ['name' => 'Budaya',    'icon' => 'temple_buddhist'],
-        ];
+        // ── Skill: Membaca ────────────────────────────────────────────
+        // Rumus:
+        //   1. Hitung completion% tiap chapter = (level selesai di chapter itu) / (total level di chapter itu) × 100
+        //   2. Jumlahkan semua completion% dari SEMUA chapter yang ada
+        //   3. Bagi dengan total chapter = rata-rata tertimbang per chapter
+        //
+        // Contoh: 4 chapter, chapter 1 selesai 10%, sisanya 0%
+        //   → Membaca = (10 + 0 + 0 + 0) / 4 = 2.5% ≈ 3%
 
-        $chapters       = Chapter::with(['subChapters.levels'])
-            ->orderBy('order_index')->take(4)->get();
-        $completedIds   = UserLevelProgress::where('user_id', $user->id)
+        $allChapters  = Chapter::with(['subChapters.levels'])->orderBy('order_index')->get();
+        $totalChapters = $allChapters->count();
+
+        $completedIds = UserLevelProgress::where('user_id', $user->id)
             ->where('is_completed', true)
             ->pluck('level_id')
             ->toArray();
 
-        $skills = [];
-        foreach ($skillDefs as $i => $def) {
-            $chapter = $chapters->get($i);
-            if ($chapter) {
-                $total = 0;
-                $done  = 0;
-                foreach ($chapter->subChapters as $sub) {
-                    foreach ($sub->levels as $lvl) {
-                        $total++;
-                        if (in_array($lvl->id, $completedIds)) {
-                            $done++;
-                        }
+        $sumChapterPct = 0;
+        foreach ($allChapters as $chapter) {
+            $chTotal = 0;
+            $chDone  = 0;
+            foreach ($chapter->subChapters as $sub) {
+                foreach ($sub->levels as $lvl) {
+                    $chTotal++;
+                    if (in_array($lvl->id, $completedIds)) {
+                        $chDone++;
                     }
                 }
-                $pct = $total > 0 ? round(($done / $total) * 100) : 0;
-            } else {
-                $pct = 0;
             }
-            $skills[] = array_merge($def, ['progress' => $pct]);
+            // Completion% chapter ini (0–100)
+            $sumChapterPct += ($chTotal > 0 ? ($chDone / $chTotal) * 100 : 0);
         }
 
+        // Rata-rata kontribusi per chapter → persentase keahlian Membaca
+        $membacaPct = $totalChapters > 0 ? round($sumChapterPct / $totalChapters) : 0;
+
+        $skills = [
+            [
+                'name'        => 'Membaca',
+                'icon'        => 'menu_book',
+                'progress'    => $membacaPct,
+                'coming_soon' => false,
+            ],
+            ['name' => 'Menulis',   'icon' => 'edit_note',          'progress' => 0, 'coming_soon' => true],
+            ['name' => 'Berbicara', 'icon' => 'record_voice_over',  'progress' => 0, 'coming_soon' => true],
+            ['name' => 'Budaya',    'icon' => 'temple_buddhist',    'progress' => 0, 'coming_soon' => true],
+        ];
+
         return view('pages.profil', compact('achievements', 'skills'));
+
     }
 
     public function edit()

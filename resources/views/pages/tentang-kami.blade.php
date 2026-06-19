@@ -160,10 +160,10 @@
                             Merancang antarmuka pengguna yang intuitif, estetis, dan menghadirkan pengalaman belajar terbaik.
                         </p>
                         <div class="flex justify-center gap-3 mt-5">
-                            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
+                            <a href="https://github.com/Revio225" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
                                 <i class="fa-brands fa-github text-sm"></i>
                             </a>
-                            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
+                            <a href="https://www.instagram.com/wiraksa_aa/" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
                                 <i class="fa-brands fa-instagram text-sm"></i>
                             </a>
                             <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
@@ -188,10 +188,10 @@
                             Menyusun materi pembelajaran aksara dan memastikan kualitas konten serta fungsionalitas platform.
                         </p>
                         <div class="flex justify-center gap-3 mt-5">
-                            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
+                            <a href="https://github.com/auliadwiki54" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
                                 <i class="fa-brands fa-github text-sm"></i>
                             </a>
-                            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
+                            <a href="https://www.instagram.com/kkkiii_aar_/" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">
                                 <i class="fa-brands fa-instagram text-sm"></i>
                             </a>
                             <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/25 transition-all">

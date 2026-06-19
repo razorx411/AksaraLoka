@@ -90,10 +90,37 @@
 
         {{-- Skill Progress (dynamic from chapter completion) --}}
         <section class="lg:col-span-8 bg-surface-container-lowest p-8 rounded-xl tactile-card border border-outline-variant shadow-sm">
-            <h3 class="font-headline text-xl text-on-surface mb-8 font-bold">Kemahiran Keahlian</h3>
+            <div class="flex items-start justify-between mb-2">
+                <h3 class="font-headline text-xl text-on-surface font-bold">Kemahiran Keahlian</h3>
+            </div>
+            <p class="text-xs text-on-surface-variant mb-8">
+                Membaca: rata-rata penyelesaian semua chapter ÷ jumlah chapter
+            </p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 @foreach($skills as $skill)
-                <div class="flex flex-col items-center gap-4">
+                <div class="flex flex-col items-center gap-4 relative">
+
+                    @if($skill['coming_soon'])
+                    {{-- Coming Soon card --}}
+                    <div class="relative w-24 h-24 flex items-center justify-center opacity-35">
+                        <svg class="w-full h-full -rotate-90">
+                            <circle class="text-surface-container-high" cx="48" cy="48" fill="transparent" r="40"
+                                    stroke="currentColor" stroke-width="8"></circle>
+                        </svg>
+                        <span class="absolute font-headline text-sm text-on-surface-variant font-bold">0%</span>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm font-bold text-on-surface-variant">{{ $skill['name'] }}</p>
+                        <span class="material-symbols-outlined text-on-surface-variant text-sm opacity-50">{{ $skill['icon'] }}</span>
+                        <div class="mt-1">
+                            <span class="inline-block text-[9px] font-bold bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-full border border-outline-variant">
+                                Coming Soon
+                            </span>
+                        </div>
+                    </div>
+
+                    @else
+                    {{-- Membaca — real data --}}
                     <div class="relative w-24 h-24 flex items-center justify-center">
                         <svg class="w-full h-full -rotate-90">
                             <circle class="text-surface-container-high" cx="48" cy="48" fill="transparent" r="40"
@@ -112,10 +139,13 @@
                         <p class="text-sm font-bold text-on-surface">{{ $skill['name'] }}</p>
                         <span class="material-symbols-outlined text-on-surface-variant text-sm">{{ $skill['icon'] }}</span>
                     </div>
+                    @endif
+
                 </div>
                 @endforeach
             </div>
         </section>
+
     </div>
 
     {{-- ── Achievements Gallery (Dynamic) ───────────────────────── --}}
